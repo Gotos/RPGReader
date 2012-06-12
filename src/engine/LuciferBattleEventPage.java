@@ -1,0 +1,215 @@
+package engine;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+/**
+ * This class models a BattleEvent-Page of the RM2k.
+ * 
+ * @author gRuFtY
+ * 
+ */
+public class LuciferBattleEventPage {
+	
+	private LuciferBattleEventPageCondition conditions;
+	private long scriptLength;
+	private LuciferEventCommand[] commands;
+	
+	/**
+	 * Return Condition of this BattleEventPage as LuciferBattleEventPageCondition
+	 * 
+	 * @return Condition of this BattleEventPage
+	 */
+	public LuciferBattleEventPageCondition getConditions() {
+		return conditions;
+	}
+	
+	/**
+	 * Sets Condition of this BattleEventPage
+	 * 
+	 * @param conditions new Condition of this BattleEventPage
+	 */
+	public void setConditions(LuciferBattleEventPageCondition conditions) {
+		this.conditions = conditions;
+	}
+	
+	/**
+	 * Return Condition of this BattleEventPage as LuciferBattleEventPageCondition
+	 * 
+	 * @return Condition of this BattleEventPage
+	 */
+	public LuciferBattleEventPageCondition getTrigger() {
+		return conditions;
+	}
+	
+	/**
+	 * Sets Condition of this BattleEventPage
+	 * 
+	 * @param conditions new Condition of this BattleEventPage
+	 */
+	public void setTrigger(LuciferBattleEventPageCondition conditions) {
+		this.conditions = conditions;
+	}
+	
+	/**
+	 * Returns the Event-Commands of this BattleEvent-Page
+	 * 
+	 * @return Event-Commands of this BattleEvent-Page
+	 */
+	public LuciferEventCommand[] getCommands() {
+		return commands;
+	}
+	
+	/**
+	 * Returns the Event-Commands of this BattleEvent-Page
+	 * 
+	 * @return Event-Commands of this BattleEvent-Page
+	 */
+	public LuciferEventCommand[] getEventCommands() {
+		return commands;
+	}
+	
+	/**
+	 * Returns the Event-Commands at index of this BattleEvent-Page
+	 * 
+	 * @param index Index of the Event-Command
+	 * @return Event-Commands at index of this BattleEvent-Page
+	 */
+	public LuciferEventCommand getCommand(int index) {
+		return commands[index];
+	}
+	
+	/**
+	 * Returns the Event-Commands at index of this BattleEvent-Page
+	 * 
+	 * @param index Index of the Event-Command
+	 * @return Event-Commands at index of this BattleEvent-Page
+	 */
+	public LuciferEventCommand getEventCommand(int index) {
+		return commands[index];
+	}
+	
+	/**
+	 * Sets the Event-Commands of this BattleEvent-Page
+	 * 
+	 * @param commands new Event-Commands
+	 */
+	public void setCommands(LuciferEventCommand[] commands) {
+		this.commands = commands;
+	}
+	
+	/**
+	 * Sets the Event-Commands of this BattleEvent-Page
+	 * 
+	 * @param commands new Event-Commands
+	 */
+	public void setEventCommands(LuciferEventCommand[] commands) {
+		this.commands = commands;
+	}
+	
+	/**
+	 * Sets Event-Command of this BattleEvent-Page at index to command
+	 * 
+	 * @param index Index of the Event-Command
+	 * @param command new Event-Command
+	 * @throws ArrayIndexOutOfBoundsException thrown, if Array-Index is out of Bounds. Surprising, huh?
+	 */
+	public void setCommand(int index, LuciferEventCommand command) throws ArrayIndexOutOfBoundsException {
+		commands[index] = command;
+	}
+	
+	/**
+	 * Sets Event-Command of this BattleEvent-Page at index to command
+	 * 
+	 * @param index Index of the Event-Command
+	 * @param command new Event-Command
+	 * @throws ArrayIndexOutOfBoundsException thrown, if Array-Index is out of Bounds. Surprising, huh?
+	 */
+	public void setEventCommand(int index, LuciferEventCommand command) throws ArrayIndexOutOfBoundsException {
+		commands[index] = command;
+	}
+	
+	/**
+	 * Constructs a new LuciferBattleEventPage
+	 * 
+	 * @param bytes byte-Array which represents the LuciferBattleEventPage
+	 * @throws IOException thrown, if something is wrong with the bytes
+	 */
+	public LuciferBattleEventPage(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
+	}
+
+	/**
+	 * Constructs a new LuciferBattleEventPage
+	 * 
+	 * @param sr StringReader which represents the LuciferBattleEventPage
+	 * @throws IOException thrown, if something is wrong with the bytes
+	 */
+	public LuciferBattleEventPage(DataReader sr) throws IOException {
+		init(sr);
+	}
+	
+	private void init(DataReader sr) throws IOException {
+		LuciferBaseUnit unit = sr.nextUnit();
+		while (unit.id != 0) {
+			DataReader tmp;
+			switch(unit.id) {
+			case 0x02:
+				conditions = new LuciferBattleEventPageCondition(unit.content);
+				break;
+			case 0x0B:
+				scriptLength = DataReader.rpgintToInt(unit.content).integer;
+				break;
+			case 0x0C:
+				tmp = new DataReader(unit.content);
+				commands = new LuciferEventCommand[(int) scriptLength];
+				int i = 0;
+				int finalPos = tmp.getPos() + (int) scriptLength;
+				while (tmp.getPos() < finalPos) {
+					commands[i] = new LuciferEventCommand(tmp);
+					i++;
+				}
+				commands = Helper.slice(commands, 0, i);
+				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferBattleEventPage! ID: " + unit.id);
+			}
+			unit = sr.nextUnit();
+		}
+	}
+	
+	/**
+	 * Returns the byte-representation of this BattleEventPage
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		byte[] commandblock = new byte[0];
+		for (int i = 0; i < commands.length; i++) {
+			commandblock = Helper.concatAll(commandblock, commands[i].write());
+		}
+		return Helper.concatAll(new LuciferBaseUnit(0x02, conditions.write()).write(new byte[0]),
+				new LuciferBaseUnit(0x0B, DataReader.intToRPGint(commandblock.length)).write(new byte[]{0}),
+				new LuciferBaseUnit(0x0C, commandblock).write(new byte[0]),
+				new byte[]{0}
+				);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	     if (this == obj) {
+	        return true;
+	     }
+	     if (obj == null) {
+	        return false;
+	     }
+	     if (!(obj instanceof LuciferBattleEventPage)) {
+	        return false; // different class
+	     }
+	     
+	     LuciferBattleEventPage o = (LuciferBattleEventPage) obj;
+	     
+	     return conditions == o.conditions
+	     		&& Arrays.equals(commands, o.commands);
+	}
+}
