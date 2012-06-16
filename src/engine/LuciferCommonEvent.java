@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 /**
  * @author alina
@@ -58,12 +59,10 @@ public class LuciferCommonEvent {
 				break;
 			case 0x16:
 				tmp = new DataReader(unit.content);
-				commands = new BetterArray<LuciferEventCommand>((int) scriptLength);
-				int i = 0;
+				commands = new BetterArray<LuciferEventCommand>();
 				int finalPos = tmp.getPos() + (int) scriptLength;
 				while (tmp.getPos() < finalPos) {
-					commands.set(i, new LuciferEventCommand(tmp));
-					i++;
+					commands.add(new LuciferEventCommand(tmp));
 				}
 				break;
 			default:
