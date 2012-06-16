@@ -2,6 +2,7 @@ package engine;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LuciferMapUnit {
@@ -21,7 +22,7 @@ public class LuciferMapUnit {
 	public boolean horizontalAutoScroll	= false;
 	public boolean verticalAutoScroll		= false;
 	public String panorama					= "";
-	public BetterArray<LuciferMapEvent> events;
+	public ArrayList<LuciferMapEvent> events;
 	
 	public LuciferMapUnit(byte[] str) throws IOException {
 		init(new DataReader(str));
@@ -93,7 +94,7 @@ public class LuciferMapUnit {
 			case 0x51:
 				tmp = new DataReader(unit.content);
 				int nrEvents = (int) tmp.nextInt();
-				events = new BetterArray<LuciferMapEvent>(nrEvents);
+				events = new ArrayList<LuciferMapEvent>(nrEvents);
 				for (int i = 0; i < nrEvents; i++) {
 					long id = tmp.nextInt();
 					events.set((int) id, new LuciferMapEvent(tmp, id));

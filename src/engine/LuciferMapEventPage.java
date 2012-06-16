@@ -2,6 +2,7 @@ package engine;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 public class LuciferMapEventPage {
 	
@@ -18,7 +19,7 @@ public class LuciferMapEventPage {
 	public long movementSpeed							= 2;
 	private long scriptLength							= 0;
 	public LuciferRoute route							= new LuciferRoute();
-	public BetterArray<LuciferEventCommand> commands	= new BetterArray<LuciferEventCommand>();
+	public ArrayList<LuciferEventCommand> commands		= new ArrayList<LuciferEventCommand>();
 	public boolean transparent							= false;
 	public boolean preventEventOverlap					= false;
 	
@@ -85,7 +86,7 @@ public class LuciferMapEventPage {
 				break;
 			case 0x34:
 				tmp = new DataReader(unit.content);
-				commands = new BetterArray<LuciferEventCommand>();
+				commands = new ArrayList<LuciferEventCommand>();
 				int finalPos = tmp.getPos() + (int) scriptLength;
 				while (tmp.getPos() < finalPos) {
 					commands.add(new LuciferEventCommand(tmp));

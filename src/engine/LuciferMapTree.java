@@ -3,6 +3,7 @@ package engine;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LuciferMapTree implements Serializable {
@@ -12,7 +13,7 @@ public class LuciferMapTree implements Serializable {
 	 */
 	private static final long serialVersionUID = 8982844369928596911L;
 	
-	public BetterArray<LuciferMapTreeMap> maps;
+	public ArrayList<LuciferMapTreeMap> maps;
 	public long[] mapOrder;
 	public long selectedMap		= 0;
 	public long partyStartMap		= -1;
@@ -34,7 +35,7 @@ public class LuciferMapTree implements Serializable {
 	
 	public LuciferMapTree(DataReader sr) throws IOException {
 		int nrMaps = (int) sr.nextInt();
-		maps = new BetterArray<LuciferMapTreeMap>(nrMaps);
+		maps = new ArrayList<LuciferMapTreeMap>(nrMaps);
 		for (int i = 0; i < nrMaps; i++) {
 			long id = sr.nextInt();
 			maps.set((int) id, new LuciferMapTreeMap(sr, id));

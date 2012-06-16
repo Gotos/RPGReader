@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -15,7 +16,7 @@ public class LuciferCommonEvent {
 	public long switchID								= 1;
 	public long scriptLength							= 0;
 	public boolean useSwitch							= false;
-	public BetterArray<LuciferEventCommand> commands	= new BetterArray<LuciferEventCommand>();
+	public ArrayList<LuciferEventCommand> commands		= new ArrayList<LuciferEventCommand>();
 	
 	/**
 	 * Constructs a LuciferCommonEvent via a byte[]
@@ -59,7 +60,7 @@ public class LuciferCommonEvent {
 				break;
 			case 0x16:
 				tmp = new DataReader(unit.content);
-				commands = new BetterArray<LuciferEventCommand>();
+				commands = new ArrayList<LuciferEventCommand>();
 				int finalPos = tmp.getPos() + (int) scriptLength;
 				while (tmp.getPos() < finalPos) {
 					commands.add(new LuciferEventCommand(tmp));
