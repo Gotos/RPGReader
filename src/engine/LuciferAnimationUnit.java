@@ -152,12 +152,8 @@ public class LuciferAnimationUnit {
 	 * Sets this animations Timing to the given LuciferTimingUnit-Array
 	 * 
 	 * @param timing new Timing of the animation
-	 * @throws IllegalArgumentException thrown, if the Timing length is illegal
 	 */
-	public void setTiming(LuciferTimingUnit[] timing) throws IllegalArgumentException {
-		if (timing.length != frames.length) {
-			throw new IllegalArgumentException("Timing length must be equal to Frame length");
-		}
+	public void setTiming(LuciferTimingUnit[] timing) {
 		this.timing = timing;
 	}
 	
@@ -199,12 +195,8 @@ public class LuciferAnimationUnit {
 	 * Sets this animations Frames to the given LuciferFrameUnit-Array
 	 * 
 	 * @param frames new Frames
-	 * @throws IllegalArgumentException thrown, if the Timing length is illegal
 	 */
-	public void setFrames(LuciferFrameUnit[] frames) throws IllegalArgumentException {
-		if (timing.length != frames.length) {
-			throw new IllegalArgumentException("Frame length must be equal to Timing length");
-		}
+	public void setFrames(LuciferFrameUnit[] frames){
 		this.frames = frames;
 	}
 	
@@ -220,25 +212,6 @@ public class LuciferAnimationUnit {
 			throw new ArrayIndexOutOfBoundsException();
 		}
 		this.frames[index] = frame;
-	}
-	
-	/**
-	 * Sets the number of Frames. If frameCount is less than frames.length, frames will be deleted.
-	 * 
-	 * @param frameCount Number of new Frames
-	 */
-	public void setFrameCount(int frameCount) {
-		LuciferFrameUnit[] tmpFrames = new LuciferFrameUnit[frameCount];
-		LuciferTimingUnit[] tmpTiming = new LuciferTimingUnit[frameCount];
-		if (frames.length < frameCount) {
-			System.arraycopy(frames, 0, tmpFrames, 0, frames.length);
-			System.arraycopy(timing, 0, tmpTiming, 0, frames.length);
-		} else {
-			System.arraycopy(frames, 0, tmpFrames, 0, frameCount);
-			System.arraycopy(timing, 0, tmpTiming, 0, frameCount);
-		}
-		timing = tmpTiming;
-		frames = tmpFrames;
 	}
 	
 	/**
