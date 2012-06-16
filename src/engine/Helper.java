@@ -224,5 +224,24 @@ public final class Helper {
 		}
 		
 	}
+	
+	/**
+	 * Returns the given bytes just like an hex-editor would.
+	 * 
+	 * @param bytes The bytes, that should be printed
+	 */
+	public static void printBytesInHex(byte[] bytes) {
+		int offset = 0;
+		for (byte b : bytes) {
+			System.out.printf("%02X",b);
+			offset++;
+			if (offset == 16) {
+				System.out.printf("\n");
+				offset = 0;
+			} else {
+				System.out.printf(" ");
+			}
+		}
+	}
 
 }
