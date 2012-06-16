@@ -196,7 +196,7 @@ public class LuciferAnimationUnit {
 	 * 
 	 * @param frames new Frames
 	 */
-	public void setFrames(LuciferFrameUnit[] frames){
+	public void setFrames(LuciferFrameUnit[] frames) {
 		this.frames = frames;
 	}
 	
