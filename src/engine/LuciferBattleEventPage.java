@@ -74,8 +74,9 @@ public class LuciferBattleEventPage {
 	 * 
 	 * @param index Index of the Event-Command
 	 * @return Event-Commands at index of this BattleEvent-Page
+	 * @throws IndexOutOfBoundsException thrown, if Index is out of Bounds. Surprise, surprise ;-)
 	 */
-	public LuciferEventCommand getCommand(int index) {
+	public LuciferEventCommand getCommand(int index) throws IndexOutOfBoundsException {
 		return commands.get(index);
 	}
 	
@@ -84,8 +85,9 @@ public class LuciferBattleEventPage {
 	 * 
 	 * @param index Index of the Event-Command
 	 * @return Event-Commands at index of this BattleEvent-Page
+	 * @throws IndexOutOfBoundsException thrown, if Index is out of Bounds. Surprise, surprise ;-)
 	 */
-	public LuciferEventCommand getEventCommand(int index) {
+	public LuciferEventCommand getEventCommand(int index) throws IndexOutOfBoundsException {
 		return commands.get(index);
 	}
 	
