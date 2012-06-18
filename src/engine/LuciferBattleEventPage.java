@@ -2,7 +2,6 @@ package engine;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * This class models a BattleEvent-Page of the RM2k.
