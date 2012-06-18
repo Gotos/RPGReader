@@ -2,6 +2,7 @@ package engine;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 /**
  * @author gRuFtY
@@ -14,8 +15,8 @@ public class LuciferAnimationUnit {
 	private String filename				= "";
 	private boolean applyScopeAll		= false;
 	private short yOrientationLine		= 2;
-	private LuciferTimingUnit[] timing;
-	private LuciferFrameUnit[] frames;
+	private ArrayList<LuciferTimingUnit> timing;
+	private ArrayList<LuciferFrameUnit> frames;
 	
 	//TODO: Timing und Frames gehören nicht zusammen; es können zu einem Frame mehrere Timing-Events gehören
 	
@@ -133,7 +134,7 @@ public class LuciferAnimationUnit {
 	 * 
 	 * @return Timing
 	 */
-	public LuciferTimingUnit[] getTiming() {
+	public ArrayList<LuciferTimingUnit> getTiming() {
 		return timing;
 	}
 	
@@ -142,10 +143,10 @@ public class LuciferAnimationUnit {
 	 * 
 	 * @param index frame of which the LuciferTimingUnit should be returned
 	 * @return LuciferTimingUnit of frame index
-	 * @throws ArrayIndexOutOfBoundsException thrown, if Array-Index is out of Bounds. Surprise, surprise ;-)
+	 * @throws IndexOutOfBoundsException thrown, if Index is out of Bounds. Surprise, surprise ;-)
 	 */
-	public LuciferTimingUnit getTiming(int index) throws ArrayIndexOutOfBoundsException {
-		return timing[index];
+	public LuciferTimingUnit getTiming(int index) throws IndexOutOfBoundsException {
+		return timing.get(index);
 	}
 	
 	/**
@@ -153,7 +154,7 @@ public class LuciferAnimationUnit {
 	 * 
 	 * @param timing new Timing of the animation
 	 */
-	public void setTiming(LuciferTimingUnit[] timing) {
+	public void setTiming(ArrayList<LuciferTimingUnit> timing) {
 		this.timing = timing;
 	}
 	
@@ -162,13 +163,10 @@ public class LuciferAnimationUnit {
 	 * 
 	 * @param index frame, of which the timing should be set
 	 * @param timing new Timing
-	 * @throws ArrayIndexOutOfBoundsException thrown, if the index is not in the Timing-Array
+	 * @throws IndexOutOfBoundsException thrown, if the index is not in the Timing-Array
 	 */
-	public void setTiming(int index, LuciferTimingUnit timing) throws ArrayIndexOutOfBoundsException {
-		if (index < 0 || index >= this.timing.length) {
-			throw new ArrayIndexOutOfBoundsException();
-		}
-		this.timing[index] = timing;
+	public void setTiming(int index, LuciferTimingUnit timing) throws IndexOutOfBoundsException {
+		this.timing.set(index, timing);
 	}
 	
 	/**
@@ -176,7 +174,7 @@ public class LuciferAnimationUnit {
 	 * 
 	 * @return Frames of this Animation
 	 */
-	public LuciferFrameUnit[] getFrames() {
+	public ArrayList<LuciferFrameUnit> getFrames() {
 		return frames;
 	}
 	
@@ -185,18 +183,18 @@ public class LuciferAnimationUnit {
 	 * 
 	 * @param index Index of the Frame
 	 * @return frame at index
-	 * @throws ArrayIndexOutOfBoundsException thrown, if Array-Index is out of Bounds. Surprise, surprise ;-)
+	 * @throws IndexOutOfBoundsException thrown, if Index is out of Bounds. Surprise, surprise ;-)
 	 */
-	public LuciferFrameUnit getFrame(int index) throws ArrayIndexOutOfBoundsException {
-		return frames[index];
+	public LuciferFrameUnit getFrame(int index) throws IndexOutOfBoundsException {
+		return frames.get(index);
 	}
 	
 	/**
-	 * Sets this animations Frames to the given LuciferFrameUnit-Array
+	 * Sets this animations Frames to the given LuciferFrameUnit-ArrayList
 	 * 
 	 * @param frames new Frames
 	 */
-	public void setFrames(LuciferFrameUnit[] frames) {
+	public void setFrames(ArrayList<LuciferFrameUnit> frames) {
 		this.frames = frames;
 	}
 	
@@ -205,13 +203,10 @@ public class LuciferAnimationUnit {
 	 * 
 	 * @param index frame that should be set
 	 * @param frame new Frame
-	 * @throws ArrayIndexOutOfBoundsException thrown, if the index is not in the Frame-Array
+	 * @throws IndexOutOfBoundsException thrown, if the index is not in the Frames
 	 */
-	public void setFrame(int index, LuciferFrameUnit frame) throws ArrayIndexOutOfBoundsException {
-		if (index < 0 || index >= this.frames.length) {
-			throw new ArrayIndexOutOfBoundsException();
-		}
-		this.frames[index] = frame;
+	public void setFrame(int index, LuciferFrameUnit frame) throws IndexOutOfBoundsException {
+		this.frames.set(index, frame);
 	}
 	
 	/**
@@ -247,10 +242,10 @@ public class LuciferAnimationUnit {
 				break;
 			case 0x06:
 				tmp = new DataReader(unit.content);
-				timing = new LuciferTimingUnit[(int) tmp.nextInt()];
-				for (int i = 0; i < timing.length; i++) {
+				timing = new ArrayList<LuciferTimingUnit>((int) tmp.nextInt());
+				for (int i = 0; i < timing.size(); i++) {
 					tmp.nextInt();
-					timing[i] = new LuciferTimingUnit(tmp);
+					timing.set(i, new LuciferTimingUnit(tmp));
 				}
 				break;
 			case 0x09:
@@ -261,10 +256,10 @@ public class LuciferAnimationUnit {
 				break;
 			case 0x0C:
 				tmp = new DataReader(unit.content);
-				frames = new LuciferFrameUnit[(int) tmp.nextInt()];
-				for (int i = 0; i < frames.length; i++) {
+				frames = new ArrayList<LuciferFrameUnit>((int) tmp.nextInt());
+				for (int i = 0; i < frames.size(); i++) {
 					tmp.nextInt();
-					frames[i] = new LuciferFrameUnit(tmp);
+					frames.set(i, new LuciferFrameUnit(tmp));
 					tmp.nextInt();
 				}
 				break;
@@ -282,10 +277,12 @@ public class LuciferAnimationUnit {
 	 */
 	public byte[] write() {
 		byte[] timingblock = new byte[0];
+		for (int i = 0; i < timing.size(); i++) {
+			timingblock = Helper.concatAll(timingblock, timing.get(i).write());
+		}
 		byte[] framesblock = new byte[0];
-		for (int i = 0; i < timing.length; i++) {
-			timingblock = Helper.concatAll(timingblock, timing[i].write());
-			framesblock = Helper.concatAll(framesblock, frames[i].write());
+		for (int i = 0; i < frames.size(); i++) {
+			framesblock = Helper.concatAll(framesblock, frames.get(i).write());
 		}
 		try {
 			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(new byte[0]),
