@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -13,7 +14,7 @@ public class LuciferBattleEventPage {
 	
 	private LuciferBattleEventPageCondition conditions;
 	private long scriptLength;
-	private LuciferEventCommand[] commands;
+	private ArrayList<LuciferEventCommand> commands;
 	
 	/**
 	 * Return Condition of this BattleEventPage as LuciferBattleEventPageCondition
@@ -56,7 +57,7 @@ public class LuciferBattleEventPage {
 	 * 
 	 * @return Event-Commands of this BattleEvent-Page
 	 */
-	public LuciferEventCommand[] getCommands() {
+	public ArrayList<LuciferEventCommand> getCommands() {
 		return commands;
 	}
 	
@@ -65,7 +66,7 @@ public class LuciferBattleEventPage {
 	 * 
 	 * @return Event-Commands of this BattleEvent-Page
 	 */
-	public LuciferEventCommand[] getEventCommands() {
+	public ArrayList<LuciferEventCommand> getEventCommands() {
 		return commands;
 	}
 	
@@ -76,7 +77,7 @@ public class LuciferBattleEventPage {
 	 * @return Event-Commands at index of this BattleEvent-Page
 	 */
 	public LuciferEventCommand getCommand(int index) {
-		return commands[index];
+		return commands.get(index);
 	}
 	
 	/**
@@ -86,7 +87,7 @@ public class LuciferBattleEventPage {
 	 * @return Event-Commands at index of this BattleEvent-Page
 	 */
 	public LuciferEventCommand getEventCommand(int index) {
-		return commands[index];
+		return commands.get(index);
 	}
 	
 	/**
@@ -94,7 +95,7 @@ public class LuciferBattleEventPage {
 	 * 
 	 * @param commands new Event-Commands
 	 */
-	public void setCommands(LuciferEventCommand[] commands) {
+	public void setCommands(ArrayList<LuciferEventCommand> commands) {
 		this.commands = commands;
 	}
 	
@@ -103,7 +104,7 @@ public class LuciferBattleEventPage {
 	 * 
 	 * @param commands new Event-Commands
 	 */
-	public void setEventCommands(LuciferEventCommand[] commands) {
+	public void setEventCommands(ArrayList<LuciferEventCommand> commands) {
 		this.commands = commands;
 	}
 	
@@ -115,7 +116,7 @@ public class LuciferBattleEventPage {
 	 * @throws ArrayIndexOutOfBoundsException thrown, if Array-Index is out of Bounds. Surprising, huh?
 	 */
 	public void setCommand(int index, LuciferEventCommand command) throws ArrayIndexOutOfBoundsException {
-		commands[index] = command;
+		commands.set(index, command);
 	}
 	
 	/**
@@ -126,7 +127,7 @@ public class LuciferBattleEventPage {
 	 * @throws ArrayIndexOutOfBoundsException thrown, if Array-Index is out of Bounds. Surprising, huh?
 	 */
 	public void setEventCommand(int index, LuciferEventCommand command) throws ArrayIndexOutOfBoundsException {
-		commands[index] = command;
+		commands.set(index, command);
 	}
 	
 	/**
@@ -162,14 +163,13 @@ public class LuciferBattleEventPage {
 				break;
 			case 0x0C:
 				tmp = new DataReader(unit.content);
-				commands = new LuciferEventCommand[(int) scriptLength];
+				commands = new ArrayList<LuciferEventCommand>((int) scriptLength);
 				int i = 0;
 				int finalPos = tmp.getPos() + (int) scriptLength;
 				while (tmp.getPos() < finalPos) {
-					commands[i] = new LuciferEventCommand(tmp);
+					commands.set(i, new LuciferEventCommand(tmp));
 					i++;
 				}
-				commands = Helper.slice(commands, 0, i);
 				break;
 			default:
 				Helper.warn(3, "Unknown Unit-ID in LuciferBattleEventPage! ID: " + unit.id);
@@ -185,8 +185,10 @@ public class LuciferBattleEventPage {
 	 */
 	public byte[] write() {
 		byte[] commandblock = new byte[0];
-		for (int i = 0; i < commands.length; i++) {
-			commandblock = Helper.concatAll(commandblock, commands[i].write());
+		for (int i = 0; i < commands.size(); i++) {
+			if (commands.get(i) != null) {
+				commandblock = Helper.concatAll(commandblock, commands.get(i).write());
+			}
 		}
 		return Helper.concatAll(new LuciferBaseUnit(0x02, conditions.write()).write(new byte[0]),
 				new LuciferBaseUnit(0x0B, DataReader.intToRPGint(commandblock.length)).write(new byte[]{0}),
@@ -210,6 +212,6 @@ public class LuciferBattleEventPage {
 	     LuciferBattleEventPage o = (LuciferBattleEventPage) obj;
 	     
 	     return conditions == o.conditions
-	     		&& Arrays.equals(commands, o.commands);
+	     		&& commands.equals(o.commands);
 	}
 }
