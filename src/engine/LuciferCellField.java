@@ -21,18 +21,34 @@ public class LuciferCellField {
 	private long transparency	= 0;
 	private boolean empty		= false;
 	
+	/**
+	 * Returns if the LuciferCellField is empty
+	 * 
+	 * @return is the LuciferCellField empty?
+	 */
 	public boolean isEmpty() {
 		return empty;
 	}
 
+	/**
+	 * Sets this LuciferCellField to the given empty-value
+	 * 
+	 * @param empty if true, set this LuciferCellField empty, else set it not empty
+	 */
 	public void setEmpty(boolean empty) {
 		this.empty = empty;
 	}
 	
+	/**
+	 * Sets this LuciferCellField to be empty
+	 */
 	public void setEmpty() {
 		this.empty = true;
 	}
 	
+	/**
+	 * Sets this LuciferCellField not to be empty
+	 */
 	public void unsetEmpty() {
 		this.empty = false;
 	}
