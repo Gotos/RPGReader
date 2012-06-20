@@ -12,7 +12,7 @@ public class LuciferChipsetData {
 	private String name					= "";
 	private String graphic				= "";
 	//lesereihenfolge? von links nach rechts, von oben nach unten?
-	public int[] terrainIds				= new int[162]; //Sollten so stimmen; Am Index des Chips steht seine TerreinID
+	private int[] terrainIds			= new int[162]; //Sollten so stimmen; Am Index des Chips steht seine TerreinID
 	private boolean[] lowerLayerDown	= newFilledBooleanArray(162, true);
 	private boolean[] lowerLayerLeft	= newFilledBooleanArray(162, true); //TODO: Check these defaults!
 	private boolean[] lowerLayerRight	= newFilledBooleanArray(162, true);
@@ -34,7 +34,7 @@ public class LuciferChipsetData {
 	 * Returns a boolean array with length 4, which represent the passability of the lowerLayer on Position pos.
 	 * The first boolean indicates, if "down" is allowed, the secound indicates "left", the third "right" and the last one "up".
 	 * 
-	 * @param pos Position on the LowerLayer
+	 * @param pos Position on the LowerLayer. Should be within 0 and 161.
 	 * @return a boolean array with length 4, which represent the passability of the lowerLayer
 	 */
 	public boolean[] getLowerLayerPassability(int pos) {
@@ -42,9 +42,32 @@ public class LuciferChipsetData {
 	}
 	
 	/**
+	 * Returns the TerrainID of the given Position
+	 * 
+	 * @param pos The Position, of which the TerrainID should be returned. Should be within 0 and 161.
+	 * @return the TerrainID of the given Position
+	 */
+	public int getTerrainID(int pos) {
+		return terrainIds[pos];
+	}
+	
+	/**
+	 * Sets the TerrainID at pos to id
+	 * 
+	 * @param pos Postion, where the TerrainID should be changed. Should be within 0 and 161.
+	 * @param id New TerrainID
+	 */
+	public void setTerrainID(int pos, int id) {
+		if (id < 1) {
+			throw new IllegalArgumentException("TerrainID needs to be > 0!");
+		}
+		terrainIds[pos] = id;
+	}
+	
+	/**
 	 * Sets the passability of the lowerLayer on Position pos to passability
 	 * 
-	 * @param pos Position on the LowerLayer
+	 * @param pos Position on the LowerLayer. Should be within 0 and 161.
 	 * @param passability new Passability. This is a boolean array of length 4, where the first element indicates, if "down"
 	 * is allowed, the secound indicates "left", the third "right" and the last "up".
 	 */
