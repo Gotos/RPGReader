@@ -13,13 +13,47 @@ public class LuciferChipsetData {
 	private String graphic				= "";
 	//lesereihenfolge? von links nach rechts, von oben nach unten?
 	public int[] terrainIds				= new int[162]; //Sollten so stimmen; Am Index des Chips steht seine TerreinID
-	public boolean[] lowerLayerDown		= new boolean[162];
-	public boolean[] lowerLayerLeft		= new boolean[162];
-	public boolean[] lowerLayerRight	= new boolean[162];
-	public boolean[] lowerLayerUp		= new boolean[162];
+	private boolean[] lowerLayerDown	= newFilledBooleanArray(162, true);
+	private boolean[] lowerLayerLeft	= newFilledBooleanArray(162, true); //TODO: Check these defaults!
+	private boolean[] lowerLayerRight	= newFilledBooleanArray(162, true);
+	private boolean[] lowerLayerUp		= newFilledBooleanArray(162, true);
 	public byte[] upperLayer			= new byte[144]; //Flags?
 	
 	//TODO: missing terrainIds and both Layers
+	//TODO: more getter/setter for Layers?
+	
+	private boolean[] newFilledBooleanArray(int length, boolean def) {
+		boolean[] bool = new boolean[length];
+		for (boolean b : bool) {
+			b = def;
+		}
+		return bool;
+	}
+	
+	/**
+	 * Returns a boolean array with length 4, which represent the passability of the lowerLayer on Position pos.
+	 * The first boolean indicates, if "down" is allowed, the secound indicates "left", the third "right" and the last one "up".
+	 * 
+	 * @param pos Position on the LowerLayer
+	 * @return a boolean array with length 4, which represent the passability of the lowerLayer
+	 */
+	public boolean[] getLowerLayerPassability(int pos) {
+		return new boolean[] { lowerLayerDown[pos], lowerLayerLeft[pos], lowerLayerRight[pos], lowerLayerUp[pos] };
+	}
+	
+	/**
+	 * Sets the passability of the lowerLayer on Position pos to passability
+	 * 
+	 * @param pos Position on the LowerLayer
+	 * @param passability new Passability. This is a boolean array of length 4, where the first element indicates, if "down"
+	 * is allowed, the secound indicates "left", the third "right" and the last "up".
+	 */
+	public void setLowerLayerPassability(int pos, boolean[] passability) {
+		lowerLayerDown[pos] = passability[0];
+		lowerLayerLeft[pos] = passability[1];
+		lowerLayerRight[pos] = passability[2];
+		lowerLayerUp[pos] = passability[3];
+	}
 	
 	/**
 	 * Returns the name of the chipset
