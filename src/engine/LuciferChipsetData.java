@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * This class models an Chipset of the RM2k.
@@ -11,8 +12,7 @@ public class LuciferChipsetData {
 	
 	private String name					= "";
 	private String graphic				= "";
-	//lesereihenfolge? von links nach rechts, von oben nach unten?
-	private int[] terrainIds			= new int[162]; //Sollten so stimmen; Am Index des Chips steht seine TerreinID
+	private int[] terrainIds			= newFilledIntArray(162, 1);
 	private boolean[] lowerLayerDown	= newFilledBooleanArray(162, true);
 	private boolean[] lowerLayerLeft	= newFilledBooleanArray(162, true); //TODO: Check these defaults!
 	private boolean[] lowerLayerRight	= newFilledBooleanArray(162, true);
@@ -24,10 +24,14 @@ public class LuciferChipsetData {
 	
 	private boolean[] newFilledBooleanArray(int length, boolean def) {
 		boolean[] bool = new boolean[length];
-		for (boolean b : bool) {
-			b = def;
-		}
+		Arrays.fill(bool, def);
 		return bool;
+	}
+	
+	private int[] newFilledIntArray(int length, int def) {
+		int[] i = new int[length];
+		Arrays.fill(i, def);
+		return i;
 	}
 	
 	/**
