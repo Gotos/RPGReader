@@ -9,12 +9,15 @@ import java.io.IOException;
  */
 public class LuciferChipsetData {
 	
-	private String name			= "";
-	private String graphic		= "";
+	private String name					= "";
+	private String graphic				= "";
 	//lesereihenfolge? von links nach rechts, von oben nach unten?
-	public int[] terrainIds		= new int[162]; //Sollten so stimmen; Am Index des Chips steht seine TerreinID
-	public byte[] lowerLayer	= new byte[162]; //Flags?
-	public byte[] upperLayer	= new byte[144]; //Flags?
+	public int[] terrainIds				= new int[162]; //Sollten so stimmen; Am Index des Chips steht seine TerreinID
+	public boolean[] lowerLayerDown		= new boolean[162];
+	public boolean[] lowerLayerLeft		= new boolean[162];
+	public boolean[] lowerLayerRight	= new boolean[162];
+	public boolean[] lowerLayerUp		= new boolean[162];
+	public byte[] upperLayer			= new byte[144]; //Flags?
 	
 	//TODO: missing terrainIds and both Layers
 	
@@ -91,7 +94,12 @@ public class LuciferChipsetData {
 				}
 				break;
 			case 0x04:
-				lowerLayer = unit.content;
+				for (int i = 0; i < unit.content.length; i++) {
+					lowerLayerDown[i] = (DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer % 2 == 1);
+					lowerLayerLeft[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 2) % 2 == 1);
+					lowerLayerRight[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 4) % 2 == 1);
+					lowerLayerUp[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 8) % 2 == 1);
+				}
 				break;
 			case 0x05:
 				upperLayer = unit.content;
@@ -119,7 +127,10 @@ public class LuciferChipsetData {
 	     
 	     return name == o.name
 	     		&& graphic == o.graphic
-	     		&& lowerLayer == o.lowerLayer
+	     		&& lowerLayerDown == o.lowerLayerDown
+	     		&& lowerLayerLeft == o.lowerLayerLeft
+	     		&& lowerLayerRight == o.lowerLayerRight
+	     		&& lowerLayerUp == o.lowerLayerUp
 	     		&& upperLayer == o.upperLayer
 	     		&& terrainIds == o.terrainIds;
 	}
