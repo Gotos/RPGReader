@@ -167,4 +167,25 @@ public class LuciferCommonEvent {
 	public void setEventStartCondition(int eventStartCondition) {
 		this.eventStartCondition = eventStartCondition;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	     if (this == obj) {
+	        return true;
+	     }
+	     if (obj == null) {
+	        return false;
+	     }
+	     if (!(obj instanceof LuciferCommonEvent)) {
+	        return false; // different class
+	     }
+	     
+	     LuciferCommonEvent o = (LuciferCommonEvent) obj;
+	     
+	     return name.equals(o.name)
+	     		&& eventStartCondition == o.eventStartCondition
+	     		&& switchID == o.switchID
+	     		&& useSwitch == o.useSwitch
+	     		&& commands.equals(o.commands);
+	}
 }
