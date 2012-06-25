@@ -165,11 +165,9 @@ public class LuciferBattleEventPage {
 			case 0x0C:
 				tmp = new DataReader(unit.content);
 				commands = new ArrayList<LuciferEventCommand>((int) scriptLength);
-				int i = 0;
 				int finalPos = tmp.getPos() + (int) scriptLength;
 				while (tmp.getPos() < finalPos) {
-					commands.set(i, new LuciferEventCommand(tmp));
-					i++;
+					commands.add(new LuciferEventCommand(tmp));
 				}
 				break;
 			default:
