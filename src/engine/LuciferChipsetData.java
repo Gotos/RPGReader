@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 /**
@@ -17,18 +18,55 @@ public class LuciferChipsetData {
 	private boolean[] lowerLayerLeft	= newFilledBooleanArray(162, true); //TODO: Check these defaults!
 	private boolean[] lowerLayerRight	= newFilledBooleanArray(162, true);
 	private boolean[] lowerLayerUp		= newFilledBooleanArray(162, true);
-	private boolean[] lowerLayerAbove	= newFilledBooleanArray(162, true);
-	private boolean[] lowerLayerWall	= newFilledBooleanArray(162, true);
+	private boolean[] lowerLayerAbove	= newFilledBooleanArray(162, false);
+	private boolean[] lowerLayerWall	= newFilledBooleanArray(162, false);
 	private boolean[] upperLayerDown	= newFilledBooleanArray(144, true);
 	private boolean[] upperLayerLeft	= newFilledBooleanArray(144, true);
 	private boolean[] upperLayerRight	= newFilledBooleanArray(144, true);
 	private boolean[] upperLayerUp		= newFilledBooleanArray(144, true);
-	private boolean[] upperLayerAbove	= newFilledBooleanArray(144, true);
-	private boolean[] upperLayerCounter	= newFilledBooleanArray(144, true);
-	
-	//TODO: write()-methode!
+	private boolean[] upperLayerAbove	= newFilledBooleanArray(144, false);
+	private boolean[] upperLayerCounter	= newFilledBooleanArray(144, false);
+	private boolean wateranimation		= false;
+	private boolean waterspeed			= false;
+
 	//TODO: more getter/setter for Layers?
 	//TODO: can upperLayers use wall/lowerlayers use counter?
+	
+	/**
+	 * Sets the wateranimation to 1-2-3, if set is true, else to 1-2-3-2
+	 * 
+	 * @param set decides, which animation to use
+	 */
+	public void setWateranimation123(boolean set) {
+		wateranimation = true;
+	}
+	
+	/**
+	 * Returns, if wateranimation is set to 1-2-3
+	 * 
+	 * @return true, if wateranimation is set to 1-2-3. false, if wateranimation is 1-2-3-2
+	 */
+	public boolean isWateranimation123() {
+		return wateranimation;
+	}
+	
+	/**
+	 * Sets the wateranimationspeed to high, if set is true, else to low
+	 * 
+	 * @param set decides, which speed to use
+	 */
+	public void setWaterspeed(boolean set) {
+		waterspeed = set;
+	}
+	
+	/**
+	 * Returns if wateranimation-speed is set to high
+	 * 
+	 * @return true, if wateranimation-speed is high
+	 */
+	public boolean isWaterspeedHigh() {
+		return waterspeed;
+	}
 	
 	private boolean[] newFilledBooleanArray(int length, boolean def) {
 		boolean[] bool = new boolean[length];
@@ -228,7 +266,6 @@ public class LuciferChipsetData {
 	 * @param graphic the new name of the chipsets graphic
 	 */
 	public void setGraphic(String graphic) {
-		//TODO: *könnte* überprüfen, ob die Grafik existiert, muss aber nicht
 		this.graphic = graphic;
 	}
 
@@ -287,6 +324,12 @@ public class LuciferChipsetData {
 					upperLayerCounter[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x40) % 2 == 1);
 				}
 				break;
+			case 0x0B:
+				wateranimation = (DataReader.rpgintToInt(unit.content).integer == 1);
+				break;
+			case 0x0C:
+				waterspeed = (DataReader.rpgintToInt(unit.content).integer == 1);
+				break;
 			default:
 				Helper.warn(3, "Unknown Unit-ID in LuciferChipsetData! ID: " + unit.id);
 			}
@@ -322,6 +365,64 @@ public class LuciferChipsetData {
 	     		&& Arrays.equals(upperLayerUp, o.upperLayerUp)
 	     		&& Arrays.equals(upperLayerAbove, o.upperLayerAbove)
 	     		&& Arrays.equals(upperLayerCounter, o.upperLayerCounter)
-	     		&& terrainIds == o.terrainIds;
+	     		&& terrainIds == o.terrainIds
+	     		&& wateranimation == o.wateranimation
+	     		&& waterspeed == o.waterspeed;
+	}
+	
+	/**
+	 * Returns the byte-representation of this ChipsetUnit
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		try {
+			byte[] terrain = new byte[324];
+			for (int i = 0; i < terrainIds.length; i++) {
+				byte[] thisTile = DataReader.to16bitle(terrainIds[i]);
+				terrain[i * 2] = thisTile[0];
+				terrain[i * 2 + 1] = thisTile[1];
+			}
+			byte[] defaultTerrain = new byte[324];
+			for (int i = 0; i < terrainIds.length; i++) {
+				defaultTerrain[i * 2] = 1;
+				defaultTerrain[i * 2 + 1] = 0;
+			}
+			byte[] lowerLayer = new byte[162];
+			for (int i = 0; i < 162; i++) {
+				lowerLayer[i] = (byte) ((lowerLayerDown[i] ? 1 : 0)
+								+ (lowerLayerLeft[i] ? 2 : 0)
+								+ (lowerLayerRight[i] ? 4 : 0)
+								+ (lowerLayerUp[i] ? 8 : 0)
+								+ (lowerLayerAbove[i] ? 16 : 0)
+								+ (lowerLayerWall[i] ? 32 : 0));
+			}
+			byte[] defaultLowerLayer = new byte[162];
+			Arrays.fill(defaultLowerLayer, (byte) 15);
+			byte[] upperLayer = new byte[14];
+			for (int i = 0; i < 144; i++) {
+				upperLayer[i] = (byte) ((upperLayerDown[i] ? 1 : 0)
+								+ (upperLayerLeft[i] ? 2 : 0)
+								+ (upperLayerRight[i] ? 4 : 0)
+								+ (upperLayerUp[i] ? 8 : 0)
+								+ (upperLayerAbove[i] ? 16 : 0)
+								+ (upperLayerCounter[i] ? 32 : 0));
+			}
+			byte[] defaultUpperLayer = new byte[144];
+			Arrays.fill(defaultUpperLayer, (byte) 15);
+			defaultUpperLayer[0] += 10;
+			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x02, graphic.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x03, terrain).write(defaultTerrain),
+					new LuciferBaseUnit(0x04, lowerLayer).write(defaultLowerLayer),
+					new LuciferBaseUnit(0x05, upperLayer).write(defaultUpperLayer),
+					new LuciferBaseUnit(0x0B, DataReader.intToRPGint(wateranimation ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0C, DataReader.intToRPGint(waterspeed ? 1 : 0)).write(new byte[]{0}),
+					new byte[]{0}
+					);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new byte[0];
+		}
 	}
 }
