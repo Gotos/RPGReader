@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
@@ -187,5 +188,30 @@ public class LuciferCommonEvent {
 	     		&& switchID == o.switchID
 	     		&& useSwitch == o.useSwitch
 	     		&& commands.equals(o.commands);
+	}
+	
+	/**
+	 * Returns the byte-representation of this CommonEvent
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		try {
+			byte[] commandList = new byte[0];
+			for (LuciferEventCommand command : commands) {
+				commandList = Helper.concatAll(commandList, command.write());
+			}
+			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x0B, DataReader.intToRPGint(eventStartCondition)).write(new byte[]{5}),
+					new LuciferBaseUnit(0x0C, DataReader.intToRPGint(useSwitch ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0D, DataReader.intToRPGint(switchID)).write(new byte[]{1}),
+					new LuciferBaseUnit(0x15, DataReader.intToRPGint(commandList.length)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x16, commandList).write(new byte[0]),
+					new byte[]{0}
+					);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new byte[0];
+		}
 	}
 }
