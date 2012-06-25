@@ -2,22 +2,81 @@ package engine;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * @author alina
  *
  * This class represents an Common Event of the Database of the RPG-Maker-Game.
+ * EventStartConditions are the static final ints of this class.
  */
 public class LuciferCommonEvent {
 	
-	private String name									= "";
-	private long eventStartCondition					= 5;
-	public long switchID								= 1;
-	public long scriptLength							= 0;
-	public boolean useSwitch							= false;
-	public ArrayList<LuciferEventCommand> commands		= new ArrayList<LuciferEventCommand>();
+	public static final int PARALLEL = 4;
+	public static final int AUTOSTART = 3;
+	public static final int ON_CALL = 5;
 	
+	private String name								= "";
+	private int eventStartCondition					= 5;
+	private long switchID							= 1;
+	private long scriptLength						= 0;
+	private boolean useSwitch						= false;
+	private ArrayList<LuciferEventCommand> commands	= new ArrayList<LuciferEventCommand>();
+	
+	
+	/**
+	 * Returns the ID of the switch
+	 * 
+	 * @return the ID of the switch
+	 */
+	public long getSwitchID() {
+		return switchID;
+	}
+
+	/**
+	 * Sets the ID of the switch
+	 * 
+	 * @param switchID the new ID of the switch
+	 */
+	public void setSwitchID(long switchID) {
+		this.switchID = switchID;
+	}
+
+	/**
+	 * Returns if the switch is set as condition
+	 * 
+	 * @return true, if the switch is set as condition
+	 */
+	public boolean isSwitchEnabled() {
+		return useSwitch;
+	}
+
+	/**
+	 * Sets weather or not the switch is condition
+	 * 
+	 * @param useSwitch if true, the switch is a condition
+	 */
+	public void setSwitchEnabled(boolean useSwitch) {
+		this.useSwitch = useSwitch;
+	}
+
+	/**
+	 * Returns the EventCommands
+	 * 
+	 * @return the EventCommands
+	 */
+	public ArrayList<LuciferEventCommand> getCommands() {
+		return commands;
+	}
+
+	/**
+	 * Sets the EventCommands
+	 * 
+	 * @param commands the new EventCommands
+	 */
+	public void setCommands(ArrayList<LuciferEventCommand> commands) {
+		this.commands = commands;
+	}
+
 	/**
 	 * Constructs a LuciferCommonEvent via a byte[]
 	 * 
@@ -47,7 +106,7 @@ public class LuciferCommonEvent {
 				name = new String(unit.content, Encoder.ENCODING);
 				break;
 			case 0x0B:
-				eventStartCondition = DataReader.rpgintToInt(unit.content).integer;
+				eventStartCondition = (int) DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x0C:
 				useSwitch = (DataReader.rpgintToInt(unit.content).integer == 1);
@@ -83,15 +142,6 @@ public class LuciferCommonEvent {
 	}
 	
 	/**
-	 * Returns Eventname
-	 * 
-	 * @return eventname
-	 */
-	public String name() {
-		return name;
-	}
-	
-	/**
 	 * Sets Eventname
 	 * 
 	 * @param name new name
@@ -99,50 +149,22 @@ public class LuciferCommonEvent {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	/**
-	 * Sets Eventname
-	 * 
-	 * @param name new name
-	 */
-	public void name(String name) {
-		this.name = name;
-	}
-	
+
 	/**
 	 * Returns eventStartCondition
 	 * 
 	 * @return eventStartCondition
 	 */
-	public long getEventStartCondition() {
+	public int getEventStartCondition() {
 		return eventStartCondition;
 	}
-	
-	/**
-	 * Returns eventStartCondition
-	 * 
-	 * @return eventStartCondition
-	 */
-	public long eventStartCondition() {
-		return eventStartCondition;
-	}
-	
+		
 	/**
 	 * Sets eventStartCondition
 	 * 
 	 * @param eventStartCondition new eventStartCondition
 	 */
-	public void setEventStartCondition(long eventStartCondition) {
-		this.eventStartCondition = eventStartCondition;
-	}
-	
-	/**
-	 * Sets eventStartCondition
-	 * 
-	 * @param eventStartCondition new eventStartCondition
-	 */
-	public void eventStartCondition(long eventStartCondition) {
+	public void setEventStartCondition(int eventStartCondition) {
 		this.eventStartCondition = eventStartCondition;
 	}
 }
-
