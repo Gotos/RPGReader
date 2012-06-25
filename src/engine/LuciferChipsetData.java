@@ -17,10 +17,13 @@ public class LuciferChipsetData {
 	private boolean[] lowerLayerLeft	= newFilledBooleanArray(162, true); //TODO: Check these defaults!
 	private boolean[] lowerLayerRight	= newFilledBooleanArray(162, true);
 	private boolean[] lowerLayerUp		= newFilledBooleanArray(162, true);
+	private boolean[] lowerLayerAbove	= newFilledBooleanArray(162, true);
+	private boolean[] lowerLayerWall	= newFilledBooleanArray(162, true);
 	public byte[] upperLayer			= new byte[144]; //Flags?
 	
-	//TODO: missing terrainIds and both Layers
+	//TODO: write()-methode!
 	//TODO: more getter/setter for Layers?
+	//TODO: can upperLayers use wall/lowerlayers use counter?
 	
 	private boolean[] newFilledBooleanArray(int length, boolean def) {
 		boolean[] bool = new boolean[length];
@@ -32,6 +35,46 @@ public class LuciferChipsetData {
 		int[] i = new int[length];
 		Arrays.fill(i, def);
 		return i;
+	}
+
+	/**
+	 * Sets if the tile at the given position of the LowerLayer is drawn above hero
+	 * 
+	 * @param pos Position of the tile on the LowerLayer
+	 * @param bool new above-value
+	 */
+	public void setLowerLayerAbove(int pos, boolean bool) {
+		lowerLayerAbove[pos] = bool;
+	}
+	
+	/**
+	 * Returns if the tile at the given position of the LowerLayer is drawn above hero
+	 * 
+	 * @param pos Position of the tile on the LowerLayer
+	 * @return true if the tile at the given position of the LowerLayer is drawn above hero
+	 */
+	public boolean isLowerLayerAbove(int pos) {
+		return lowerLayerAbove[pos];
+	}
+	
+	/**
+	 * Sets if the tile at the given position of the LowerLayer is drawn as a wall
+	 * 
+	 * @param pos Position of the tile on the LowerLayer
+	 * @param bool new wall-value
+	 */
+	public void setLowerLayerWall(int pos, boolean bool) {
+		lowerLayerWall[pos] = bool;
+	}
+	
+	/**
+	 * Returns if the tile at the given position of the LowerLayer is drawn as a wall
+	 * 
+	 * @param pos Position of the tile on the LowerLayer
+	 * @return true if the tile at the given position of the LowerLayer is drawn as a wall
+	 */
+	public boolean isLowerLayerWall(int pos) {
+		return lowerLayerWall[pos];
 	}
 	
 	/**
@@ -157,9 +200,11 @@ public class LuciferChipsetData {
 			case 0x04:
 				for (int i = 0; i < unit.content.length; i++) {
 					lowerLayerDown[i] = (DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer % 2 == 1);
-					lowerLayerLeft[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 2) % 2 == 1);
-					lowerLayerRight[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 4) % 2 == 1);
-					lowerLayerUp[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 8) % 2 == 1);
+					lowerLayerLeft[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x2) % 2 == 1);
+					lowerLayerRight[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x4) % 2 == 1);
+					lowerLayerUp[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x8) % 2 == 1);
+					lowerLayerAbove[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x10) % 2 == 1);
+					lowerLayerWall[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x20) % 2 == 1);
 				}
 				break;
 			case 0x05:
@@ -192,6 +237,8 @@ public class LuciferChipsetData {
 	     		&& lowerLayerLeft == o.lowerLayerLeft
 	     		&& lowerLayerRight == o.lowerLayerRight
 	     		&& lowerLayerUp == o.lowerLayerUp
+	     		&& lowerLayerWall == o.lowerLayerWall
+	     		&& lowerLayerAbove == o.lowerLayerAbove
 	     		&& upperLayer == o.upperLayer
 	     		&& terrainIds == o.terrainIds;
 	}
