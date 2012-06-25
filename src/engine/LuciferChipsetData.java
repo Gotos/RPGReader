@@ -351,8 +351,8 @@ public class LuciferChipsetData {
 	     
 	     LuciferChipsetData o = (LuciferChipsetData) obj;
 	     
-	     return name == o.name
-	     		&& graphic == o.graphic
+	     return name.equals(o.name)
+	     		&& graphic.equals(o.graphic)
 	     		&& Arrays.equals(lowerLayerDown, o.lowerLayerDown)
 	     		&& Arrays.equals(lowerLayerLeft, o.lowerLayerLeft)
 	     		&& Arrays.equals(lowerLayerRight, o.lowerLayerRight)
