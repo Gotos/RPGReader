@@ -279,7 +279,7 @@ public class LuciferAttributeUnit {
 	     
 	     LuciferAttributeUnit o = (LuciferAttributeUnit) obj;
 	     
-	     return name == o.name
+	     return name.equals(o.name)
 	     		&& classificationMagic == o.classificationMagic
 	     		&& rateA == o.rateA
 	     		&& rateB == o.rateB
