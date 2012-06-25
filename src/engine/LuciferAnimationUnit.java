@@ -313,8 +313,8 @@ public class LuciferAnimationUnit {
 	     
 	     LuciferAnimationUnit o = (LuciferAnimationUnit) obj;
 	     
-	     return name == o.name
-	     		&& filename == o.filename
+	     return name.equals(o.name)
+	     		&& filename.equals(o.filename)
 	     		&& applyScopeAll == o.applyScopeAll
 	     		&& yOrientationLine == o.yOrientationLine
 	     		&& frames.equals(o.frames)
