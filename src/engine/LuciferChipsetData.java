@@ -19,7 +19,12 @@ public class LuciferChipsetData {
 	private boolean[] lowerLayerUp		= newFilledBooleanArray(162, true);
 	private boolean[] lowerLayerAbove	= newFilledBooleanArray(162, true);
 	private boolean[] lowerLayerWall	= newFilledBooleanArray(162, true);
-	public byte[] upperLayer			= new byte[144]; //Flags?
+	private boolean[] upperLayerDown	= newFilledBooleanArray(144, true);
+	private boolean[] upperLayerLeft	= newFilledBooleanArray(144, true);
+	private boolean[] upperLayerRight	= newFilledBooleanArray(144, true);
+	private boolean[] upperLayerUp		= newFilledBooleanArray(144, true);
+	private boolean[] upperLayerAbove	= newFilledBooleanArray(144, true);
+	private boolean[] upperLayerCounter	= newFilledBooleanArray(144, true);
 	
 	//TODO: write()-methode!
 	//TODO: more getter/setter for Layers?
@@ -37,6 +42,71 @@ public class LuciferChipsetData {
 		return i;
 	}
 
+	/**
+	 * Sets if the tile at the given position of the UpperLayer is drawn above hero
+	 * 
+	 * @param pos Position of the tile on the UpperLayer
+	 * @param bool new above-value
+	 */
+	public void setUpperLayerAbove(int pos, boolean bool) {
+		upperLayerAbove[pos] = bool;
+	}
+	
+	/**
+	 * Returns if the tile at the given position of the upperLayer is drawn above hero
+	 * 
+	 * @param pos Position of the tile on the upperLayer
+	 * @return true if the tile at the given position of the upperLayer is drawn above hero
+	 */
+	public boolean isUpperLayerAbove(int pos) {
+		return upperLayerAbove[pos];
+	}
+	
+	/**
+	 * Sets if the tile at the given position of the upperLayer is a counter
+	 * 
+	 * @param pos Position of the tile on the upperLayer
+	 * @param bool new counter-value
+	 */
+	public void setUpperLayerCounter(int pos, boolean bool) {
+		upperLayerCounter[pos] = bool;
+	}
+	
+	/**
+	 * Returns if the tile at the given position of the upperLayer is a counter
+	 * 
+	 * @param pos Position of the tile on the upperLayer
+	 * @return true if the tile at the given position of the upperLayer is a counter
+	 */
+	public boolean isUpperLayerCounter(int pos) {
+		return upperLayerCounter[pos];
+	}
+	
+	/**
+	 * Returns a boolean array with length 4, which represent the passability of the upperLayer on Position pos.
+	 * The first boolean indicates, if "down" is allowed, the secound indicates "left", the third "right" and the last one "up".
+	 * 
+	 * @param pos Position on the upperLayer. Should be within 0 and 143.
+	 * @return a boolean array with length 4, which represent the passability of the lowerLayer
+	 */
+	public boolean[] getUpperLayerPassability(int pos) {
+		return new boolean[] { upperLayerDown[pos], upperLayerLeft[pos], upperLayerRight[pos], upperLayerUp[pos] };
+	}
+	
+	/**
+	 * Sets the passability of the upperLayer on Position pos to passability
+	 * 
+	 * @param pos Position on the upperLayer. Should be within 0 and 143.
+	 * @param passability new Passability. This is a boolean array of length 4, where the first element indicates, if "down"
+	 * is allowed, the secound indicates "left", the third "right" and the last "up".
+	 */
+	public void setUpperLayerPassability(int pos, boolean[] passability) {
+		upperLayerDown[pos] = passability[0];
+		upperLayerLeft[pos] = passability[1];
+		upperLayerRight[pos] = passability[2];
+		upperLayerUp[pos] = passability[3];
+	}
+	
 	/**
 	 * Sets if the tile at the given position of the LowerLayer is drawn above hero
 	 * 
@@ -208,7 +278,14 @@ public class LuciferChipsetData {
 				}
 				break;
 			case 0x05:
-				upperLayer = unit.content;
+				for (int i = 0; i < unit.content.length; i++) {
+					upperLayerDown[i] = (DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer % 2 == 1);
+					upperLayerLeft[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x2) % 2 == 1);
+					upperLayerRight[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x4) % 2 == 1);
+					upperLayerUp[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x8) % 2 == 1);
+					upperLayerAbove[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x10) % 2 == 1);
+					upperLayerCounter[i] = ((DataReader.rpgintToInt(new byte[] { unit.content[i] }).integer / 0x40) % 2 == 1);
+				}
 				break;
 			default:
 				Helper.warn(3, "Unknown Unit-ID in LuciferChipsetData! ID: " + unit.id);
@@ -233,13 +310,18 @@ public class LuciferChipsetData {
 	     
 	     return name == o.name
 	     		&& graphic == o.graphic
-	     		&& lowerLayerDown == o.lowerLayerDown
-	     		&& lowerLayerLeft == o.lowerLayerLeft
-	     		&& lowerLayerRight == o.lowerLayerRight
-	     		&& lowerLayerUp == o.lowerLayerUp
-	     		&& lowerLayerWall == o.lowerLayerWall
-	     		&& lowerLayerAbove == o.lowerLayerAbove
-	     		&& upperLayer == o.upperLayer
+	     		&& Arrays.equals(lowerLayerDown, o.lowerLayerDown)
+	     		&& Arrays.equals(lowerLayerLeft, o.lowerLayerLeft)
+	     		&& Arrays.equals(lowerLayerRight, o.lowerLayerRight)
+	     		&& Arrays.equals(lowerLayerUp, o.lowerLayerUp)
+	     		&& Arrays.equals(lowerLayerWall, o.lowerLayerWall)
+	     		&& Arrays.equals(lowerLayerAbove, o.lowerLayerAbove)
+	     		&& Arrays.equals(upperLayerDown, o.upperLayerDown)
+	     		&& Arrays.equals(upperLayerLeft, o.upperLayerLeft)
+	     		&& Arrays.equals(upperLayerRight, o.upperLayerRight)
+	     		&& Arrays.equals(upperLayerUp, o.upperLayerUp)
+	     		&& Arrays.equals(upperLayerAbove, o.upperLayerAbove)
+	     		&& Arrays.equals(upperLayerCounter, o.upperLayerCounter)
 	     		&& terrainIds == o.terrainIds;
 	}
 }
