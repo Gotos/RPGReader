@@ -45,11 +45,11 @@ public class LuciferBattleEventPageCondition {
 	/**
 	 * Constructs a new LuciferBattleEventPageCondition
 	 * 
-	 * @param sr StringReader which represents the LuciferBattleEventPageCondition
-	 * @throws IOException thrown, if something is wrong with the bytes
+	 * @param dr DateReader which represents the LuciferBattleEventPageCondition
+	 * @throws IOException thrown, if something is wrong with the DataReader
 	 */
-	public LuciferBattleEventPageCondition(DataReader sr) throws IOException {
-		init(sr);
+	public LuciferBattleEventPageCondition(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {

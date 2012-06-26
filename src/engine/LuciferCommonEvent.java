@@ -91,11 +91,11 @@ public class LuciferCommonEvent {
 	/**
 	 * Constructs a LuciferCommonEvent via a StringReader
 	 * 
-	 * @param sr StringReader, which is used to construct the LuciferCommonEvent
+	 * @param dr DataReader, which is used to construct the LuciferCommonEvent
 	 * @throws IOException is thrown on any parsing-error
 	 */
-	public LuciferCommonEvent(DataReader sr) throws IOException {
-		init(sr);
+	public LuciferCommonEvent(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {

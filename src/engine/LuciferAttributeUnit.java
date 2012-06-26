@@ -204,11 +204,11 @@ public class LuciferAttributeUnit {
 	/**
 	 * Constructs a new LuciferAttributeUnit
 	 * 
-	 * @param sr StringReader which represents the LuciferAttributeUnit
-	 * @throws IOException thrown, if something is wrong with the bytes
+	 * @param dr DataReader which represents the LuciferAttributeUnit
+	 * @throws IOException thrown, if something is wrong with the DataReader
 	 */
-	public LuciferAttributeUnit(DataReader sr) throws IOException {
-		init(sr);
+	public LuciferAttributeUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {

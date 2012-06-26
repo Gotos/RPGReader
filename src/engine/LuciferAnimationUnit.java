@@ -222,11 +222,11 @@ public class LuciferAnimationUnit {
 	/**
 	 * Constructs a new LuciferAnimationUnit
 	 * 
-	 * @param sr StringReader which represents the LuciferAnimationUnit
-	 * @throws IOException thrown, if something is wrong with the StringReader
+	 * @param dr DataReader which represents the LuciferAnimationUnit
+	 * @throws IOException thrown, if something is wrong with the DataReader
 	 */
-	public LuciferAnimationUnit(DataReader sr) throws IOException {
-		init(sr);
+	public LuciferAnimationUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {

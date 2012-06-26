@@ -144,11 +144,11 @@ public class LuciferBattleEventPage {
 	/**
 	 * Constructs a new LuciferBattleEventPage
 	 * 
-	 * @param sr StringReader which represents the LuciferBattleEventPage
-	 * @throws IOException thrown, if something is wrong with the bytes
+	 * @param dr DataReader which represents the LuciferBattleEventPage
+	 * @throws IOException thrown, if something is wrong with the DataReader
 	 */
-	public LuciferBattleEventPage(DataReader sr) throws IOException {
-		init(sr);
+	public LuciferBattleEventPage(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {

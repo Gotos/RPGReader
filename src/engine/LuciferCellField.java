@@ -253,11 +253,11 @@ public class LuciferCellField {
 	/**
 	 * Constructs a new LuciferCellField
 	 * 
-	 * @param sr StringReader which represents the LuciferCellField
-	 * @throws IOException thrown, if something is wrong with the StringReader
+	 * @param dr DataReader which represents the LuciferCellField
+	 * @throws IOException thrown, if something is wrong with the DataReader
 	 */
-	public LuciferCellField(DataReader sr) throws IOException {
-		init(sr);
+	public LuciferCellField(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {

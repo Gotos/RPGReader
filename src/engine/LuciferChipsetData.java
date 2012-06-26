@@ -282,11 +282,11 @@ public class LuciferChipsetData {
 	/**
 	 * Constructs a new LuciferChipsetData
 	 * 
-	 * @param sr StringReader which represents the LuciferChipsetData
-	 * @throws IOException thrown, if something is wrong with the StringReader
+	 * @param sr DataReader which represents the LuciferChipsetData
+	 * @throws IOException thrown, if something is wrong with the DataReader
 	 */
-	public LuciferChipsetData(DataReader sr) throws IOException {
-		init(sr);
+	public LuciferChipsetData(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
