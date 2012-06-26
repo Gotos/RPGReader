@@ -2,6 +2,7 @@ package engine;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LuciferHeroUnit {
 	
@@ -181,5 +182,262 @@ public class LuciferHeroUnit {
 			}
 			unit = sr.nextUnit();
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + Arrays.hashCode(agility);
+		result = prime
+				* result + (aiControl ? 1231
+						: 1237);
+		result = prime
+				* result + (allowCritical ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (armor ^ (armor >>> 32));
+		result = prime
+				* result + Arrays.hashCode(attack);
+		result = prime
+				* result + ((attributes == null) ? 0
+						: attributes.hashCode());
+		result = prime
+				* result + (int) (chanceOnCritical ^ (chanceOnCritical >>> 32));
+		result = prime
+				* result + ((conditions == null) ? 0
+						: conditions.hashCode());
+		result = prime
+				* result + Arrays.hashCode(defense);
+		result = prime
+				* result + ((degree == null) ? 0
+						: degree.hashCode());
+		result = prime
+				* result + (dualWield ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (expAdditional ^ (expAdditional >>> 32));
+		result = prime
+				* result + (int) (expBase ^ (expBase >>> 32));
+		result = prime
+				* result + (int) (expCorrection ^ (expCorrection >>> 32));
+		result = prime
+				* result + ((faceGraphicFile == null) ? 0
+						: faceGraphicFile.hashCode());
+		result = prime
+				* result + (int) (faceGraphicIndex ^ (faceGraphicIndex >>> 32));
+		result = prime
+				* result + (fixedEquipment ? 1231
+						: 1237);
+		result = prime
+				* result + ((graphicFile == null) ? 0
+						: graphicFile.hashCode());
+		result = prime
+				* result + (int) (graphicIndex ^ (graphicIndex >>> 32));
+		result = prime
+				* result + (graphicTransparent ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (helmed ^ (helmed >>> 32));
+		result = prime
+				* result + Arrays.hashCode(hp);
+		result = prime
+				* result + (int) (maxLevel ^ (maxLevel >>> 32));
+		result = prime
+				* result + (int) (minLevel ^ (minLevel >>> 32));
+		result = prime
+				* result + Arrays.hashCode(mind);
+		result = prime
+				* result + Arrays.hashCode(mp);
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + (int) (other ^ (other >>> 32));
+		result = prime
+				* result + (renameSkill ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (shild ^ (shild >>> 32));
+		result = prime
+				* result + ((skillName == null) ? 0
+						: skillName.hashCode());
+		result = prime
+				* result + ((skills == null) ? 0
+						: skills.hashCode());
+		result = prime
+				* result + (strongDefense ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (unarmedAnimation ^ (unarmedAnimation >>> 32));
+		result = prime
+				* result + (int) (weapon ^ (weapon >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferHeroUnit)) {
+			return false;
+		}
+		LuciferHeroUnit other = (LuciferHeroUnit) obj;
+		if (!Arrays.equals(
+				agility, other.agility)) {
+			return false;
+		}
+		if (aiControl != other.aiControl) {
+			return false;
+		}
+		if (allowCritical != other.allowCritical) {
+			return false;
+		}
+		if (armor != other.armor) {
+			return false;
+		}
+		if (!Arrays.equals(
+				attack, other.attack)) {
+			return false;
+		}
+		if (attributes == null) {
+			if (other.attributes != null) {
+				return false;
+			}
+		} else if (!attributes.equals(other.attributes)) {
+			return false;
+		}
+		if (chanceOnCritical != other.chanceOnCritical) {
+			return false;
+		}
+		if (conditions == null) {
+			if (other.conditions != null) {
+				return false;
+			}
+		} else if (!conditions.equals(other.conditions)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				defense, other.defense)) {
+			return false;
+		}
+		if (degree == null) {
+			if (other.degree != null) {
+				return false;
+			}
+		} else if (!degree.equals(other.degree)) {
+			return false;
+		}
+		if (dualWield != other.dualWield) {
+			return false;
+		}
+		if (expAdditional != other.expAdditional) {
+			return false;
+		}
+		if (expBase != other.expBase) {
+			return false;
+		}
+		if (expCorrection != other.expCorrection) {
+			return false;
+		}
+		if (faceGraphicFile == null) {
+			if (other.faceGraphicFile != null) {
+				return false;
+			}
+		} else if (!faceGraphicFile.equals(other.faceGraphicFile)) {
+			return false;
+		}
+		if (faceGraphicIndex != other.faceGraphicIndex) {
+			return false;
+		}
+		if (fixedEquipment != other.fixedEquipment) {
+			return false;
+		}
+		if (graphicFile == null) {
+			if (other.graphicFile != null) {
+				return false;
+			}
+		} else if (!graphicFile.equals(other.graphicFile)) {
+			return false;
+		}
+		if (graphicIndex != other.graphicIndex) {
+			return false;
+		}
+		if (graphicTransparent != other.graphicTransparent) {
+			return false;
+		}
+		if (helmed != other.helmed) {
+			return false;
+		}
+		if (!Arrays.equals(
+				hp, other.hp)) {
+			return false;
+		}
+		if (maxLevel != other.maxLevel) {
+			return false;
+		}
+		if (minLevel != other.minLevel) {
+			return false;
+		}
+		if (!Arrays.equals(
+				mind, other.mind)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				mp, other.mp)) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (this.other != other.other) {
+			return false;
+		}
+		if (renameSkill != other.renameSkill) {
+			return false;
+		}
+		if (shild != other.shild) {
+			return false;
+		}
+		if (skillName == null) {
+			if (other.skillName != null) {
+				return false;
+			}
+		} else if (!skillName.equals(other.skillName)) {
+			return false;
+		}
+		if (skills == null) {
+			if (other.skills != null) {
+				return false;
+			}
+		} else if (!skills.equals(other.skills)) {
+			return false;
+		}
+		if (strongDefense != other.strongDefense) {
+			return false;
+		}
+		if (unarmedAnimation != other.unarmedAnimation) {
+			return false;
+		}
+		if (weapon != other.weapon) {
+			return false;
+		}
+		return true;
 	}
 }
