@@ -10,23 +10,23 @@ public class LuciferConditionUnit {
 	public String alreadyInThisState		= "";
 	public String stateIsRegular			= "";
 	public String recoveryStateMessage		= "";
-	public int colour						= 6;
-	public int priority					= 50;
-	public int actionLimitation;
-	public int effectChanceA				= 100;
-	public int effectChanceB				= 80;
-	public int effectChanceC				= 60;
-	public int effectChanceD				= 30;
-	public int effectChanceE				= 0;
-	public int healTurnProbability		= 0;
-	public int healPhysicalProbability	= 0;
-	public int halfCostAttack				= 0;
-	public int halfCostDefense				= 0;
-	public int halfCostMind				= 0;
-	public int halfCostAgility				= 0;
-	public int hitRateChance				= 0;
-	public int cantUseHitChanceAbove		= 0;
-	public int cantUseMindChanceAbove		= 0;
+	public long colour						= 6;
+	public long priority					= 50;
+	public long actionLimitation			= 0;
+	public long effectChanceA				= 100;
+	public long effectChanceB				= 80;
+	public long effectChanceC				= 60;
+	public long effectChanceD				= 30;
+	public long effectChanceE				= 0;
+	public long healTurnProbability		= 0;
+	public long healPhysicalProbability	= 0;
+	public long halfCostAttack				= 0;
+	public long halfCostDefense				= 0;
+	public long halfCostMind				= 0;
+	public long halfCostAgility				= 0;
+	public long hitRateChance				= 0;
+	public long cantUseHitChanceAbove		= 0;
+	public long cantUseMindChanceAbove		= 0;
 	public long healAfterTurns			= 0;
 	public long hpDownPercent				= 0;
 	public long hpDownPoints				= 0;
@@ -39,13 +39,25 @@ public class LuciferConditionUnit {
 	public boolean classificationMovement	= false;
 	public boolean cantUseHitChance		= false;
 	public boolean cantUseMindChance		= false;
-
-	public LuciferConditionUnit(byte[] str) throws IOException {
-		init(new DataReader(str));
+	
+	/**
+	 * Constructs a new LuciferConditionData
+	 * 
+	 * @param bytes byte-Array which represents the LuciferConditionData
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferConditionUnit(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferConditionUnit(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferConditionData
+	 * 
+	 * @param dr DataReader which represents the LuciferConditionData
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferConditionUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
@@ -59,64 +71,64 @@ public class LuciferConditionUnit {
 				classificationMovement = (DataReader.rpgintToInt(unit.content).integer == 1);
 				break;
 			case 0x03:
-				colour = (int) DataReader.rpgintToInt(unit.content).integer;
+				colour = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x04:
-				priority = (int) DataReader.rpgintToInt(unit.content).integer;
+				priority = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x05:
-				actionLimitation = (int) DataReader.rpgintToInt(unit.content).integer;
+				actionLimitation = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x0B:
-				effectChanceA = (int) DataReader.rpgintToInt(unit.content).integer;
+				effectChanceA = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x0C:
-				effectChanceB = (int) DataReader.rpgintToInt(unit.content).integer;
+				effectChanceB = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x0D:
-				effectChanceC = (int) DataReader.rpgintToInt(unit.content).integer;
+				effectChanceC = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x0E:
-				effectChanceD = (int) DataReader.rpgintToInt(unit.content).integer;
+				effectChanceD = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x0F:
-				effectChanceE = (int) DataReader.rpgintToInt(unit.content).integer;
+				effectChanceE = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x15:
 				healAfterTurns = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x16:
-				healTurnProbability = (int) DataReader.rpgintToInt(unit.content).integer;
+				healTurnProbability = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x17:
-				healPhysicalProbability = (int) DataReader.rpgintToInt(unit.content).integer;
+				healPhysicalProbability = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x1F:
-				halfCostAttack = (int) DataReader.rpgintToInt(unit.content).integer;
+				halfCostAttack = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x20:
-				halfCostDefense = (int) DataReader.rpgintToInt(unit.content).integer;
+				halfCostDefense = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x21:
-				halfCostMind = (int) DataReader.rpgintToInt(unit.content).integer;
+				halfCostMind = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x22:
-				halfCostAgility = (int) DataReader.rpgintToInt(unit.content).integer;
+				halfCostAgility = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x23:
-				hitRateChance = (int) DataReader.rpgintToInt(unit.content).integer;
+				hitRateChance = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x29:
 				cantUseHitChance = (DataReader.rpgintToInt(unit.content).integer == 1);
 				break;
 			case 0x2A:
-				cantUseHitChanceAbove = (int) DataReader.rpgintToInt(unit.content).integer;
+				cantUseHitChanceAbove = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x2B:
 				cantUseMindChance = (DataReader.rpgintToInt(unit.content).integer == 1);
 				break;
 			case 0x2C:
-				cantUseMindChanceAbove = (int) DataReader.rpgintToInt(unit.content).integer;
+				cantUseMindChanceAbove = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x33:
 				allyStateMessage = new String(unit.content, Encoder.ENCODING);
@@ -162,5 +174,56 @@ public class LuciferConditionUnit {
 			}
 			unit = sr.nextUnit();
 		}
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	     if (this == obj) {
+	        return true;
+	     }
+	     if (obj == null) {
+	        return false;
+	     }
+	     if (!(obj instanceof LuciferConditionUnit)) {
+	        return false; // different class
+	     }
+	     
+	     LuciferConditionUnit o = (LuciferConditionUnit) obj;
+	     
+	     return name.equals(o.name)
+	     		&& allyStateMessage.equals(o.allyStateMessage)
+	     		&& enemyStateMessage.equals(o.enemyStateMessage)
+	     		&& alreadyInThisState.equals(o.alreadyInThisState)
+	     		&& stateIsRegular.equals(o.stateIsRegular)
+	     		&& recoveryStateMessage.equals(recoveryStateMessage)
+	     		&& colour == o.colour
+	     		&& priority == o.priority
+	     		&& actionLimitation == o.actionLimitation
+	     		&& effectChanceA == o.effectChanceA
+	     		&& effectChanceB == o.effectChanceB
+	     		&& effectChanceC == o.effectChanceC
+	     		&& effectChanceD == o.effectChanceD
+	     		&& effectChanceE == o.effectChanceE
+	     		&& healTurnProbability == o.healTurnProbability
+	     		&& healPhysicalProbability == o.healPhysicalProbability
+	     		&& halfCostAttack == o.halfCostAttack
+	     		&& halfCostDefense == o.halfCostDefense
+	     		&& halfCostMind == o.halfCostMind
+	     		&& halfCostAgility == o.halfCostAgility
+	     		&& hitRateChance == o.hitRateChance
+	     		&& cantUseHitChanceAbove == o.cantUseHitChanceAbove
+	     		&& cantUseMindChanceAbove == o.cantUseMindChanceAbove
+	     		&& healAfterTurns == o.healAfterTurns
+	     		&& hpDownPercent == o.hpDownPercent
+	     		&& hpDownPoints == o.hpDownPoints
+	     		&& hpDownMap == o.hpDownMap
+	     		&& hpDownMapSteps == o.hpDownMapSteps
+	     		&& mpDownPercent == o.mpDownPercent
+	     		&& mpDownPoints == o.mpDownPoints
+	     		&& mpDownMap == o.mpDownMap
+	     		&& mpDownMapSteps == o.mpDownMapSteps
+	     		&& classificationMovement == o.classificationMovement
+	     		&& cantUseHitChance == o.cantUseHitChance
+	     		&& cantUseMindChance == o.cantUseMindChance;
 	}
 }
