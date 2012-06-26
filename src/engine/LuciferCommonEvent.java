@@ -81,11 +81,11 @@ public class LuciferCommonEvent {
 	/**
 	 * Constructs a LuciferCommonEvent via a byte[]
 	 * 
-	 * @param str byte[], which is used to construct the LuciferCommonEvent
+	 * @param bytes byte[], which is used to construct the LuciferCommonEvent
 	 * @throws IOException is thrown on any parsing-error
 	 */
-	public LuciferCommonEvent(byte[] str) throws IOException {
-		init(new DataReader(str));
+	public LuciferCommonEvent(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
 	/**
