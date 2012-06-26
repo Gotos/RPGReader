@@ -793,41 +793,144 @@ public class LuciferBattleEventPageCondition {
 		);
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferBattleEventPageCondition)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferBattleEventPageCondition o = (LuciferBattleEventPageCondition) obj;
-	     
-	     //TODO: wenn z.B. switchB aus ist, muss nicht switchBID verglichen werden
-	     return exhaustion == o.exhaustion
-	     		&& exhaustionHigher == o.exhaustionHigher
-	     		&& exhaustionLower == o.exhaustionLower
-	     		&& hero == o.hero
-	     		&& heroID == o.heroID
-	     		&& heroHPHigher == o.heroHPHigher
-	     		&& heroHPLower == o.heroHPLower
-	     		&& monster == o.monster
-	     		&& monsterBattleID == o.monsterBattleID
-	     		&& monsterHPHigher == o.monsterHPHigher
-	     		&& monsterHPLower == o.monsterHPLower
-	     		&& turn == o.turn
-	     		&& turnA == o.turnA
-	     		&& turnB == o.turnB
-	     		&& switchA == o.switchA
-	     		&& switchAID == o.switchAID
-	     		&& switchB == o.switchB
-	     		&& switchBID == o.switchBID
-	     		&& variable == o.variable
-	     		&& variableID == o.variableID
-	     		&& variableValue == o.variableValue;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (exhaustion ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (exhaustionHigher ^ (exhaustionHigher >>> 32));
+		result = prime
+				* result + (int) (exhaustionLower ^ (exhaustionLower >>> 32));
+		result = prime
+				* result + (hero ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (heroHPHigher ^ (heroHPHigher >>> 32));
+		result = prime
+				* result + (int) (heroHPLower ^ (heroHPLower >>> 32));
+		result = prime
+				* result + (int) (heroID ^ (heroID >>> 32));
+		result = prime
+				* result + (monster ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (monsterBattleID ^ (monsterBattleID >>> 32));
+		result = prime
+				* result + (int) (monsterHPHigher ^ (monsterHPHigher >>> 32));
+		result = prime
+				* result + (int) (monsterHPLower ^ (monsterHPLower >>> 32));
+		result = prime
+				* result + (switchA ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (switchAID ^ (switchAID >>> 32));
+		result = prime
+				* result + (switchB ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (switchBID ^ (switchBID >>> 32));
+		result = prime
+				* result + (turn ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (turnA ^ (turnA >>> 32));
+		result = prime
+				* result + (int) (turnB ^ (turnB >>> 32));
+		result = prime
+				* result + (variable ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (variableID ^ (variableID >>> 32));
+		result = prime
+				* result + (int) (variableValue ^ (variableValue >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferBattleEventPageCondition)) {
+			return false;
+		}
+		LuciferBattleEventPageCondition other = (LuciferBattleEventPageCondition) obj;
+		if (exhaustion != other.exhaustion) {
+			return false;
+		}
+		if (exhaustionHigher != other.exhaustionHigher) {
+			return false;
+		}
+		if (exhaustionLower != other.exhaustionLower) {
+			return false;
+		}
+		if (hero != other.hero) {
+			return false;
+		}
+		if (heroHPHigher != other.heroHPHigher) {
+			return false;
+		}
+		if (heroHPLower != other.heroHPLower) {
+			return false;
+		}
+		if (heroID != other.heroID) {
+			return false;
+		}
+		if (monster != other.monster) {
+			return false;
+		}
+		if (monsterBattleID != other.monsterBattleID) {
+			return false;
+		}
+		if (monsterHPHigher != other.monsterHPHigher) {
+			return false;
+		}
+		if (monsterHPLower != other.monsterHPLower) {
+			return false;
+		}
+		if (switchA != other.switchA) {
+			return false;
+		}
+		if (switchAID != other.switchAID) {
+			return false;
+		}
+		if (switchB != other.switchB) {
+			return false;
+		}
+		if (switchBID != other.switchBID) {
+			return false;
+		}
+		if (turn != other.turn) {
+			return false;
+		}
+		if (turnA != other.turnA) {
+			return false;
+		}
+		if (turnB != other.turnB) {
+			return false;
+		}
+		if (variable != other.variable) {
+			return false;
+		}
+		if (variableID != other.variableID) {
+			return false;
+		}
+		if (variableValue != other.variableValue) {
+			return false;
+		}
+		return true;
 	}
 }

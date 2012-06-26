@@ -265,26 +265,73 @@ public class LuciferAttributeUnit {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferAttributeUnit)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferAttributeUnit o = (LuciferAttributeUnit) obj;
-	     
-	     return name.equals(o.name)
-	     		&& classificationMagic == o.classificationMagic
-	     		&& rateA == o.rateA
-	     		&& rateB == o.rateB
-	     		&& rateC == o.rateC
-	     		&& rateD == o.rateD
-	     		&& rateE == o.rateE;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (classificationMagic ? 1231
+						: 1237);
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + (int) (rateA ^ (rateA >>> 32));
+		result = prime
+				* result + (int) (rateB ^ (rateB >>> 32));
+		result = prime
+				* result + (int) (rateC ^ (rateC >>> 32));
+		result = prime
+				* result + (int) (rateD ^ (rateD >>> 32));
+		result = prime
+				* result + (int) (rateE ^ (rateE >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferAttributeUnit)) {
+			return false;
+		}
+		LuciferAttributeUnit other = (LuciferAttributeUnit) obj;
+		if (classificationMagic != other.classificationMagic) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (rateA != other.rateA) {
+			return false;
+		}
+		if (rateB != other.rateB) {
+			return false;
+		}
+		if (rateC != other.rateC) {
+			return false;
+		}
+		if (rateD != other.rateD) {
+			return false;
+		}
+		if (rateE != other.rateE) {
+			return false;
+		}
+		return true;
 	}
 }

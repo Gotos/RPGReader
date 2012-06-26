@@ -196,21 +196,52 @@ public class LuciferBattleEventPage {
 				);
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferBattleEventPage)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferBattleEventPage o = (LuciferBattleEventPage) obj;
-	     
-	     return conditions == o.conditions
-	     		&& commands.equals(o.commands);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + ((commands == null) ? 0
+						: commands.hashCode());
+		result = prime
+				* result + ((conditions == null) ? 0
+						: conditions.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferBattleEventPage)) {
+			return false;
+		}
+		LuciferBattleEventPage other = (LuciferBattleEventPage) obj;
+		if (commands == null) {
+			if (other.commands != null) {
+				return false;
+			}
+		} else if (!commands.equals(other.commands)) {
+			return false;
+		}
+		if (conditions == null) {
+			if (other.conditions != null) {
+				return false;
+			}
+		} else if (!conditions.equals(other.conditions)) {
+			return false;
+		}
+		return true;
 	}
 }

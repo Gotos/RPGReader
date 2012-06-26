@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Arrays;
 
 
 /**
@@ -416,6 +417,46 @@ public class DataReader {
 		return new DataReader(bytes);
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + pos;
+		result = prime
+				* result + Arrays.hashCode(string);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof DataReader)) {
+			return false;
+		}
+		DataReader other = (DataReader) obj;
+		if (pos != other.pos) {
+			return false;
+		}
+		if (!Arrays.equals(
+				string, other.string)) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Just a few tests; don't bother reading them - or using them.
 	 * 

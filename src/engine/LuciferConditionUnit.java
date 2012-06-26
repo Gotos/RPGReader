@@ -872,55 +872,241 @@ public class LuciferConditionUnit {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferConditionUnit)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferConditionUnit o = (LuciferConditionUnit) obj;
-	     
-	     return name.equals(o.name)
-	     		&& allyStateMessage.equals(o.allyStateMessage)
-	     		&& enemyStateMessage.equals(o.enemyStateMessage)
-	     		&& alreadyInThisState.equals(o.alreadyInThisState)
-	     		&& stateIsRegular.equals(o.stateIsRegular)
-	     		&& recoveryStateMessage.equals(recoveryStateMessage)
-	     		&& colour == o.colour
-	     		&& priority == o.priority
-	     		&& actionLimitation == o.actionLimitation
-	     		&& effectChanceA == o.effectChanceA
-	     		&& effectChanceB == o.effectChanceB
-	     		&& effectChanceC == o.effectChanceC
-	     		&& effectChanceD == o.effectChanceD
-	     		&& effectChanceE == o.effectChanceE
-	     		&& healTurnProbability == o.healTurnProbability
-	     		&& healPhysicalProbability == o.healPhysicalProbability
-	     		&& halfCostAttack == o.halfCostAttack
-	     		&& halfCostDefense == o.halfCostDefense
-	     		&& halfCostMind == o.halfCostMind
-	     		&& halfCostAgility == o.halfCostAgility
-	     		&& hitRateChance == o.hitRateChance
-	     		&& cantUseHitChanceAbove == o.cantUseHitChanceAbove
-	     		&& cantUseMindChanceAbove == o.cantUseMindChanceAbove
-	     		&& healAfterTurns == o.healAfterTurns
-	     		&& hpDownPercent == o.hpDownPercent
-	     		&& hpDownPoints == o.hpDownPoints
-	     		&& hpDownMap == o.hpDownMap
-	     		&& hpDownMapSteps == o.hpDownMapSteps
-	     		&& mpDownPercent == o.mpDownPercent
-	     		&& mpDownPoints == o.mpDownPoints
-	     		&& mpDownMap == o.mpDownMap
-	     		&& mpDownMapSteps == o.mpDownMapSteps
-	     		&& classificationMovement == o.classificationMovement
-	     		&& cantUseHitChance == o.cantUseHitChance
-	     		&& cantUseMindChance == o.cantUseMindChance;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (actionLimitation ^ (actionLimitation >>> 32));
+		result = prime
+				* result + ((allyStateMessage == null) ? 0
+						: allyStateMessage.hashCode());
+		result = prime
+				* result + ((alreadyInThisState == null) ? 0
+						: alreadyInThisState.hashCode());
+		result = prime
+				* result + (cantUseHitChance ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (cantUseHitChanceAbove ^ (cantUseHitChanceAbove >>> 32));
+		result = prime
+				* result + (cantUseMindChance ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (cantUseMindChanceAbove ^ (cantUseMindChanceAbove >>> 32));
+		result = prime
+				* result + (classificationMovement ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (colour ^ (colour >>> 32));
+		result = prime
+				* result + (int) (effectChanceA ^ (effectChanceA >>> 32));
+		result = prime
+				* result + (int) (effectChanceB ^ (effectChanceB >>> 32));
+		result = prime
+				* result + (int) (effectChanceC ^ (effectChanceC >>> 32));
+		result = prime
+				* result + (int) (effectChanceD ^ (effectChanceD >>> 32));
+		result = prime
+				* result + (int) (effectChanceE ^ (effectChanceE >>> 32));
+		result = prime
+				* result + ((enemyStateMessage == null) ? 0
+						: enemyStateMessage.hashCode());
+		result = prime
+				* result + (int) (halfCostAgility ^ (halfCostAgility >>> 32));
+		result = prime
+				* result + (int) (halfCostAttack ^ (halfCostAttack >>> 32));
+		result = prime
+				* result + (int) (halfCostDefense ^ (halfCostDefense >>> 32));
+		result = prime
+				* result + (int) (halfCostMind ^ (halfCostMind >>> 32));
+		result = prime
+				* result + (int) (healAfterTurns ^ (healAfterTurns >>> 32));
+		result = prime
+				* result + (int) (healPhysicalProbability ^ (healPhysicalProbability >>> 32));
+		result = prime
+				* result + (int) (healTurnProbability ^ (healTurnProbability >>> 32));
+		result = prime
+				* result + (int) (hitRateChance ^ (hitRateChance >>> 32));
+		result = prime
+				* result + (int) (hpDownMap ^ (hpDownMap >>> 32));
+		result = prime
+				* result + (int) (hpDownMapSteps ^ (hpDownMapSteps >>> 32));
+		result = prime
+				* result + (int) (hpDownPercent ^ (hpDownPercent >>> 32));
+		result = prime
+				* result + (int) (hpDownPoints ^ (hpDownPoints >>> 32));
+		result = prime
+				* result + (int) (mpDownMap ^ (mpDownMap >>> 32));
+		result = prime
+				* result + (int) (mpDownMapSteps ^ (mpDownMapSteps >>> 32));
+		result = prime
+				* result + (int) (mpDownPercent ^ (mpDownPercent >>> 32));
+		result = prime
+				* result + (int) (mpDownPoints ^ (mpDownPoints >>> 32));
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + (int) (priority ^ (priority >>> 32));
+		result = prime
+				* result + ((recoveryStateMessage == null) ? 0
+						: recoveryStateMessage.hashCode());
+		result = prime
+				* result + ((stateIsRegular == null) ? 0
+						: stateIsRegular.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferConditionUnit)) {
+			return false;
+		}
+		LuciferConditionUnit other = (LuciferConditionUnit) obj;
+		if (actionLimitation != other.actionLimitation) {
+			return false;
+		}
+		if (allyStateMessage == null) {
+			if (other.allyStateMessage != null) {
+				return false;
+			}
+		} else if (!allyStateMessage.equals(other.allyStateMessage)) {
+			return false;
+		}
+		if (alreadyInThisState == null) {
+			if (other.alreadyInThisState != null) {
+				return false;
+			}
+		} else if (!alreadyInThisState.equals(other.alreadyInThisState)) {
+			return false;
+		}
+		if (cantUseHitChance != other.cantUseHitChance) {
+			return false;
+		}
+		if (cantUseHitChanceAbove != other.cantUseHitChanceAbove) {
+			return false;
+		}
+		if (cantUseMindChance != other.cantUseMindChance) {
+			return false;
+		}
+		if (cantUseMindChanceAbove != other.cantUseMindChanceAbove) {
+			return false;
+		}
+		if (classificationMovement != other.classificationMovement) {
+			return false;
+		}
+		if (colour != other.colour) {
+			return false;
+		}
+		if (effectChanceA != other.effectChanceA) {
+			return false;
+		}
+		if (effectChanceB != other.effectChanceB) {
+			return false;
+		}
+		if (effectChanceC != other.effectChanceC) {
+			return false;
+		}
+		if (effectChanceD != other.effectChanceD) {
+			return false;
+		}
+		if (effectChanceE != other.effectChanceE) {
+			return false;
+		}
+		if (enemyStateMessage == null) {
+			if (other.enemyStateMessage != null) {
+				return false;
+			}
+		} else if (!enemyStateMessage.equals(other.enemyStateMessage)) {
+			return false;
+		}
+		if (halfCostAgility != other.halfCostAgility) {
+			return false;
+		}
+		if (halfCostAttack != other.halfCostAttack) {
+			return false;
+		}
+		if (halfCostDefense != other.halfCostDefense) {
+			return false;
+		}
+		if (halfCostMind != other.halfCostMind) {
+			return false;
+		}
+		if (healAfterTurns != other.healAfterTurns) {
+			return false;
+		}
+		if (healPhysicalProbability != other.healPhysicalProbability) {
+			return false;
+		}
+		if (healTurnProbability != other.healTurnProbability) {
+			return false;
+		}
+		if (hitRateChance != other.hitRateChance) {
+			return false;
+		}
+		if (hpDownMap != other.hpDownMap) {
+			return false;
+		}
+		if (hpDownMapSteps != other.hpDownMapSteps) {
+			return false;
+		}
+		if (hpDownPercent != other.hpDownPercent) {
+			return false;
+		}
+		if (hpDownPoints != other.hpDownPoints) {
+			return false;
+		}
+		if (mpDownMap != other.mpDownMap) {
+			return false;
+		}
+		if (mpDownMapSteps != other.mpDownMapSteps) {
+			return false;
+		}
+		if (mpDownPercent != other.mpDownPercent) {
+			return false;
+		}
+		if (mpDownPoints != other.mpDownPoints) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (priority != other.priority) {
+			return false;
+		}
+		if (recoveryStateMessage == null) {
+			if (other.recoveryStateMessage != null) {
+				return false;
+			}
+		} else if (!recoveryStateMessage.equals(other.recoveryStateMessage)) {
+			return false;
+		}
+		if (stateIsRegular == null) {
+			if (other.stateIsRegular != null) {
+				return false;
+			}
+		} else if (!stateIsRegular.equals(other.stateIsRegular)) {
+			return false;
+		}
+		return true;
 	}
 	
 	/**

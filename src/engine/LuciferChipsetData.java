@@ -282,7 +282,7 @@ public class LuciferChipsetData {
 	/**
 	 * Constructs a new LuciferChipsetData
 	 * 
-	 * @param sr DataReader which represents the LuciferChipsetData
+	 * @param dr DataReader which represents the LuciferChipsetData
 	 * @throws IOException thrown, if something is wrong with the DataReader
 	 */
 	public LuciferChipsetData(DataReader dr) throws IOException {
@@ -337,37 +337,143 @@ public class LuciferChipsetData {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferChipsetData)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferChipsetData o = (LuciferChipsetData) obj;
-	     
-	     return name.equals(o.name)
-	     		&& graphic.equals(o.graphic)
-	     		&& Arrays.equals(lowerLayerDown, o.lowerLayerDown)
-	     		&& Arrays.equals(lowerLayerLeft, o.lowerLayerLeft)
-	     		&& Arrays.equals(lowerLayerRight, o.lowerLayerRight)
-	     		&& Arrays.equals(lowerLayerUp, o.lowerLayerUp)
-	     		&& Arrays.equals(lowerLayerWall, o.lowerLayerWall)
-	     		&& Arrays.equals(lowerLayerAbove, o.lowerLayerAbove)
-	     		&& Arrays.equals(upperLayerDown, o.upperLayerDown)
-	     		&& Arrays.equals(upperLayerLeft, o.upperLayerLeft)
-	     		&& Arrays.equals(upperLayerRight, o.upperLayerRight)
-	     		&& Arrays.equals(upperLayerUp, o.upperLayerUp)
-	     		&& Arrays.equals(upperLayerAbove, o.upperLayerAbove)
-	     		&& Arrays.equals(upperLayerCounter, o.upperLayerCounter)
-	     		&& terrainIds == o.terrainIds
-	     		&& wateranimation == o.wateranimation
-	     		&& waterspeed == o.waterspeed;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + ((graphic == null) ? 0
+						: graphic.hashCode());
+		result = prime
+				* result + Arrays.hashCode(lowerLayerAbove);
+		result = prime
+				* result + Arrays.hashCode(lowerLayerDown);
+		result = prime
+				* result + Arrays.hashCode(lowerLayerLeft);
+		result = prime
+				* result + Arrays.hashCode(lowerLayerRight);
+		result = prime
+				* result + Arrays.hashCode(lowerLayerUp);
+		result = prime
+				* result + Arrays.hashCode(lowerLayerWall);
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + Arrays.hashCode(terrainIds);
+		result = prime
+				* result + Arrays.hashCode(upperLayerAbove);
+		result = prime
+				* result + Arrays.hashCode(upperLayerCounter);
+		result = prime
+				* result + Arrays.hashCode(upperLayerDown);
+		result = prime
+				* result + Arrays.hashCode(upperLayerLeft);
+		result = prime
+				* result + Arrays.hashCode(upperLayerRight);
+		result = prime
+				* result + Arrays.hashCode(upperLayerUp);
+		result = prime
+				* result + (wateranimation ? 1231
+						: 1237);
+		result = prime
+				* result + (waterspeed ? 1231
+						: 1237);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferChipsetData)) {
+			return false;
+		}
+		LuciferChipsetData other = (LuciferChipsetData) obj;
+		if (graphic == null) {
+			if (other.graphic != null) {
+				return false;
+			}
+		} else if (!graphic.equals(other.graphic)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				lowerLayerAbove, other.lowerLayerAbove)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				lowerLayerDown, other.lowerLayerDown)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				lowerLayerLeft, other.lowerLayerLeft)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				lowerLayerRight, other.lowerLayerRight)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				lowerLayerUp, other.lowerLayerUp)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				lowerLayerWall, other.lowerLayerWall)) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				terrainIds, other.terrainIds)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				upperLayerAbove, other.upperLayerAbove)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				upperLayerCounter, other.upperLayerCounter)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				upperLayerDown, other.upperLayerDown)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				upperLayerLeft, other.upperLayerLeft)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				upperLayerRight, other.upperLayerRight)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				upperLayerUp, other.upperLayerUp)) {
+			return false;
+		}
+		if (wateranimation != other.wateranimation) {
+			return false;
+		}
+		if (waterspeed != other.waterspeed) {
+			return false;
+		}
+		return true;
 	}
 	
 	/**

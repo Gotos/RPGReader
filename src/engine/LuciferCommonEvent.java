@@ -169,25 +169,69 @@ public class LuciferCommonEvent {
 		this.eventStartCondition = eventStartCondition;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferCommonEvent)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferCommonEvent o = (LuciferCommonEvent) obj;
-	     
-	     return name.equals(o.name)
-	     		&& eventStartCondition == o.eventStartCondition
-	     		&& switchID == o.switchID
-	     		&& useSwitch == o.useSwitch
-	     		&& commands.equals(o.commands);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + ((commands == null) ? 0
+						: commands.hashCode());
+		result = prime
+				* result + eventStartCondition;
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + (int) (switchID ^ (switchID >>> 32));
+		result = prime
+				* result + (useSwitch ? 1231
+						: 1237);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferCommonEvent)) {
+			return false;
+		}
+		LuciferCommonEvent other = (LuciferCommonEvent) obj;
+		if (commands == null) {
+			if (other.commands != null) {
+				return false;
+			}
+		} else if (!commands.equals(other.commands)) {
+			return false;
+		}
+		if (eventStartCondition != other.eventStartCondition) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (switchID != other.switchID) {
+			return false;
+		}
+		if (useSwitch != other.useSwitch) {
+			return false;
+		}
+		return true;
 	}
 	
 	/**

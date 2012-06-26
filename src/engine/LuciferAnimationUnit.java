@@ -299,25 +299,83 @@ public class LuciferAnimationUnit {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferAnimationUnit)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferAnimationUnit o = (LuciferAnimationUnit) obj;
-	     
-	     return name.equals(o.name)
-	     		&& filename.equals(o.filename)
-	     		&& applyScopeAll == o.applyScopeAll
-	     		&& yOrientationLine == o.yOrientationLine
-	     		&& frames.equals(o.frames)
-	     		&& timing.equals(o.timing);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (applyScopeAll ? 1231
+						: 1237);
+		result = prime
+				* result + ((filename == null) ? 0
+						: filename.hashCode());
+		result = prime
+				* result + ((frames == null) ? 0
+						: frames.hashCode());
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + ((timing == null) ? 0
+						: timing.hashCode());
+		result = prime
+				* result + yOrientationLine;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferAnimationUnit)) {
+			return false;
+		}
+		LuciferAnimationUnit other = (LuciferAnimationUnit) obj;
+		if (applyScopeAll != other.applyScopeAll) {
+			return false;
+		}
+		if (filename == null) {
+			if (other.filename != null) {
+				return false;
+			}
+		} else if (!filename.equals(other.filename)) {
+			return false;
+		}
+		if (frames == null) {
+			if (other.frames != null) {
+				return false;
+			}
+		} else if (!frames.equals(other.frames)) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (timing == null) {
+			if (other.timing != null) {
+				return false;
+			}
+		} else if (!timing.equals(other.timing)) {
+			return false;
+		}
+		if (yOrientationLine != other.yOrientationLine) {
+			return false;
+		}
+		return true;
 	}
 }

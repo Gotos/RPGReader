@@ -327,29 +327,83 @@ public class LuciferCellField {
 				);
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferCellField)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferCellField o = (LuciferCellField) obj;
-	     
-	     return empty == o.empty
-	     		&& patternno == o.patternno
-	     		&& xPos == o.xPos
-	     		&& yPos == o.yPos
-	     		&& magnifiction == o.magnifiction
-	     		&& red == o.red
-	     		&& green == o.green
-	     		&& blue == o.blue
-	     		&& chroma == o.chroma
-	     		&& transparency == o.transparency;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (blue ^ (blue >>> 32));
+		result = prime
+				* result + (int) (chroma ^ (chroma >>> 32));
+		result = prime
+				* result + (empty ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (green ^ (green >>> 32));
+		result = prime
+				* result + (int) (magnifiction ^ (magnifiction >>> 32));
+		result = prime
+				* result + (int) (patternno ^ (patternno >>> 32));
+		result = prime
+				* result + (int) (red ^ (red >>> 32));
+		result = prime
+				* result + (int) (transparency ^ (transparency >>> 32));
+		result = prime
+				* result + (int) (xPos ^ (xPos >>> 32));
+		result = prime
+				* result + (int) (yPos ^ (yPos >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferCellField)) {
+			return false;
+		}
+		LuciferCellField other = (LuciferCellField) obj;
+		if (blue != other.blue) {
+			return false;
+		}
+		if (chroma != other.chroma) {
+			return false;
+		}
+		if (empty != other.empty) {
+			return false;
+		}
+		if (green != other.green) {
+			return false;
+		}
+		if (magnifiction != other.magnifiction) {
+			return false;
+		}
+		if (patternno != other.patternno) {
+			return false;
+		}
+		if (red != other.red) {
+			return false;
+		}
+		if (transparency != other.transparency) {
+			return false;
+		}
+		if (xPos != other.xPos) {
+			return false;
+		}
+		if (yPos != other.yPos) {
+			return false;
+		}
+		return true;
 	}
 }
