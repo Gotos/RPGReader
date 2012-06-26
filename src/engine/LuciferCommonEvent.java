@@ -89,7 +89,7 @@ public class LuciferCommonEvent {
 	}
 	
 	/**
-	 * Constructs a LuciferCommonEvent via a StringReader
+	 * Constructs a LuciferCommonEvent via a DataReader
 	 * 
 	 * @param dr DataReader, which is used to construct the LuciferCommonEvent
 	 * @throws IOException is thrown on any parsing-error
