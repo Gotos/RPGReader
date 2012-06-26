@@ -16,6 +16,45 @@ public class RPGInt {
 	 */
 	public final long length;
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (integer ^ (integer >>> 32));
+		result = prime
+				* result + (int) (length ^ (length >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof RPGInt)) {
+			return false;
+		}
+		RPGInt other = (RPGInt) obj;
+		if (integer != other.integer) {
+			return false;
+		}
+		if (length != other.length) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Constructs a new RPGInt.
 	 * 
