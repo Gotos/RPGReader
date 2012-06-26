@@ -1,6 +1,9 @@
 package engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import javax.naming.LimitExceededException;
 
 /**
  * @author alina
@@ -918,5 +921,55 @@ public class LuciferConditionUnit {
 	     		&& classificationMovement == o.classificationMovement
 	     		&& cantUseHitChance == o.cantUseHitChance
 	     		&& cantUseMindChance == o.cantUseMindChance;
+	}
+	
+	/**
+	 * Returns the byte-representation of this CommonEvent
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		try {
+			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x02, DataReader.intToRPGint(classificationMovement ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x03, DataReader.intToRPGint(colour)).write(new byte[]{6}),
+					new LuciferBaseUnit(0x04, DataReader.intToRPGint(priority)).write(DataReader.intToRPGint(50)),
+					new LuciferBaseUnit(0x05, DataReader.intToRPGint(actionLimitation)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0B, DataReader.intToRPGint(effectChanceA)).write(DataReader.intToRPGint(100)),
+					new LuciferBaseUnit(0x0C, DataReader.intToRPGint(effectChanceB)).write(DataReader.intToRPGint(80)),
+					new LuciferBaseUnit(0x0D, DataReader.intToRPGint(effectChanceC)).write(DataReader.intToRPGint(60)),
+					new LuciferBaseUnit(0x0E, DataReader.intToRPGint(effectChanceD)).write(DataReader.intToRPGint(30)),
+					new LuciferBaseUnit(0x0F, DataReader.intToRPGint(effectChanceE)).write(DataReader.intToRPGint(0)),
+					new LuciferBaseUnit(0x15, DataReader.intToRPGint(healAfterTurns)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x16, DataReader.intToRPGint(healTurnProbability)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x17, DataReader.intToRPGint(healPhysicalProbability)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x1F, DataReader.intToRPGint(halfCostAttack)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x20, DataReader.intToRPGint(halfCostDefense)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x21, DataReader.intToRPGint(halfCostMind)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x22, DataReader.intToRPGint(halfCostAgility)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x23, DataReader.intToRPGint(hitRateChance)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x29, DataReader.intToRPGint(cantUseHitChance ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2A, DataReader.intToRPGint(cantUseHitChanceAbove)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2B, DataReader.intToRPGint(cantUseMindChance ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2C, DataReader.intToRPGint(cantUseMindChanceAbove)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x33, allyStateMessage.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x34, enemyStateMessage.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x35, alreadyInThisState.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x36, stateIsRegular.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x37, recoveryStateMessage.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x3D, DataReader.intToRPGint(hpDownPercent)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x3E, DataReader.intToRPGint(hpDownPoints)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x3F, DataReader.intToRPGint(hpDownMap)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x40, DataReader.intToRPGint(hpDownMapSteps)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x41, DataReader.intToRPGint(mpDownPercent)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x42, DataReader.intToRPGint(mpDownPoints)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x43, DataReader.intToRPGint(mpDownMap)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x44, DataReader.intToRPGint(mpDownMapSteps)).write(new byte[]{0}),
+					new byte[]{0}
+					);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new byte[0];
+		}
 	}
 }
