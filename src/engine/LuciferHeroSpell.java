@@ -8,9 +8,47 @@ import java.io.IOException;
  * This class represents a Spell of an Hero of the RPG-Maker-Game.
  */
 public class LuciferHeroSpell {
-	public long level	= 1;
-	public long spell	= 1;
+	private long level	= 1;
+	private long spell	= 1;
 	
+	/**
+	 * Returns the level
+	 * 
+	 * @return the level
+	 */
+	public long getLevel() {
+		return level;
+	}
+
+	/**
+	 * Sets the level
+	 * 
+	 * @param level the new level
+	 */
+	public void setLevel(
+			long level) {
+		this.level = level;
+	}
+
+	/**
+	 * Returns the spell
+	 * 
+	 * @return the spell
+	 */
+	public long getSpell() {
+		return spell;
+	}
+
+	/**
+	 * Sets the spell
+	 * 
+	 * @param spell the new spell
+	 */
+	public void setSpell(
+			long spell) {
+		this.spell = spell;
+	}
+
 	/**
 	 * Constructs a new LuciferHeroSpell
 	 * 
