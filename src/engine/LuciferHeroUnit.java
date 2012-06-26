@@ -1,47 +1,48 @@
 package engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LuciferHeroUnit {
 	
-	public String name					= "";
-	public String degree				= "";
-	public String graphicFile			= "";
-	public String faceGraphicFile		= "";
-	public String skillName				= "";
-	public long graphicIndex			= 0;
-	public long minLevel				= 1;
-	public long maxLevel				= 50;
-	public long chanceOnCritical		= 30;
-	public long faceGraphicIndex		= 0;
-	public long expBase				= 30;
-	public long expAdditional			= 30;
-	public long expCorrection			= 30;
-	public long weapon					= 0;
-	public long shild					= 0;
-	//public long secondWeapon			= shild;
-	public long armor					= 0;
-	public long helmed					= 0;
-	public long other					= 0;
-	public long unarmedAnimation		= 0;
-	private long nrConditions			= 0;
-	private long nrAttributes			= 0;
-	public long[] hp					= new long[51];
-	public long[] mp					= new long[51];
-	public long[] attack				= new long[51];
-	public long[] defense				= new long[51];
-	public long[] mind					= new long[51];
-	public long[] agility				= new long[51];
-	public long[] conditions;
-	public long[] attributes;
-	public LuciferHeroSpell[] skills;
-	public boolean graphicTransparent	= false;
-	public boolean allowCritical		= true;
-	public boolean dualWield			= false;
-	public boolean fixedEquipment		= false;
-	public boolean aiControl			= false;
-	public boolean strongDefense		= false;
-	public boolean renameSkill			= false;
+	public String name							= "";
+	public String degree						= "";
+	public String graphicFile					= "";
+	public String faceGraphicFile				= "";
+	public String skillName						= "";
+	public long graphicIndex					= 0;
+	public long minLevel						= 1;
+	public long maxLevel						= 50;
+	public long chanceOnCritical				= 30;
+	public long faceGraphicIndex				= 0;
+	public long expBase						= 30;
+	public long expAdditional					= 30;
+	public long expCorrection					= 30;
+	public long weapon							= 0;
+	public long shild							= 0;
+	//public long secondWeapon					= shild;
+	public long armor							= 0;
+	public long helmed							= 0;
+	public long other							= 0;
+	public long unarmedAnimation				= 0;
+	private long nrConditions					= 0;
+	private long nrAttributes					= 0;
+	public long[] hp							= new long[51];
+	public long[] mp							= new long[51];
+	public long[] attack						= new long[51];
+	public long[] defense						= new long[51];
+	public long[] mind							= new long[51];
+	public long[] agility						= new long[51];
+	public ArrayList<Long> conditions			= new ArrayList<Long>();
+	public ArrayList<Long> attributes			= new ArrayList<Long>();
+	public ArrayList<LuciferHeroSpell> skills	= new ArrayList<LuciferHeroSpell>();
+	public boolean graphicTransparent			= false;
+	public boolean allowCritical				= true;
+	public boolean dualWield					= false;
+	public boolean fixedEquipment				= false;
+	public boolean aiControl					= false;
+	public boolean strongDefense				= false;
+	public boolean renameSkill					= false;
 	
 	public LuciferHeroUnit(byte[] str) throws IOException {
 		init(new DataReader(str));
@@ -145,10 +146,10 @@ public class LuciferHeroUnit {
 				break;
 			case 0x3F:
 				tmp = new DataReader(unit.content);
-				skills = new LuciferHeroSpell[(int) tmp.nextInt() + 1];
-				for (int i = 1; i < skills.length; i++) {
+				int nr = (int) tmp.nextInt();
+				for (int i = 0; i < nr; i++) {
 					tmp.nextInt(); //read id
-					skills[i] = new LuciferHeroSpell(tmp);
+					skills.add(new LuciferHeroSpell(tmp));
 				}
 				break;
 			case 0x42:
@@ -162,9 +163,8 @@ public class LuciferHeroUnit {
 				break;
 			case 0x48:
 				tmp = new DataReader(unit.content);
-				conditions = new long[(int) nrConditions + 1];
 				for (int i = 1; i <= nrConditions; i++) {
-					conditions[i] = tmp.nextInt();
+					conditions.add(tmp.nextInt());
 				}
 				break;
 			case 0x49:
@@ -172,9 +172,8 @@ public class LuciferHeroUnit {
 				break;
 			case 0x4A:
 				tmp = new DataReader(unit.content);
-				attributes = new long[(int) nrAttributes + 1];
 				for (int i = 1; i <= nrAttributes; i++) {
-					attributes[i] = tmp.nextInt();
+					attributes.add(tmp.nextInt());
 				}
 				break;
 			default:
