@@ -10,8 +10,8 @@ import java.util.ArrayList;
  */
 public class LuciferEncounterData {
 
-	private int partiesNr	= 0;
-	private ArrayList<Long> parties;
+	private int partiesNr			= 0;
+	private ArrayList<Long> parties = new ArrayList<Long>();
 	
 	/**
 	 * Returns the parties
