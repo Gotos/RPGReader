@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 /**
  * @author alina
@@ -123,5 +124,17 @@ public class LuciferHeroSpell {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Returns the byte-representation of this HeroSpell
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		return Helper.concatAll(new LuciferBaseUnit(0x01, DataReader.intToRPGint(level)).write(new byte[]{1}),
+				new LuciferBaseUnit(0x02, DataReader.intToRPGint(spell)).write(new byte[]{1}),
+				new byte[]{0}
+				);
 	}
 }
