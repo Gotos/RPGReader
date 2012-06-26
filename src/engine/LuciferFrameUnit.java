@@ -1,11 +1,17 @@
 package engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * @author alina
+ *
+ * This class represents a Frame-Unit of a BattleAnimation of the RPG-Maker-Game.
+ */
 public class LuciferFrameUnit {
 	
-	public LuciferCellField[] cellFields;
+	public ArrayList<LuciferCellField> cellFields;
 
 	public LuciferFrameUnit(byte[] str) throws IOException {
 		init(new DataReader(str));
@@ -17,10 +23,10 @@ public class LuciferFrameUnit {
 	
 	private void init(DataReader sr) throws IOException {
 		DataReader innersr = new DataReader(sr.nextUnitReadID().content);
-		cellFields = new LuciferCellField[(int) innersr.nextInt()];
-		for (int i = 0; i < cellFields.length; i++) {
+		cellFields = new ArrayList<LuciferCellField>();
+		for (int i = 0; i < cellFields.size(); i++) {
 			innersr.nextInt();
-			cellFields[i] = new LuciferCellField(innersr);
+			cellFields.add(new LuciferCellField(innersr));
 			//innersr.nextInt();
 		}
 	}
@@ -32,8 +38,8 @@ public class LuciferFrameUnit {
 	 */
 	public byte[] write() {
 		byte[] cellblock = new byte[0];
-		for (int i = 0; i < cellFields.length; i++) {
-			cellblock = Helper.concatAll(cellblock, cellFields[i].write());
+		for (int i = 0; i < cellFields.size(); i++) {
+			cellblock = Helper.concatAll(cellblock, cellFields.get(i).write());
 		}
 		return cellblock;
 	}
@@ -52,6 +58,6 @@ public class LuciferFrameUnit {
 	     
 	     LuciferFrameUnit o = (LuciferFrameUnit) obj;
 	     
-	     return Arrays.equals(cellFields, o.cellFields);
+	     return cellFields.equals(o.cellFields);
 	}
 }
