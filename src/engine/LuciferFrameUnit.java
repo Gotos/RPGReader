@@ -2,7 +2,6 @@ package engine;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author alina
@@ -31,13 +30,25 @@ public class LuciferFrameUnit {
 			ArrayList<LuciferCellField> cellFields) {
 		this.cellFields = cellFields;
 	}
-
-	public LuciferFrameUnit(byte[] str) throws IOException {
-		init(new DataReader(str));
+	
+	/**
+	 * Constructs a new LuciferFrameUnit
+	 * 
+	 * @param bytes byte-Array which represents the LuciferFrameUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferFrameUnit(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferFrameUnit(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferFrameUnit
+	 * 
+	 * @param dr DataReader which represents the LuciferFrameUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferFrameUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
