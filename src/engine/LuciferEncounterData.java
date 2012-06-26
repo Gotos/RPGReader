@@ -10,9 +10,28 @@ import java.util.Arrays;
  */
 public class LuciferEncounterData {
 
-	public int partiesNr	= 0;
-	public long[] parties;
+	private int partiesNr	= 0;
+	private long[] parties;
 	
+	/**
+	 * Returns the parties
+	 * 
+	 * @return the parties
+	 */
+	public long[] getParties() {
+		return parties;
+	}
+
+	/**
+	 * Sets the parties
+	 * 
+	 * @param parties the new parties
+	 */
+	public void setParties(
+			long[] parties) {
+		this.parties = parties;
+	}
+
 	/**
 	 * Constructs a LuciferEncounterData via a byte[]
 	 * 
@@ -68,8 +87,6 @@ public class LuciferEncounterData {
 		int result = 1;
 		result = prime
 				* result + Arrays.hashCode(parties);
-		result = prime
-				* result + partiesNr;
 		return result;
 	}
 
@@ -91,9 +108,6 @@ public class LuciferEncounterData {
 		LuciferEncounterData other = (LuciferEncounterData) obj;
 		if (!Arrays.equals(
 				parties, other.parties)) {
-			return false;
-		}
-		if (partiesNr != other.partiesNr) {
 			return false;
 		}
 		return true;
