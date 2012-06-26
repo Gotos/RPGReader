@@ -44,20 +44,42 @@ public class LuciferFrameUnit {
 		return cellblock;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferFrameUnit)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferFrameUnit o = (LuciferFrameUnit) obj;
-	     
-	     return cellFields.equals(o.cellFields);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + ((cellFields == null) ? 0
+						: cellFields.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferFrameUnit)) {
+			return false;
+		}
+		LuciferFrameUnit other = (LuciferFrameUnit) obj;
+		if (cellFields == null) {
+			if (other.cellFields != null) {
+				return false;
+			}
+		} else if (!cellFields.equals(other.cellFields)) {
+			return false;
+		}
+		return true;
 	}
 }
