@@ -11,7 +11,26 @@ import java.util.Arrays;
  */
 public class LuciferFrameUnit {
 	
-	public ArrayList<LuciferCellField> cellFields;
+	private ArrayList<LuciferCellField> cellFields;
+
+	/**
+	 * Returns the cellFields
+	 * 
+	 * @return the cellFields
+	 */
+	public ArrayList<LuciferCellField> getCellFields() {
+		return cellFields;
+	}
+
+	/**
+	 * Sets the cellFields
+	 * 
+	 * @param cellFields the new cellFields
+	 */
+	public void setCellFields(
+			ArrayList<LuciferCellField> cellFields) {
+		this.cellFields = cellFields;
+	}
 
 	public LuciferFrameUnit(byte[] str) throws IOException {
 		init(new DataReader(str));
