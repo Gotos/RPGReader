@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * @author alina
  *
- * This class represents an Common Event of the Database of the RPG-Maker-Game.
+ * This class represents a Common Event of the Database of the RPG-Maker-Game.
  * EventStartConditions are the static final ints of this class.
  */
 public class LuciferCommonEvent {
