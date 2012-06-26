@@ -1,7 +1,7 @@
 package engine;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
  * @author alina
@@ -11,14 +11,14 @@ import java.util.Arrays;
 public class LuciferEncounterData {
 
 	private int partiesNr	= 0;
-	private long[] parties;
+	private ArrayList<Long> parties;
 	
 	/**
 	 * Returns the parties
 	 * 
 	 * @return the parties
 	 */
-	public long[] getParties() {
+	public ArrayList<Long> getParties() {
 		return parties;
 	}
 
@@ -28,7 +28,7 @@ public class LuciferEncounterData {
 	 * @param parties the new parties
 	 */
 	public void setParties(
-			long[] parties) {
+			ArrayList<Long> parties) {
 		this.parties = parties;
 	}
 
@@ -54,11 +54,11 @@ public class LuciferEncounterData {
 	
 	private void init(DataReader sr) throws IOException {
 		partiesNr = (int) sr.nextInt();
-		parties = new long[partiesNr];
+		parties = new ArrayList<Long>();
 		for (int i = 0; i < partiesNr; i++) {
 			sr.nextInt(); //read id of party
 			LuciferBaseUnit unit = sr.nextUnit();
-			parties[i] = DataReader.rpgintToInt(unit.content).integer;
+			parties.add(DataReader.rpgintToInt(unit.content).integer);
 			sr.nextInt(); //read terminating 0x00
 		}
 	}
@@ -70,11 +70,11 @@ public class LuciferEncounterData {
 	 */
 	public byte[] write() {
 		byte[] rest = new byte[0];
-		for (int i = 0; i < parties.length; i++) {
+		for (int i = 0; i < parties.size(); i++) {
 			rest = Helper.concatAll(rest, DataReader.intToRPGint(i + 1),
-					new LuciferBaseUnit(0x01, DataReader.intToRPGint(parties[i])).write(), new byte[]{0});
+					new LuciferBaseUnit(0x01, DataReader.intToRPGint(parties.get(i))).write(), new byte[]{0});
 		}
-		return Helper.concatAll(DataReader.intToRPGint(parties.length),
+		return Helper.concatAll(DataReader.intToRPGint(parties.size()),
 				rest);
 	}
 	
@@ -86,7 +86,7 @@ public class LuciferEncounterData {
 		final int prime = 31;
 		int result = 1;
 		result = prime
-				* result + Arrays.hashCode(parties);
+				* result + parties.hashCode();
 		return result;
 	}
 
@@ -106,8 +106,7 @@ public class LuciferEncounterData {
 			return false;
 		}
 		LuciferEncounterData other = (LuciferEncounterData) obj;
-		if (!Arrays.equals(
-				parties, other.parties)) {
+		if (parties.equals(other.parties)) {
 			return false;
 		}
 		return true;
