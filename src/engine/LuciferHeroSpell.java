@@ -47,4 +47,43 @@ public class LuciferHeroSpell {
 			unit = sr.nextUnit();
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (level ^ (level >>> 32));
+		result = prime
+				* result + (int) (spell ^ (spell >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferHeroSpell)) {
+			return false;
+		}
+		LuciferHeroSpell other = (LuciferHeroSpell) obj;
+		if (level != other.level) {
+			return false;
+		}
+		if (spell != other.spell) {
+			return false;
+		}
+		return true;
+	}
 }
