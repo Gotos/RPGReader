@@ -1,23 +1,36 @@
 package engine;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Arrays;
 
-public class LuciferEncounterData implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3170291834410195756L;
+/**
+ * @author alina
+ *
+ * This class represents an EncounterData of an Maptree-Element (Map or Area) of the RPG-Maker-Game.
+ */
+public class LuciferEncounterData {
+
 	public int partiesNr	= 0;
 	public long[] parties;
 	
-	public LuciferEncounterData(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a LuciferEncounterData via a byte[]
+	 * 
+	 * @param bytes byte[], which is used to construct the LuciferEncounterData
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferEncounterData(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferEncounterData(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a LuciferEncounter Data via a DataReader
+	 * 
+	 * @param dr DataReader, which is used to construct the LuciferEncounterData
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferEncounterData(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
@@ -31,6 +44,11 @@ public class LuciferEncounterData implements Serializable {
 		}
 	}
 	
+	/**
+	 * Returns the byte-representation of this EncounterData
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		byte[] rest = new byte[0];
 		for (int i = 0; i < parties.length; i++) {
@@ -41,21 +59,43 @@ public class LuciferEncounterData implements Serializable {
 				rest);
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferEncounterData)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferEncounterData o = (LuciferEncounterData) obj;
-	     
-	     return partiesNr == o.partiesNr
-	     		&& Arrays.equals(parties, o.parties);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + Arrays.hashCode(parties);
+		result = prime
+				* result + partiesNr;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferEncounterData)) {
+			return false;
+		}
+		LuciferEncounterData other = (LuciferEncounterData) obj;
+		if (!Arrays.equals(
+				parties, other.parties)) {
+			return false;
+		}
+		if (partiesNr != other.partiesNr) {
+			return false;
+		}
+		return true;
 	}
 }
