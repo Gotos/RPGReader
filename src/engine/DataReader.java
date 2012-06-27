@@ -456,35 +456,4 @@ public class DataReader {
 		}
 		return true;
 	}
-
-	/**
-	 * Just a few tests; don't bother reading them - or using them.
-	 * 
-	 * @param args cmd-args
-	 */
-	public static void main(String[] args) {
-		//StringReader newReader = StringReader.parseFile("/home/alina/Desktop/InsomniA/rpg_rt.lmt");
-		DataReader newReader2 = DataReader.parseFile("/home/alina/Desktop/InsomniA/rpg_rt.ldb");
-		//StringReader newReader3 = StringReader.parseFile("/home/alina/Desktop/SkS/aktuell Daen/SternenkindSaga/Map0155.lmu");
-		try {
-			//System.out.println(new String(newReader.nextUnitZeroID().content));
-			//LuciferMapTree lmt = new LuciferMapTree(newReader);
-			//System.out.println("lmt:"+lmt.maps.get(39).yScrollBar);
-			
-			System.out.println(new String(newReader2.nextUnitZeroID().content));
-			LuciferDatabase ldb = new LuciferDatabase(newReader2);
-			System.out.println(ldb.heroes[1].name);
-			
-			//System.out.println(new String(newReader3.nextUnitZeroID().content));
-			//LuciferMapUnit lmu = new LuciferMapUnit(newReader3);
-			//System.out.println("TEST:"+lmu.events.get(95).pages[0].route.commands[9].type);
-			/*System.out.println("1:"+new String(newReader3.nextUnitZeroID().content));
-			System.out.println("2:"+new String(newReader3.nextUnit().write()));
-			System.out.println("3:"+new String(newReader3.nextUnit().write()));*/
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 }
