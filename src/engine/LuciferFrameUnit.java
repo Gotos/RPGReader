@@ -59,6 +59,7 @@ public class LuciferFrameUnit {
 			innersr.nextInt();
 			cellFields.add(new LuciferCellField(innersr));
 		}
+		sr.nextInt(); //termination zero
 	}
 
 	/**
@@ -77,7 +78,7 @@ public class LuciferFrameUnit {
 						cellFields.get(i).write());
 			}
 		}
-		cellblock = Helper.concatAll(DataReader.intToRPGint(nrSkills), cellblock);
+		cellblock = Helper.concatAll(DataReader.intToRPGint(nrSkills), cellblock, new byte[]{0});
 		
 		return cellblock;
 	}
