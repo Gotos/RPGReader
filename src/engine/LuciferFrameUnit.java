@@ -57,7 +57,6 @@ public class LuciferFrameUnit {
 		for (int i = 0; i < cellFields.size(); i++) {
 			innersr.nextInt();
 			cellFields.add(new LuciferCellField(innersr));
-			//innersr.nextInt();
 		}
 	}
 
