@@ -120,10 +120,9 @@ public class LuciferMapUnit {
 				upperLayerWrite = Helper.concatAll(upperLayerWrite, DataReader.to16bitle(tile));
 			}
 			byte[] eventlist = new byte[0];
-			long nrEvents = 0;
+			long nrEvents = events.size();
 			for (int i = 0; i < events.size(); i++) {
 				if (events.get(i) != null) {
-					nrEvents++;
 					eventlist = Helper.concatAll(eventlist,
 							DataReader.intToRPGint(i),
 							events.get(i).write());
@@ -145,7 +144,7 @@ public class LuciferMapUnit {
 					new LuciferBaseUnit(0x26, DataReader.intToRPGint(verticalScrollSpeed)).write(new byte[]{0}),
 					new LuciferBaseUnit(0x47, lowerLayerWrite).write(),
 					new LuciferBaseUnit(0x48, upperLayerWrite).write(),
-					new LuciferBaseUnit(0x51, eventlist).write(),
+					new LuciferBaseUnit(0x51, eventlist).write(new byte[0]),
 					new LuciferBaseUnit(0x5B, DataReader.intToRPGint(timesSaved)).write(),
 					new byte[]{0}
 					);
