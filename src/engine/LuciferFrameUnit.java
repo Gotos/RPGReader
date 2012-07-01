@@ -53,8 +53,9 @@ public class LuciferFrameUnit {
 	
 	private void init(DataReader sr) throws IOException {
 		DataReader innersr = new DataReader(sr.nextUnitReadID().content);
+		int size = (int) innersr.nextInt();
 		cellFields = new ArrayList<LuciferCellField>();
-		for (int i = 0; i < cellFields.size(); i++) {
+		for (int i = 0; i < size; i++) {
 			innersr.nextInt();
 			cellFields.add(new LuciferCellField(innersr));
 		}
@@ -69,6 +70,7 @@ public class LuciferFrameUnit {
 		byte[] cellblock = new byte[0];
 		for (int i = 0; i < cellFields.size(); i++) {
 			cellblock = Helper.concatAll(cellblock, cellFields.get(i).write());
+			hier muss ich noch länge und ids schreiben
 		}
 		return cellblock;
 	}
