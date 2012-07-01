@@ -67,11 +67,18 @@ public class LuciferFrameUnit {
 	 * @return byte-representation
 	 */
 	public byte[] write() {
+		
 		byte[] cellblock = new byte[0];
+		long nrSkills = cellFields.size();
 		for (int i = 0; i < cellFields.size(); i++) {
-			cellblock = Helper.concatAll(cellblock, cellFields.get(i).write());
-			hier muss ich noch länge und ids schreiben
+			if (cellFields.get(i) != null) {
+				cellblock = Helper.concatAll(cellblock,
+						DataReader.intToRPGint(i),
+						cellFields.get(i).write());
+			}
 		}
+		cellblock = Helper.concatAll(DataReader.intToRPGint(nrSkills), cellblock);
+		
 		return cellblock;
 	}
 	
