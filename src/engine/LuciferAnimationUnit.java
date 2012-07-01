@@ -242,10 +242,11 @@ public class LuciferAnimationUnit {
 				break;
 			case 0x06:
 				tmp = new DataReader(unit.content);
-				timing = new ArrayList<LuciferTimingUnit>((int) tmp.nextInt());
-				for (int i = 0; i < timing.size(); i++) {
+				int size = (int) tmp.nextInt();
+				timing = new ArrayList<LuciferTimingUnit>();
+				for (int i = 0; i < size; i++) {
 					tmp.nextInt();
-					timing.set(i, new LuciferTimingUnit(tmp));
+					timing.add(new LuciferTimingUnit(tmp));
 				}
 				break;
 			case 0x09:
@@ -256,11 +257,11 @@ public class LuciferAnimationUnit {
 				break;
 			case 0x0C:
 				tmp = new DataReader(unit.content);
-				frames = new ArrayList<LuciferFrameUnit>((int) tmp.nextInt());
-				for (int i = 0; i < frames.size(); i++) {
+				int sizeFrames = (int) tmp.nextInt();
+				frames = new ArrayList<LuciferFrameUnit>();
+				for (int i = 0; i < sizeFrames; i++) {
 					tmp.nextInt();
-					frames.set(i, new LuciferFrameUnit(tmp));
-					tmp.nextInt();
+					frames.add(new LuciferFrameUnit(tmp));
 				}
 				break;
 			default:
@@ -277,13 +278,25 @@ public class LuciferAnimationUnit {
 	 */
 	public byte[] write() {
 		byte[] timingblock = new byte[0];
+		long nrTiming = timing.size();
 		for (int i = 0; i < timing.size(); i++) {
-			timingblock = Helper.concatAll(timingblock, timing.get(i).write());
+			if (timing.get(i) != null) {
+				timingblock = Helper.concatAll(timingblock,
+						DataReader.intToRPGint(i),
+						timing.get(i).write());
+			}
 		}
+		timingblock = Helper.concatAll(DataReader.intToRPGint(nrTiming), timingblock);
 		byte[] framesblock = new byte[0];
+		long nrFrames = frames.size();
 		for (int i = 0; i < frames.size(); i++) {
-			framesblock = Helper.concatAll(framesblock, frames.get(i).write());
+			if (frames.get(i) != null) {
+				framesblock = Helper.concatAll(framesblock,
+						DataReader.intToRPGint(i),
+						frames.get(i).write());
+			}
 		}
+		framesblock = Helper.concatAll(DataReader.intToRPGint(nrFrames), framesblock);
 		try {
 			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(new byte[0]),
 					new LuciferBaseUnit(0x02, filename.getBytes(Encoder.ENCODING)).write(new byte[0]),
