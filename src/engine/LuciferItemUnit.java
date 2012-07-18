@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LuciferItemUnit {
 	
@@ -26,9 +27,9 @@ public class LuciferItemUnit {
 	private long nrConditions					= 0;
 	private long nrAttributes					= 0;
 	public long changingChance					= 0;
-	private boolean[] conditions;
-	private boolean[] attributes;
-	private boolean[] heroes;
+	private ArrayList<Boolean> conditions		= new ArrayList<Boolean>();
+	private ArrayList<Boolean> attributes		= new ArrayList<Boolean>();
+	private ArrayList<Boolean> heroes			= new ArrayList<Boolean>();
 	public boolean equipBothHands				= false;
 	public boolean preemptiveAttack			= false;
 	public boolean doubleAttack				= false;
@@ -201,9 +202,9 @@ public class LuciferItemUnit {
 				break;
 			case 0x3E:
 				tmp = new DataReader(unit.content);
-				heroes = new boolean[(int) nrHeroes + 1];
-				for (int i = 1; i <= nrHeroes; i++) {
-					heroes[i] = (tmp.nextInt() == 1);
+				heroes = new ArrayList<Boolean>((int) nrHeroes);
+				for (int i = 0; i < nrHeroes; i++) {
+					heroes.add(tmp.nextInt() == 1);
 				}
 				break;
 			case 0x3F:
@@ -211,9 +212,9 @@ public class LuciferItemUnit {
 				break;
 			case 0x40:
 				tmp = new DataReader(unit.content);
-				conditions = new boolean[(int) nrConditions + 1];
-				for (int i = 1; i <= nrConditions; i++) {
-					conditions[i] = (tmp.nextInt() == 1);
+				conditions = new ArrayList<Boolean>((int) nrConditions);
+				for (int i = 0; i < nrConditions; i++) {
+					conditions.add(tmp.nextInt() == 1);
 				}
 				break;
 			case 0x41:
@@ -221,9 +222,9 @@ public class LuciferItemUnit {
 				break;
 			case 0x42:
 				tmp = new DataReader(unit.content);
-				attributes = new boolean[(int) nrAttributes + 1];
+				attributes = new ArrayList<Boolean>((int) nrAttributes);
 				for (int i = 1; i <= nrAttributes; i++) {
-					attributes[i] = (tmp.nextInt() == 1);
+					attributes.add(tmp.nextInt() == 1);
 				}
 				break;
 			case 0x43:
