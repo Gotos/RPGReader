@@ -3,6 +3,12 @@ package engine;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author alina
+ * 
+ * This class represents an Item of the Database of the RPG-Maker-Game.
+ * 
+ */
 public class LuciferItemUnit {
 	
 	private String name							= "";
@@ -52,12 +58,24 @@ public class LuciferItemUnit {
 	private long permanentMindChange			= 0;
 	private long permanentAgilityChange			= 0;
 	
-	public LuciferItemUnit(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferItemUnit
+	 * 
+	 * @param bytes byte-Array which represents the LuciferItemUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferItemUnit(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferItemUnit(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferHeroUnit
+	 * 
+	 * @param dr DataReader which represents the LuciferItemUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferItemUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
