@@ -739,12 +739,24 @@ public class LuciferHeroUnit {
 		this.renameSkill = renameSkill;
 	}
 	
-	public LuciferHeroUnit(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferHeroUnit
+	 * 
+	 * @param bytes byte-Array which represents the LuciferHeroUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferHeroUnit(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferHeroUnit(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferHeroUnit
+	 * 
+	 * @param dr DataReader which represents the LuciferHeroUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferHeroUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
