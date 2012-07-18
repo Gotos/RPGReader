@@ -90,24 +90,12 @@ public class LuciferItemUnit {
 				explanation = new String(unit.content, Encoder.ENCODING);
 				break;
 			case 0x03:
-				//0->Common Goods
-				//1->Arms
-				//2->Shield
-				//3->Armor
-				//4->Helmet
-				//5->Other
-				//6->Medicine
-				//7->Book
-				//8->Material
-				//9->Unique
-				//10->Switch
 				classification = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x05:
 				price = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x06:
-				//0->Infinite
 				useNumber = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x0B:
@@ -177,7 +165,6 @@ public class LuciferItemUnit {
 				mpRecoveryFix = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x25:
-				//Medicine only
 				onlyUseInField = (DataReader.rpgintToInt(unit.content).integer == 1);
 				break;
 			case 0x26:
@@ -297,6 +284,18 @@ public class LuciferItemUnit {
 	/**
 	 * Returns the classification
 	 * 
+	 * 0->Common Goods
+	 * 1->Arms
+	 * 2->Shield
+	 * 3->Armor
+	 * 4->Helmet
+	 * 5->Other
+	 * 6->Medicine
+	 * 7->Book
+	 * 8->Material
+	 * 9->Unique
+	 * 10->Switch
+	 * 
 	 * @return the classification
 	 */
 	public long getClassification() {
@@ -305,6 +304,18 @@ public class LuciferItemUnit {
 
 	/**
 	 * Sets the classification
+	 * 
+	 * 0->Common Goods
+	 * 1->Arms
+	 * 2->Shield
+	 * 3->Armor
+	 * 4->Helmet
+	 * 5->Other
+	 * 6->Medicine
+	 * 7->Book
+	 * 8->Material
+	 * 9->Unique
+	 * 10->Switch
 	 * 
 	 * @param classification the new classification
 	 */
@@ -333,7 +344,7 @@ public class LuciferItemUnit {
 	}
 
 	/**
-	 * Returns the useNumber
+	 * Returns the useNumber. 0 means infinite uses.
 	 * 
 	 * @return the useNumber
 	 */
@@ -342,7 +353,7 @@ public class LuciferItemUnit {
 	}
 
 	/**
-	 * Sets the useNumber
+	 * Sets the useNumber. 0 means infinite uses.
 	 * 
 	 * @param useNumber the new useNumber
 	 */
@@ -865,7 +876,7 @@ public class LuciferItemUnit {
 	}
 
 	/**
-	 * Returns the onlyUseInField
+	 * Returns the onlyUseInField. Only relevant for medicine.
 	 * 
 	 * @return the onlyUseInField
 	 */
@@ -874,7 +885,7 @@ public class LuciferItemUnit {
 	}
 
 	/**
-	 * Sets the onlyUseInField
+	 * Sets the onlyUseInField-. Only relevant for medicine.
 	 * 
 	 * @param onlyUseInField the new onlyUseInField
 	 */
