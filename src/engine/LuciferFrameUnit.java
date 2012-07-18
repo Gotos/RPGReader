@@ -53,12 +53,13 @@ public class LuciferFrameUnit {
 	
 	private void init(DataReader sr) throws IOException {
 		DataReader innersr = new DataReader(sr.nextUnitReadID().content);
+		int size = (int) innersr.nextInt();
 		cellFields = new ArrayList<LuciferCellField>();
-		for (int i = 0; i < cellFields.size(); i++) {
+		for (int i = 0; i < size; i++) {
 			innersr.nextInt();
 			cellFields.add(new LuciferCellField(innersr));
-			//innersr.nextInt();
 		}
+		sr.nextInt(); //termination zero
 	}
 
 	/**
@@ -67,10 +68,18 @@ public class LuciferFrameUnit {
 	 * @return byte-representation
 	 */
 	public byte[] write() {
+		
 		byte[] cellblock = new byte[0];
+		long nrSkills = cellFields.size();
 		for (int i = 0; i < cellFields.size(); i++) {
-			cellblock = Helper.concatAll(cellblock, cellFields.get(i).write());
+			if (cellFields.get(i) != null) {
+				cellblock = Helper.concatAll(cellblock,
+						DataReader.intToRPGint(i),
+						cellFields.get(i).write());
+			}
 		}
+		cellblock = Helper.concatAll(DataReader.intToRPGint(nrSkills), cellblock, new byte[]{0});
+		
 		return cellblock;
 	}
 	

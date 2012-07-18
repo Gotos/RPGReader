@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 /**
@@ -27,7 +28,7 @@ public class LuciferHeroUnit {
 	private long weapon							= 0;
 	private long shild							= 0;
 	private long armor							= 0;
-	private long helmed							= 0;
+	private long helmet							= 0;
 	private long other							= 0;
 	private long unarmedAnimation				= 0;
 	private long nrConditions					= 0;
@@ -202,7 +203,7 @@ public class LuciferHeroUnit {
 	}
 
 	/**
-	 * Returns the chanceOnCritical
+	 * Returns the chanceOnCritical; Percentage is a mistranslation - proper format is 1 in X
 	 * 
 	 * @return the chanceOnCritical
 	 */
@@ -211,7 +212,7 @@ public class LuciferHeroUnit {
 	}
 
 	/**
-	 * Sets the chanceOnCritical
+	 * Sets the chanceOnCritical; Percentage is a mistranslation - proper format is 1 in X
 	 * 
 	 * @param chanceOnCritical the new chanceOnCritical
 	 */
@@ -373,37 +374,37 @@ public class LuciferHeroUnit {
 	}
 
 	/**
-	 * Returns the helmed
+	 * Returns the helmet
 	 * 
-	 * @return the helmed
+	 * @return the helmet
 	 */
-	public long getHelmed() {
-		return helmed;
+	public long getHelmet() {
+		return helmet;
 	}
 
 	/**
-	 * Sets the helmed
+	 * Sets the helmet
 	 * 
-	 * @param helmed the new helmed
+	 * @param helmet the new helmet
 	 */
-	public void setHelmed(
-			long helmed) {
-		this.helmed = helmed;
+	public void setHelmet(
+			long helmet) {
+		this.helmet = helmet;
 	}
 
 	/**
-	 * Returns the other
+	 * Returns the 'other'-equipment
 	 * 
-	 * @return the other
+	 * @return the 'other'-equipment
 	 */
 	public long getOther() {
 		return other;
 	}
 
 	/**
-	 * Sets the other
+	 * Sets the 'other'-equipment
 	 * 
-	 * @param other the new other
+	 * @param other the new 'other'-equipment
 	 */
 	public void setOther(
 			long other) {
@@ -845,7 +846,7 @@ public class LuciferHeroUnit {
 				weapon = tmp.next16bitle();
 				shild = tmp.next16bitle();
 				armor = tmp.next16bitle();
-				helmed = tmp.next16bitle();
+				helmet = tmp.next16bitle();
 				other = tmp.next16bitle();
 				break;
 			case 0x38:
@@ -948,7 +949,7 @@ public class LuciferHeroUnit {
 				* result + (graphicTransparent ? 1231
 						: 1237);
 		result = prime
-				* result + (int) (helmed ^ (helmed >>> 32));
+				* result + (int) (helmet ^ (helmet >>> 32));
 		result = prime
 				* result + Arrays.hashCode(hp);
 		result = prime
@@ -1084,7 +1085,7 @@ public class LuciferHeroUnit {
 		if (graphicTransparent != other.graphicTransparent) {
 			return false;
 		}
-		if (helmed != other.helmed) {
+		if (helmet != other.helmet) {
 			return false;
 		}
 		if (!Arrays.equals(
@@ -1145,5 +1146,101 @@ public class LuciferHeroUnit {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Returns the byte-representation of this Hero
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		try {
+			
+			byte[] stats = new byte[600];
+			for (int i = 0; i < 50; i++) {
+				stats[i] = DataReader.to16bitle(hp[i + 1])[0];
+				stats[i + 1] = DataReader.to16bitle(hp[i + 1])[1];
+				stats[i * 50] = DataReader.to16bitle(mp[i + 1])[0];
+				stats[(i * 50) + 1] = DataReader.to16bitle(mp[i + 1])[1];
+				stats[i * 100] = DataReader.to16bitle(attack[i + 1])[0];
+				stats[(i * 100) + 1] = DataReader.to16bitle(attack[i + 1])[1];
+				stats[i * 150] = DataReader.to16bitle(defense[i + 1])[0];
+				stats[(i * 150) + 1] = DataReader.to16bitle(defense[i + 1])[1];
+				stats[i * 200] = DataReader.to16bitle(mind[i + 1])[0];
+				stats[(i * 200) + 1] = DataReader.to16bitle(mind[i + 1])[1];
+				stats[i * 250] = DataReader.to16bitle(agility[i + 1])[0];
+				stats[(i * 250) + 1] = DataReader.to16bitle(agility[i + 1])[1];
+			}
+			byte[] equipment = new byte[10];
+			equipment[0] = DataReader.to16bitle(weapon)[0];
+			equipment[1] = DataReader.to16bitle(weapon)[1];
+			equipment[2] = DataReader.to16bitle(shild)[0];
+			equipment[3] = DataReader.to16bitle(shild)[1];
+			equipment[4] = DataReader.to16bitle(armor)[0];
+			equipment[5] = DataReader.to16bitle(armor)[1];
+			equipment[6] = DataReader.to16bitle(helmet)[0];
+			equipment[7] = DataReader.to16bitle(helmet)[1];
+			equipment[8] = DataReader.to16bitle(other)[0];
+			equipment[9] = DataReader.to16bitle(other)[1];
+
+			byte[] skilllist = new byte[0];
+			long nrSkills = skills.size();
+			for (int i = 0; i < skills.size(); i++) {
+				if (skills.get(i) != null) {
+					skilllist = Helper.concatAll(skilllist,
+							DataReader.intToRPGint(i),
+							skills.get(i).write());
+				}
+			}
+			skilllist = Helper.concatAll(DataReader.intToRPGint(nrSkills), skilllist);
+			byte[] conditionlist = new byte[0];
+			for (int i = 0; i < conditions.size(); i++) {
+				if (conditions.get(i) != null) {
+					conditionlist = Helper.concatAll(conditionlist,
+							DataReader.intToRPGint(conditions.get(i)));
+				}
+			}
+			byte[] attributelist = new byte[0];
+			for (int i = 0; i < attributes.size(); i++) {
+				if (attributes.get(i) != null) {
+					attributelist = Helper.concatAll(attributelist,
+							DataReader.intToRPGint(attributes.get(i)));
+				}
+			}
+			
+			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x02, degree.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x03, graphicFile.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x04, DataReader.intToRPGint(graphicIndex)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x05, DataReader.intToRPGint(graphicTransparent ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x07, DataReader.intToRPGint(minLevel)).write(DataReader.intToRPGint(1)),
+					new LuciferBaseUnit(0x08, DataReader.intToRPGint(maxLevel)).write(DataReader.intToRPGint(50)),
+					new LuciferBaseUnit(0x09, DataReader.intToRPGint(allowCritical ? 1 : 0)).write(DataReader.intToRPGint(1)),
+					new LuciferBaseUnit(0x0A, DataReader.intToRPGint(chanceOnCritical)).write(DataReader.intToRPGint(30)),
+					new LuciferBaseUnit(0x0F, faceGraphicFile.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x10, DataReader.intToRPGint(faceGraphicIndex)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x15, DataReader.intToRPGint(dualWield ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x16, DataReader.intToRPGint(fixedEquipment ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x17, DataReader.intToRPGint(aiControl ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x18, DataReader.intToRPGint(strongDefense ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x1F, stats).write(), //TODO: add default. Possibly all zero?
+					new LuciferBaseUnit(0x29, DataReader.intToRPGint(expBase)).write(DataReader.intToRPGint(30)),
+					new LuciferBaseUnit(0x2A, DataReader.intToRPGint(expAdditional)).write(DataReader.intToRPGint(30)),
+					new LuciferBaseUnit(0x2B, DataReader.intToRPGint(expCorrection)).write(DataReader.intToRPGint(30)),
+					new LuciferBaseUnit(0x33, equipment).write(new byte[]{0}),
+					new LuciferBaseUnit(0x38, DataReader.intToRPGint(unarmedAnimation)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x3F, skilllist).write(),
+					new LuciferBaseUnit(0x42, DataReader.intToRPGint(renameSkill ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x43, skillName.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x47, DataReader.intToRPGint(nrConditions)).write(new byte[0]),
+					new LuciferBaseUnit(0x48, conditionlist).write(new byte[0]),
+					new LuciferBaseUnit(0x49, DataReader.intToRPGint(nrAttributes)).write(new byte[0]),
+					new LuciferBaseUnit(0x4A, attributelist).write(new byte[0]),
+					new byte[]{0}
+					);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new byte[0];
+		}
 	}
 }
