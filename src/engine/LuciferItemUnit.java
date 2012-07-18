@@ -1072,4 +1072,288 @@ public class LuciferItemUnit {
 			long permanentAgilityChange) {
 		this.permanentAgilityChange = permanentAgilityChange;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (agilityChange ^ (agilityChange >>> 32));
+		result = prime
+				* result + (attackAllEnemies ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (attackChange ^ (attackChange >>> 32));
+		result = prime
+				* result + ((attributes == null) ? 0
+						: attributes.hashCode());
+		result = prime
+				* result + (availableAtCombat ? 1231
+						: 1237);
+		result = prime
+				* result + (availableAtField ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (battleAnimation ^ (battleAnimation >>> 32));
+		result = prime
+				* result + (int) (changingChance ^ (changingChance >>> 32));
+		result = prime
+				* result + (int) (classification ^ (classification >>> 32));
+		result = prime
+				* result + ((conditions == null) ? 0
+						: conditions.hashCode());
+		result = prime
+				* result + (int) (criticalHitChance ^ (criticalHitChance >>> 32));
+		result = prime
+				* result + (int) (defenceChange ^ (defenceChange >>> 32));
+		result = prime
+				* result + (doubleAttack ? 1231
+						: 1237);
+		result = prime
+				* result + (effectRangeWholeParty ? 1231
+						: 1237);
+		result = prime
+				* result + (equipBothHands ? 1231
+						: 1237);
+		result = prime
+				* result + ((explanation == null) ? 0
+						: explanation.hashCode());
+		result = prime
+				* result + (halfMP ? 1231
+						: 1237);
+		result = prime
+				* result + ((heroes == null) ? 0
+						: heroes.hashCode());
+		result = prime
+				* result + (int) (hitChance ^ (hitChance >>> 32));
+		result = prime
+				* result + (int) (hpRecoveryFix ^ (hpRecoveryFix >>> 32));
+		result = prime
+				* result + (int) (hpRecoveryPercentage ^ (hpRecoveryPercentage >>> 32));
+		result = prime
+				* result + (ignoreMonsterEvasion ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (mindChange ^ (mindChange >>> 32));
+		result = prime
+				* result + (int) (mpCost ^ (mpCost >>> 32));
+		result = prime
+				* result + (int) (mpRecoveryFix ^ (mpRecoveryFix >>> 32));
+		result = prime
+				* result + (int) (mpRecoveryPercentage ^ (mpRecoveryPercentage >>> 32));
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + (noTerrainDamage ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (onSwitch ^ (onSwitch >>> 32));
+		result = prime
+				* result + (onlyOnUnconsciousHeroes ? 1231
+						: 1237);
+		result = prime
+				* result + (onlyUseInField ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (permanentAgilityChange ^ (permanentAgilityChange >>> 32));
+		result = prime
+				* result + (int) (permanentAttackChange ^ (permanentAttackChange >>> 32));
+		result = prime
+				* result + (int) (permanentDefenceChange ^ (permanentDefenceChange >>> 32));
+		result = prime
+				* result + (int) (permanentHPChange ^ (permanentHPChange >>> 32));
+		result = prime
+				* result + (int) (permanentMPChange ^ (permanentMPChange >>> 32));
+		result = prime
+				* result + (int) (permanentMindChange ^ (permanentMindChange >>> 32));
+		result = prime
+				* result + (preemptiveAttack ? 1231
+						: 1237);
+		result = prime
+				* result + (preventCriticalHit ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (price ^ (price >>> 32));
+		result = prime
+				* result + (raiseAvoid ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (useNumber ^ (useNumber >>> 32));
+		result = prime
+				* result + (usingMessageOfSpecialSkill ? 1231
+						: 1237);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferItemUnit)) {
+			return false;
+		}
+		LuciferItemUnit other = (LuciferItemUnit) obj;
+		if (agilityChange != other.agilityChange) {
+			return false;
+		}
+		if (attackAllEnemies != other.attackAllEnemies) {
+			return false;
+		}
+		if (attackChange != other.attackChange) {
+			return false;
+		}
+		if (attributes == null) {
+			if (other.attributes != null) {
+				return false;
+			}
+		} else if (!attributes.equals(other.attributes)) {
+			return false;
+		}
+		if (availableAtCombat != other.availableAtCombat) {
+			return false;
+		}
+		if (availableAtField != other.availableAtField) {
+			return false;
+		}
+		if (battleAnimation != other.battleAnimation) {
+			return false;
+		}
+		if (changingChance != other.changingChance) {
+			return false;
+		}
+		if (classification != other.classification) {
+			return false;
+		}
+		if (conditions == null) {
+			if (other.conditions != null) {
+				return false;
+			}
+		} else if (!conditions.equals(other.conditions)) {
+			return false;
+		}
+		if (criticalHitChance != other.criticalHitChance) {
+			return false;
+		}
+		if (defenceChange != other.defenceChange) {
+			return false;
+		}
+		if (doubleAttack != other.doubleAttack) {
+			return false;
+		}
+		if (effectRangeWholeParty != other.effectRangeWholeParty) {
+			return false;
+		}
+		if (equipBothHands != other.equipBothHands) {
+			return false;
+		}
+		if (explanation == null) {
+			if (other.explanation != null) {
+				return false;
+			}
+		} else if (!explanation.equals(other.explanation)) {
+			return false;
+		}
+		if (halfMP != other.halfMP) {
+			return false;
+		}
+		if (heroes == null) {
+			if (other.heroes != null) {
+				return false;
+			}
+		} else if (!heroes.equals(other.heroes)) {
+			return false;
+		}
+		if (hitChance != other.hitChance) {
+			return false;
+		}
+		if (hpRecoveryFix != other.hpRecoveryFix) {
+			return false;
+		}
+		if (hpRecoveryPercentage != other.hpRecoveryPercentage) {
+			return false;
+		}
+		if (ignoreMonsterEvasion != other.ignoreMonsterEvasion) {
+			return false;
+		}
+		if (mindChange != other.mindChange) {
+			return false;
+		}
+		if (mpCost != other.mpCost) {
+			return false;
+		}
+		if (mpRecoveryFix != other.mpRecoveryFix) {
+			return false;
+		}
+		if (mpRecoveryPercentage != other.mpRecoveryPercentage) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (noTerrainDamage != other.noTerrainDamage) {
+			return false;
+		}
+		if (onSwitch != other.onSwitch) {
+			return false;
+		}
+		if (onlyOnUnconsciousHeroes != other.onlyOnUnconsciousHeroes) {
+			return false;
+		}
+		if (onlyUseInField != other.onlyUseInField) {
+			return false;
+		}
+		if (permanentAgilityChange != other.permanentAgilityChange) {
+			return false;
+		}
+		if (permanentAttackChange != other.permanentAttackChange) {
+			return false;
+		}
+		if (permanentDefenceChange != other.permanentDefenceChange) {
+			return false;
+		}
+		if (permanentHPChange != other.permanentHPChange) {
+			return false;
+		}
+		if (permanentMPChange != other.permanentMPChange) {
+			return false;
+		}
+		if (permanentMindChange != other.permanentMindChange) {
+			return false;
+		}
+		if (preemptiveAttack != other.preemptiveAttack) {
+			return false;
+		}
+		if (preventCriticalHit != other.preventCriticalHit) {
+			return false;
+		}
+		if (price != other.price) {
+			return false;
+		}
+		if (raiseAvoid != other.raiseAvoid) {
+			return false;
+		}
+		if (useNumber != other.useNumber) {
+			return false;
+		}
+		if (usingMessageOfSpecialSkill != other.usingMessageOfSpecialSkill) {
+			return false;
+		}
+		return true;
+	}
 }
