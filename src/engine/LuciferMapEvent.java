@@ -92,25 +92,68 @@ public class LuciferMapEvent {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferMapEvent)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferMapEvent o = (LuciferMapEvent) obj;
-	     
-	     return id == o.id
-	     		&& xPos == o.xPos
-	     		&& yPos == o.yPos
-	     		&& name.equals(o.name)
-	     		&& pages.equals(o.pages);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (id ^ (id >>> 32));
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + ((pages == null) ? 0
+						: pages.hashCode());
+		result = prime
+				* result + (int) (xPos ^ (xPos >>> 32));
+		result = prime
+				* result + (int) (yPos ^ (yPos >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMapEvent)) {
+			return false;
+		}
+		LuciferMapEvent other = (LuciferMapEvent) obj;
+		if (id != other.id) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (pages == null) {
+			if (other.pages != null) {
+				return false;
+			}
+		} else if (!pages.equals(other.pages)) {
+			return false;
+		}
+		if (xPos != other.xPos) {
+			return false;
+		}
+		if (yPos != other.yPos) {
+			return false;
+		}
+		return true;
 	}
 	
 }
