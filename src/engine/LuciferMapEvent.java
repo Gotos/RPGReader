@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
+/**
+ * @author alina
+ *
+ * This class represents a MapEvent of the RPG-Maker-Game.
+ */
 public class LuciferMapEvent {
 	
 	public long id;
@@ -12,12 +17,26 @@ public class LuciferMapEvent {
 	public String name	= "";
 	public LuciferMapEventPage[] pages;
 	
-	public LuciferMapEvent(byte[] str, long gid) throws IOException {
-		init(new DataReader(str), gid);
+	/**
+	 * Constructs a new LuciferMapEvent
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMapEvent
+	 * @param id EventID of this Event
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapEvent(byte[] bytes, long id) throws IOException {
+		init(new DataReader(bytes), id);
 	}
 	
-	public LuciferMapEvent(DataReader sr, long gid) throws IOException {
-		init(sr, gid);
+	/**
+	 * Constructs a new LuciferMapEvent
+	 * 
+	 * @param dr DataReader which represents the LuciferMapEvent
+	 * @param id EventID of this Event
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapEvent(DataReader dr, long id) throws IOException {
+		init(dr, id);
 	}
 	
 	private void init(DataReader sr, long gid) throws IOException {
@@ -28,7 +47,6 @@ public class LuciferMapEvent {
 			switch (unit.id) {
 			case 0x01:
 				name = new String(unit.content, Encoder.ENCODING);
-				//System.out.println("Event " + id + ": " + name);
 				break;
 			case 0x02:
 				xPos = DataReader.rpgintToInt(unit.content).integer;
