@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+/**
+ * @author alina
+ *
+ * This class represents a MapEventPage of the RPG-Maker-Game.
+ */
 public class LuciferMapEventPage {
 	
 	public LuciferMapEventPageCondition conditions		= new LuciferMapEventPageCondition();
