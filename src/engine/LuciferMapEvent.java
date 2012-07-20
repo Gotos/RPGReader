@@ -157,6 +157,8 @@ public class LuciferMapEvent {
 					pages.add(new LuciferMapEventPage(tmp));
 				}
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMapUnit! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
