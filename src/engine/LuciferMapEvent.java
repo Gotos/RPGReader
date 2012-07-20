@@ -3,7 +3,6 @@ package engine;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author alina
@@ -69,6 +68,11 @@ public class LuciferMapEvent {
 		
 	}
 	
+	/**
+	 * Returns the byte-representation of this MapEvent
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		try {
 			byte[] pagelist = DataReader.intToRPGint(pages.size());
