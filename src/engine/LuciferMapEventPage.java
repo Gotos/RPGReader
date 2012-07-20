@@ -23,14 +23,29 @@ public class LuciferMapEventPage {
 	public boolean transparent							= false;
 	public boolean preventEventOverlap					= false;
 	
-	public LuciferMapEventPage(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferMapEventPage
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMapEventPage
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapEventPage(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferMapEventPage(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferMapEventPage
+	 * 
+	 * @param dr DataReader which represents the LuciferMapEventPage
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapEventPage(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
+	/**
+	 * Constructs a new LuciferMapEventPage
+	 */
 	public LuciferMapEventPage() { }
 
 	private void init(DataReader sr) throws IOException {
@@ -78,7 +93,6 @@ public class LuciferMapEventPage {
 				movementSpeed = DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x29:
-				//System.out.println(unit.content);
 				route = new LuciferRoute(unit.content);
 				break;
 			case 0x33:
@@ -97,6 +111,11 @@ public class LuciferMapEventPage {
 		}
 	}
 	
+	/**
+	 * Returns the byte-representation of this MapEventPage
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		try {
 			byte[] commandlist = new byte[0];
