@@ -11,12 +11,107 @@ import java.util.ArrayList;
  */
 public class LuciferMapEvent {
 	
-	public long id;
-	public long xPos	= 0;
-	public long yPos	= 0;
-	public String name	= "";
-	public ArrayList<LuciferMapEventPage> pages;
+	private long id;
+	private long xPos	= 0;
+	private long yPos	= 0;
+	private String name	= "";
+	private ArrayList<LuciferMapEventPage> pages;
 	
+	/**
+	 * Returns the event-id
+	 * 
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * Sets the event-id. You should update the list of events on your map, too, or strange things may happen.
+	 * 
+	 * @param id the new id
+	 */
+	public void setId(
+			long id) {
+		this.id = id;
+	}
+
+	/**
+	 * Returns the xPos
+	 * 
+	 * @return the xPos
+	 */
+	public long getxPos() {
+		return xPos;
+	}
+
+	/**
+	 * Sets the xPos
+	 * 
+	 * @param xPos the new xPos
+	 */
+	public void setxPos(
+			long xPos) {
+		this.xPos = xPos;
+	}
+
+	/**
+	 * Returns the yPos
+	 * 
+	 * @return the yPos
+	 */
+	public long getyPos() {
+		return yPos;
+	}
+
+	/**
+	 * Sets the yPos
+	 * 
+	 * @param yPos the new yPos
+	 */
+	public void setyPos(
+			long yPos) {
+		this.yPos = yPos;
+	}
+
+	/**
+	 * Returns the name
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the name
+	 * 
+	 * @param name the new name
+	 */
+	public void setName(
+			String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Returns the event-pages
+	 * 
+	 * @return the pages
+	 */
+	public ArrayList<LuciferMapEventPage> getPages() {
+		return pages;
+	}
+
+	/**
+	 * Sets the event-pages
+	 * 
+	 * @param pages the new pages
+	 */
+	public void setPages(
+			ArrayList<LuciferMapEventPage> pages) {
+		this.pages = pages;
+	}
+
 	/**
 	 * Constructs a new LuciferMapEvent
 	 * 
