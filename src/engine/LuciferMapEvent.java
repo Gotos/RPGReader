@@ -152,6 +152,7 @@ public class LuciferMapEvent {
 			case 0x05:
 				tmp = new DataReader(unit.content);
 				pages = new ArrayList<LuciferMapEventPage>((int) tmp.nextInt());
+				pages.add(null); //Add Page zero; Page-IDs start at 1.
 				for (int i = 0; i < pages.size(); i++) {
 					tmp.nextInt(); //read pagenumber
 					pages.add(new LuciferMapEventPage(tmp));
@@ -173,8 +174,8 @@ public class LuciferMapEvent {
 	public byte[] write() {
 		try {
 			byte[] pagelist = DataReader.intToRPGint(pages.size());
-			for (int i = 0; i < pages.size(); i++) {
-				pagelist = Helper.concatAll(pagelist, DataReader.intToRPGint(i + 1), pages.get(i).write());
+			for (int i = 1; i <= pages.size(); i++) {
+				pagelist = Helper.concatAll(pagelist, DataReader.intToRPGint(i), pages.get(i).write());
 			}
 			pagelist = Helper.concatAll(pagelist);
 			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(),
