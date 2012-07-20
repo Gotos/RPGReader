@@ -2,6 +2,7 @@ package engine;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -15,7 +16,7 @@ public class LuciferMapEvent {
 	public long xPos	= 0;
 	public long yPos	= 0;
 	public String name	= "";
-	public LuciferMapEventPage[] pages;
+	public ArrayList<LuciferMapEventPage> pages;
 	
 	/**
 	 * Constructs a new LuciferMapEvent
@@ -56,11 +57,10 @@ public class LuciferMapEvent {
 				break;
 			case 0x05:
 				tmp = new DataReader(unit.content);
-				pages = new LuciferMapEventPage[(int) tmp.nextInt()];
-				for (int i = 0; i < pages.length; i++) {
+				pages = new ArrayList<LuciferMapEventPage>((int) tmp.nextInt());
+				for (int i = 0; i < pages.size(); i++) {
 					tmp.nextInt(); //read pagenumber
-					//System.out.println("Page:"+i);
-					pages[i] = new LuciferMapEventPage(tmp);
+					pages.add(new LuciferMapEventPage(tmp));
 				}
 				break;
 			}
@@ -71,9 +71,9 @@ public class LuciferMapEvent {
 	
 	public byte[] write() {
 		try {
-			byte[] pagelist = DataReader.intToRPGint(pages.length);
-			for (int i = 0; i < pages.length; i++) {
-				pagelist = Helper.concatAll(pagelist, DataReader.intToRPGint(i + 1), pages[i].write());
+			byte[] pagelist = DataReader.intToRPGint(pages.size());
+			for (int i = 0; i < pages.size(); i++) {
+				pagelist = Helper.concatAll(pagelist, DataReader.intToRPGint(i + 1), pages.get(i).write());
 			}
 			pagelist = Helper.concatAll(pagelist);
 			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(),
@@ -106,7 +106,7 @@ public class LuciferMapEvent {
 	     		&& xPos == o.xPos
 	     		&& yPos == o.yPos
 	     		&& name.equals(o.name)
-	     		&& Arrays.equals(pages, o.pages);
+	     		&& pages.equals(o.pages);
 	}
 	
 }
