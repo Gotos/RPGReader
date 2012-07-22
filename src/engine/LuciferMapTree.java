@@ -10,12 +10,7 @@ import java.util.ArrayList;
  *
  * This class represents a MapTree of the RPG-Maker-Game.
  */
-public class LuciferMapTree implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8982844369928596911L;
+public class LuciferMapTree {
 	
 	public ArrayList<LuciferMapTreeMap> maps;
 	public ArrayList<Long> mapOrder;
