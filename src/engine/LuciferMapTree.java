@@ -31,9 +31,15 @@ public class LuciferMapTree implements Serializable {
 	
 	public LuciferMapTree() { }
 	
-	//TODO: byte-Konstruktor???
+	public LuciferMapTree(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
+	}
 	
-	public LuciferMapTree(DataReader sr) throws IOException {
+	public LuciferMapTree(DataReader dr) throws IOException {
+		init(dr);
+	}
+	
+	private void init(DataReader sr) throws IOException {
 		int nrMaps = (int) sr.nextInt();
 		maps = new ArrayList<LuciferMapTreeMap>(nrMaps);
 		for (int i = 0; i < nrMaps; i++) {
