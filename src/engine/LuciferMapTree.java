@@ -29,12 +29,27 @@ public class LuciferMapTree implements Serializable {
 	public long airshipStartX		= -1;
 	public long airshipStartY		= -1;
 	
+	/**
+	 * Constructs a new LuciferMapTree
+	 */
 	public LuciferMapTree() { }
 	
+	/**
+	 * Constructs a new LuciferMapTree
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMapTree
+	 * @throws IOException is thrown on any parsing-error
+	 */
 	public LuciferMapTree(byte[] bytes) throws IOException {
 		init(new DataReader(bytes));
 	}
 	
+	/**
+	 * Constructs a new LuciferMapTree
+	 * 
+	 * @param dr DataReader which represents the LuciferMapTree
+	 * @throws IOException is thrown on any parsing-error
+	 */
 	public LuciferMapTree(DataReader dr) throws IOException {
 		init(dr);
 	}
@@ -97,6 +112,11 @@ public class LuciferMapTree implements Serializable {
 		}
 	}
 	
+	/**
+	 * Returns the byte-representation of this MapTree
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		byte[] mapbytes = new byte[0];
 		int nrMaps = 0;
@@ -132,7 +152,6 @@ public class LuciferMapTree implements Serializable {
 					new byte[]{0}
 					);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new byte[0];
 		}
