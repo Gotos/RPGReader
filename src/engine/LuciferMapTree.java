@@ -6,6 +6,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * @author alina
+ *
+ * This class represents a MapTree of the RPG-Maker-Game.
+ */
 public class LuciferMapTree implements Serializable {
 	
 	/**
