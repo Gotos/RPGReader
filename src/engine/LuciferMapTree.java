@@ -162,34 +162,117 @@ public class LuciferMapTree implements Serializable {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferMapTree)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferMapTree o = (LuciferMapTree) obj;
-	     
-	     return selectedMap == o.selectedMap
-	     		&& partyStartMap == o.partyStartMap
-	     		&& partyStartX == o.partyStartX
-	     		&& partyStartY == o.partyStartY
-	     		&& shipStartMap == o.shipStartMap
-	     		&& shipStartX == o.shipStartX
-  				&& shipStartY == o.shipStartY
-  				&& boatStartMap == o.boatStartMap
-  				&& boatStartX == o.boatStartX
-  				&& boatStartY == o.boatStartY
-  				&& airshipStartMap == o.airshipStartMap
-  				&& airshipStartX == o.airshipStartX
-  				&& airshipStartY == o.airshipStartY
-  				&& maps.equals(o.maps)
-	     		&& mapOrder.equals(o.mapOrder);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (airshipStartMap ^ (airshipStartMap >>> 32));
+		result = prime
+				* result + (int) (airshipStartX ^ (airshipStartX >>> 32));
+		result = prime
+				* result + (int) (airshipStartY ^ (airshipStartY >>> 32));
+		result = prime
+				* result + (int) (boatStartMap ^ (boatStartMap >>> 32));
+		result = prime
+				* result + (int) (boatStartX ^ (boatStartX >>> 32));
+		result = prime
+				* result + (int) (boatStartY ^ (boatStartY >>> 32));
+		result = prime
+				* result + ((mapOrder == null) ? 0
+						: mapOrder.hashCode());
+		result = prime
+				* result + ((maps == null) ? 0
+						: maps.hashCode());
+		result = prime
+				* result + (int) (partyStartMap ^ (partyStartMap >>> 32));
+		result = prime
+				* result + (int) (partyStartX ^ (partyStartX >>> 32));
+		result = prime
+				* result + (int) (partyStartY ^ (partyStartY >>> 32));
+		result = prime
+				* result + (int) (selectedMap ^ (selectedMap >>> 32));
+		result = prime
+				* result + (int) (shipStartMap ^ (shipStartMap >>> 32));
+		result = prime
+				* result + (int) (shipStartX ^ (shipStartX >>> 32));
+		result = prime
+				* result + (int) (shipStartY ^ (shipStartY >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMapTree)) {
+			return false;
+		}
+		LuciferMapTree other = (LuciferMapTree) obj;
+		if (airshipStartMap != other.airshipStartMap) {
+			return false;
+		}
+		if (airshipStartX != other.airshipStartX) {
+			return false;
+		}
+		if (airshipStartY != other.airshipStartY) {
+			return false;
+		}
+		if (boatStartMap != other.boatStartMap) {
+			return false;
+		}
+		if (boatStartX != other.boatStartX) {
+			return false;
+		}
+		if (boatStartY != other.boatStartY) {
+			return false;
+		}
+		if (mapOrder == null) {
+			if (other.mapOrder != null) {
+				return false;
+			}
+		} else if (!mapOrder.equals(other.mapOrder)) {
+			return false;
+		}
+		if (maps == null) {
+			if (other.maps != null) {
+				return false;
+			}
+		} else if (!maps.equals(other.maps)) {
+			return false;
+		}
+		if (partyStartMap != other.partyStartMap) {
+			return false;
+		}
+		if (partyStartX != other.partyStartX) {
+			return false;
+		}
+		if (partyStartY != other.partyStartY) {
+			return false;
+		}
+		if (selectedMap != other.selectedMap) {
+			return false;
+		}
+		if (shipStartMap != other.shipStartMap) {
+			return false;
+		}
+		if (shipStartX != other.shipStartX) {
+			return false;
+		}
+		if (shipStartY != other.shipStartY) {
+			return false;
+		}
+		return true;
 	}
 }
