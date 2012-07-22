@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author alina
@@ -19,7 +18,7 @@ public class LuciferMapTree implements Serializable {
 	private static final long serialVersionUID = 8982844369928596911L;
 	
 	public ArrayList<LuciferMapTreeMap> maps;
-	public long[] mapOrder;
+	public ArrayList<Long> mapOrder;
 	public long selectedMap		= 0;
 	public long partyStartMap		= -1;
 	public long partyStartX		= -1;
@@ -67,9 +66,9 @@ public class LuciferMapTree implements Serializable {
 			maps.set((int) id, new LuciferMapTreeMap(sr, id));
 		}
 		sr.nextInt(); //nrMaps is repeated here. Because we already know nrMaps, we wont save it, but we still need to read it.
-		mapOrder = new long[nrMaps];
+		mapOrder = new ArrayList<Long>(nrMaps);
 		for (int i = 0; i < nrMaps; i++) {
-			mapOrder[i] = sr.nextInt();
+			mapOrder.add(sr.nextInt());
 		}
 		selectedMap = sr.nextInt();
 		LuciferBaseUnit unit = sr.nextUnit();
@@ -114,7 +113,6 @@ public class LuciferMapTree implements Serializable {
 			default:
 				Helper.warn(3, "Unknown Unit-ID in LuciferMapTree! ID: " + unit.id);
 			}
-			//content[unit.id]=unit.content;
 			unit = sr.nextUnit();
 		}
 	}
@@ -192,6 +190,6 @@ public class LuciferMapTree implements Serializable {
   				&& airshipStartX == o.airshipStartX
   				&& airshipStartY == o.airshipStartY
   				&& maps.equals(o.maps)
-	     		&& Arrays.equals(mapOrder, o.mapOrder);
+	     		&& mapOrder.equals(o.mapOrder);
 	}
 }
