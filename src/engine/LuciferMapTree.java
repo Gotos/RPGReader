@@ -1,7 +1,6 @@
 package engine;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -15,18 +14,18 @@ public class LuciferMapTree {
 	public ArrayList<LuciferMapTreeMap> maps;
 	public ArrayList<Long> mapOrder;
 	public long selectedMap		= 0;
-	public long partyStartMap		= -1;
-	public long partyStartX		= -1;
-	public long partyStartY		= -1;
-	public long shipStartMap		= -1;
-	public long shipStartX			= -1;
-	public long shipStartY			= -1;
-	public long boatStartMap		= -1;
-	public long boatStartX			= -1;
-	public long boatStartY			= -1;
-	public long airshipStartMap	= -1;
-	public long airshipStartX		= -1;
-	public long airshipStartY		= -1;
+	public long partyStartMap		= 0;
+	public long partyStartX		= 0;
+	public long partyStartY		= 0;
+	public long shipStartMap		= 0;
+	public long shipStartX			= 0;
+	public long shipStartY			= 0;
+	public long boatStartMap		= 0;
+	public long boatStartX			= 0;
+	public long boatStartY			= 0;
+	public long airshipStartMap	= 0;
+	public long airshipStartX		= 0;
+	public long airshipStartY		= 0;
 	
 	/**
 	 * Constructs a new LuciferMapTree
@@ -56,6 +55,7 @@ public class LuciferMapTree {
 	private void init(DataReader sr) throws IOException {
 		int nrMaps = (int) sr.nextInt();
 		maps = new ArrayList<LuciferMapTreeMap>(nrMaps);
+		maps.add(null);
 		for (int i = 0; i < nrMaps; i++) {
 			long id = sr.nextInt();
 			maps.set((int) id, new LuciferMapTreeMap(sr, id));
@@ -119,10 +119,9 @@ public class LuciferMapTree {
 	 */
 	public byte[] write() {
 		byte[] mapbytes = new byte[0];
-		int nrMaps = 0;
-		for (int i = 0; i < maps.size(); i++) {
+		int nrMaps = maps.size();
+		for (int i = 1; i <= maps.size(); i++) {
 			if (maps.get(i) != null) {
-				nrMaps++;
 				mapbytes = Helper.concatAll(mapbytes, DataReader.intToRPGint(i), maps.get(i).write());
 			}
 		}
