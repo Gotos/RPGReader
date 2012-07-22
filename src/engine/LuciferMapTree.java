@@ -111,6 +111,8 @@ public class LuciferMapTree implements Serializable {
 			case 0x21:
 				airshipStartY = DataReader.rpgintToInt(unit.content).integer;
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMapTree! ID: " + unit.id);
 			}
 			//content[unit.id]=unit.content;
 			unit = sr.nextUnit();
