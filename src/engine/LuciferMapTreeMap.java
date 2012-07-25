@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
+/**
+ * @author alina
+ *
+ * This class represents a Map in the MapTree of the RPG-Maker-Game.
+ */
 public class LuciferMapTreeMap{
 	
 	public long id;
@@ -27,7 +32,18 @@ public class LuciferMapTreeMap{
 	
 	//Kontruktor-WTF. was ist gotid? und fehlender byte-Konstruktor
 	
-	public LuciferMapTreeMap(DataReader sr, long gotid) throws IOException {
+	/**
+	 * Constructs a new LuciferMapTreeMap
+	 * 
+	 * @param dr DataReader which represents the LuciferMapTreeMap
+	 * @param id MapID of this Map
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapTreeMap(DataReader dr, long id) throws IOException {
+		init(dr, id);
+	}
+		
+	private void init(DataReader sr, long gotid) throws IOException {	
 		id = gotid;
 		LuciferBaseUnit unit = sr.nextUnit();
 		while (unit.id != 0) {
@@ -111,6 +127,11 @@ public class LuciferMapTreeMap{
 		}
 	}
 	
+	/**
+	 * Returns the byte-representation of this MapTreeMap
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		byte[] areaRect = new byte[0];
 		areaRect = Helper.concatAll(areaRect,
