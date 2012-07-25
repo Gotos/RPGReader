@@ -11,21 +11,21 @@ import java.util.ArrayList;
  */
 public class LuciferMapTree {
 	
-	public ArrayList<LuciferMapTreeMap> maps;
-	public ArrayList<Long> mapOrder;
-	public long selectedMap		= 0;
-	public long partyStartMap		= 0;
-	public long partyStartX		= 0;
-	public long partyStartY		= 0;
-	public long shipStartMap		= 0;
-	public long shipStartX			= 0;
-	public long shipStartY			= 0;
-	public long boatStartMap		= 0;
-	public long boatStartX			= 0;
-	public long boatStartY			= 0;
-	public long airshipStartMap	= 0;
-	public long airshipStartX		= 0;
-	public long airshipStartY		= 0;
+	private ArrayList<LuciferMapTreeMap> maps;
+	private ArrayList<Long> mapOrder;
+	private long selectedMap		= 0;
+	private long partyStartMap		= 0;
+	private long partyStartX		= 0;
+	private long partyStartY		= 0;
+	private long shipStartMap		= 0;
+	private long shipStartX			= 0;
+	private long shipStartY			= 0;
+	private long boatStartMap		= 0;
+	private long boatStartX			= 0;
+	private long boatStartY			= 0;
+	private long airshipStartMap	= 0;
+	private long airshipStartX		= 0;
+	private long airshipStartY		= 0;
 	
 	/**
 	 * Constructs a new LuciferMapTree
@@ -156,6 +156,291 @@ public class LuciferMapTree {
 		}
 	}
 	
+	/**
+	 * Returns the maps
+	 * 
+	 * @return the maps
+	 */
+	public ArrayList<LuciferMapTreeMap> getMaps() {
+		return maps;
+	}
+
+	/**
+	 * Sets the maps. It should always fit the mapOrder.
+	 * 
+	 * @param maps the new maps
+	 */
+	public void setMaps(
+			ArrayList<LuciferMapTreeMap> maps) {
+		this.maps = maps;
+	}
+
+	/**
+	 * Returns the mapOrder
+	 * 
+	 * @return the mapOrder
+	 */
+	public ArrayList<Long> getMapOrder() {
+		return mapOrder;
+	}
+
+	/**
+	 * Sets the mapOrder. It should always fit the maps.
+	 * 
+	 * @param mapOrder the new mapOrder
+	 */
+	public void setMapOrder(
+			ArrayList<Long> mapOrder) {
+		this.mapOrder = mapOrder;
+	}
+
+	/**
+	 * Returns the selectedMap, the map which will open when opening the rpg-maker.
+	 * 
+	 * @return the selectedMap
+	 */
+	public long getSelectedMap() {
+		return selectedMap;
+	}
+
+	/**
+	 * Sets the selectedMap, the map which will open when opening the rpg-maker.
+	 * 
+	 * @param selectedMap the new selectedMap
+	 */
+	public void setSelectedMap(
+			long selectedMap) {
+		this.selectedMap = selectedMap;
+	}
+
+	/**
+	 * Returns the partyStartMap
+	 * 
+	 * @return the partyStartMap
+	 */
+	public long getPartyStartMap() {
+		return partyStartMap;
+	}
+
+	/**
+	 * Sets the partyStartMap
+	 * 
+	 * @param partyStartMap the new partyStartMap
+	 */
+	public void setPartyStartMap(
+			long partyStartMap) {
+		this.partyStartMap = partyStartMap;
+	}
+
+	/**
+	 * Returns the partyStartX
+	 * 
+	 * @return the partyStartX
+	 */
+	public long getPartyStartX() {
+		return partyStartX;
+	}
+
+	/**
+	 * Sets the partyStartX
+	 * 
+	 * @param partyStartX the new partyStartX
+	 */
+	public void setPartyStartX(
+			long partyStartX) {
+		this.partyStartX = partyStartX;
+	}
+
+	/**
+	 * Returns the partyStartY
+	 * 
+	 * @return the partyStartY
+	 */
+	public long getPartyStartY() {
+		return partyStartY;
+	}
+
+	/**
+	 * Sets the partyStartY
+	 * 
+	 * @param partyStartY the new partyStartY
+	 */
+	public void setPartyStartY(
+			long partyStartY) {
+		this.partyStartY = partyStartY;
+	}
+
+	/**
+	 * Returns the shipStartMap
+	 * 
+	 * @return the shipStartMap
+	 */
+	public long getShipStartMap() {
+		return shipStartMap;
+	}
+
+	/**
+	 * Sets the shipStartMap
+	 * 
+	 * @param shipStartMap the new shipStartMap
+	 */
+	public void setShipStartMap(
+			long shipStartMap) {
+		this.shipStartMap = shipStartMap;
+	}
+
+	/**
+	 * Returns the shipStartX
+	 * 
+	 * @return the shipStartX
+	 */
+	public long getShipStartX() {
+		return shipStartX;
+	}
+
+	/**
+	 * Sets the shipStartX
+	 * 
+	 * @param shipStartX the new shipStartX
+	 */
+	public void setShipStartX(
+			long shipStartX) {
+		this.shipStartX = shipStartX;
+	}
+
+	/**
+	 * Returns the shipStartY
+	 * 
+	 * @return the shipStartY
+	 */
+	public long getShipStartY() {
+		return shipStartY;
+	}
+
+	/**
+	 * Sets the shipStartY
+	 * 
+	 * @param shipStartY the new shipStartY
+	 */
+	public void setShipStartY(
+			long shipStartY) {
+		this.shipStartY = shipStartY;
+	}
+
+	/**
+	 * Returns the boatStartMap
+	 * 
+	 * @return the boatStartMap
+	 */
+	public long getBoatStartMap() {
+		return boatStartMap;
+	}
+
+	/**
+	 * Sets the boatStartMap
+	 * 
+	 * @param boatStartMap the new boatStartMap
+	 */
+	public void setBoatStartMap(
+			long boatStartMap) {
+		this.boatStartMap = boatStartMap;
+	}
+
+	/**
+	 * Returns the boatStartX
+	 * 
+	 * @return the boatStartX
+	 */
+	public long getBoatStartX() {
+		return boatStartX;
+	}
+
+	/**
+	 * Sets the boatStartX
+	 * 
+	 * @param boatStartX the new boatStartX
+	 */
+	public void setBoatStartX(
+			long boatStartX) {
+		this.boatStartX = boatStartX;
+	}
+
+	/**
+	 * Returns the boatStartY
+	 * 
+	 * @return the boatStartY
+	 */
+	public long getBoatStartY() {
+		return boatStartY;
+	}
+
+	/**
+	 * Sets the boatStartY
+	 * 
+	 * @param boatStartY the new boatStartY
+	 */
+	public void setBoatStartY(
+			long boatStartY) {
+		this.boatStartY = boatStartY;
+	}
+
+	/**
+	 * Returns the airshipStartMap
+	 * 
+	 * @return the airshipStartMap
+	 */
+	public long getAirshipStartMap() {
+		return airshipStartMap;
+	}
+
+	/**
+	 * Sets the airshipStartMap
+	 * 
+	 * @param airshipStartMap the new airshipStartMap
+	 */
+	public void setAirshipStartMap(
+			long airshipStartMap) {
+		this.airshipStartMap = airshipStartMap;
+	}
+
+	/**
+	 * Returns the airshipStartX
+	 * 
+	 * @return the airshipStartX
+	 */
+	public long getAirshipStartX() {
+		return airshipStartX;
+	}
+
+	/**
+	 * Sets the airshipStartX
+	 * 
+	 * @param airshipStartX the new airshipStartX
+	 */
+	public void setAirshipStartX(
+			long airshipStartX) {
+		this.airshipStartX = airshipStartX;
+	}
+
+	/**
+	 * Returns the airshipStartY
+	 * 
+	 * @return the airshipStartY
+	 */
+	public long getAirshipStartY() {
+		return airshipStartY;
+	}
+
+	/**
+	 * Sets the airshipStartY
+	 * 
+	 * @param airshipStartY the new airshipStartY
+	 */
+	public void setAirshipStartY(
+			long airshipStartY) {
+		this.airshipStartY = airshipStartY;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
