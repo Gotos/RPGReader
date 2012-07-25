@@ -1,17 +1,11 @@
 package engine;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
-public class LuciferMapTreeMap implements Serializable {
+public class LuciferMapTreeMap{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8500611556109450598L;
-	//public byte[][] content;
 	public long id;
 	public String name			= "";
 	public String battleBGName	= "";
