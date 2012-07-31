@@ -9,7 +9,7 @@ import java.util.Arrays;
  *
  * This class represents a Map in the MapTree of the RPG-Maker-Game.
  */
-public class LuciferMapTreeMap{
+public class LuciferMapTreeMap {
 	
 	private long id;
 	private String name			= "";
