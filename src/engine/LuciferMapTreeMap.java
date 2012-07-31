@@ -136,6 +136,8 @@ public class LuciferMapTreeMap{
 				area[2] = tmp.next32bitle(); //EndX (exclusive)
 				area[3] = tmp.next32bitle(); //EndY (exclusive)
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMapTreeMap! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
