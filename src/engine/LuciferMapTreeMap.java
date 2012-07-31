@@ -30,7 +30,10 @@ public class LuciferMapTreeMap{
 	public LuciferMusicUnit musicTrack;
 	public LuciferEncounterData encounter;
 	
-	//Kontruktor-WTF. was ist gotid? und fehlender byte-Konstruktor
+	/**
+	 * Constructs a new LuciferMapTreeMap
+	 */
+	public LuciferMapTreeMap() { }
 	
 	/**
 	 * Constructs a new LuciferMapTreeMap
@@ -42,7 +45,18 @@ public class LuciferMapTreeMap{
 	public LuciferMapTreeMap(DataReader dr, long id) throws IOException {
 		init(dr, id);
 	}
-		
+	
+	/**
+	 * Constructs a new LuciferMapTreeMap
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMapTreeMap
+	 * @param id MapID of this Map
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapTreeMap(byte[] bytes, long id) throws IOException {
+		init(new DataReader(bytes), id);
+	}
+	
 	private void init(DataReader sr, long gotid) throws IOException {	
 		id = gotid;
 		LuciferBaseUnit unit = sr.nextUnit();
