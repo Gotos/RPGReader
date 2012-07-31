@@ -3,7 +3,6 @@ package engine;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class LuciferMapUnit {
 	
@@ -14,8 +13,8 @@ public class LuciferMapUnit {
 	public long horizontalScrollSpeed		= 0;
 	public long verticalScrollSpeed		= 0;
 	public long timesSaved					= 0;
-	public long[] lowerLayer;
-	public long[] upperLayer;
+	public ArrayList<Long> lowerLayer;
+	public ArrayList<Long> upperLayer;
 	public boolean usePanorama				= false;
 	public boolean horizontalPan			= false;
 	public boolean verticalPan				= false;
@@ -79,16 +78,16 @@ public class LuciferMapUnit {
 				break;
 			case 0x47:
 				tmp = new DataReader(unit.content);
-				lowerLayer = new long[unit.content.length / 2];
+				lowerLayer = new ArrayList<Long>(unit.content.length / 2);
 				for (int i = 0; i < unit.content.length / 2; i++) {
-					lowerLayer[i] = tmp.next16bitle(); //TODO check if correct
+					lowerLayer.add(tmp.next16bitle()); //TODO check if correct
 				}
 				break;
 			case 0x48:
 				tmp = new DataReader(unit.content);
-				upperLayer = new long[unit.content.length / 2];
+				upperLayer = new ArrayList<Long>(unit.content.length / 2);
 				for (int i = 0; i < unit.content.length / 2; i++) {
-					upperLayer[i] = tmp.next16bitle(); //TODO check if correct
+					upperLayer.add(tmp.next16bitle()); //TODO check if correct
 				}
 				break;
 			case 0x51:
@@ -177,8 +176,8 @@ public class LuciferMapUnit {
 	     		&& horizontalScrollSpeed == o.horizontalScrollSpeed
 	     		&& verticalScrollSpeed == o.verticalScrollSpeed
 	     		&& timesSaved == o.timesSaved
-	     		&& Arrays.equals(lowerLayer, o.lowerLayer)
-	     		&& Arrays.equals(upperLayer, o.upperLayer)
+	     		&& lowerLayer.equals(o.lowerLayer)
+	     		&& upperLayer.equals(o.upperLayer)
 	     		&& usePanorama == o.usePanorama
 	     		&& horizontalPan == o.horizontalPan
 	     		&& horizontalAutoScroll == o.horizontalAutoScroll
