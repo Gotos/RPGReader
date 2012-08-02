@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 public class LuciferMonsterPartyMonster {
 	
@@ -32,5 +33,18 @@ public class LuciferMonsterPartyMonster {
 			}
 			unit = sr.nextUnit();
 		}
-	}	
+	}
+	
+	/**
+	 * Returns the byte-representation of this MonsterPartyMonster
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		return Helper.concatAll(new LuciferBaseUnit(0x01, DataReader.intToRPGint(id)).write(),
+				new LuciferBaseUnit(0x02, DataReader.intToRPGint(xPos)).write(),
+				new LuciferBaseUnit(0x03, DataReader.intToRPGint(yPos)).write(),
+				new byte[]{0}
+				);
+	}
 }
