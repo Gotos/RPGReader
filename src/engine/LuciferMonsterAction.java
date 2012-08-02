@@ -382,6 +382,97 @@ public class LuciferMonsterAction {
 		this.turnSwitchOff = turnSwitchOff;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (behavior ^ (behavior >>> 32));
+		result = prime
+				* result + (int) (condition ^ (condition >>> 32));
+		result = prime
+				* result + (int) (conditionLowerLimit ^ (conditionLowerLimit >>> 32));
+		result = prime
+				* result + (int) (conditionUpperLimit ^ (conditionUpperLimit >>> 32));
+		result = prime
+				* result + (int) (offSwitch ^ (offSwitch >>> 32));
+		result = prime
+				* result + (int) (onSwitch ^ (onSwitch >>> 32));
+		result = prime
+				* result + (int) (priority ^ (priority >>> 32));
+		result = prime
+				* result + (int) (skill ^ (skill >>> 32));
+		result = prime
+				* result + (int) (subject ^ (subject >>> 32));
+		result = prime
+				* result + (int) (transform ^ (transform >>> 32));
+		result = prime
+				* result + (turnSwitchOff ? 1231
+						: 1237);
+		result = prime
+				* result + (turnSwitchOn ? 1231
+						: 1237);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMonsterAction)) {
+			return false;
+		}
+		LuciferMonsterAction other = (LuciferMonsterAction) obj;
+		if (behavior != other.behavior) {
+			return false;
+		}
+		if (condition != other.condition) {
+			return false;
+		}
+		if (conditionLowerLimit != other.conditionLowerLimit) {
+			return false;
+		}
+		if (conditionUpperLimit != other.conditionUpperLimit) {
+			return false;
+		}
+		if (offSwitch != other.offSwitch) {
+			return false;
+		}
+		if (onSwitch != other.onSwitch) {
+			return false;
+		}
+		if (priority != other.priority) {
+			return false;
+		}
+		if (skill != other.skill) {
+			return false;
+		}
+		if (subject != other.subject) {
+			return false;
+		}
+		if (transform != other.transform) {
+			return false;
+		}
+		if (turnSwitchOff != other.turnSwitchOff) {
+			return false;
+		}
+		if (turnSwitchOn != other.turnSwitchOn) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Returns the byte-representation of this MonsterAction
 	 * 
