@@ -31,9 +31,7 @@ public class LuciferMapUnit {
 		init(sr);
 	}
 	
-	public LuciferMapUnit() {
-		// TODO Auto-generated constructor stub
-	}
+	public LuciferMapUnit() { }
 
 	private void init(DataReader sr) throws IOException {
 		LuciferBaseUnit unit = sr.nextUnit();
