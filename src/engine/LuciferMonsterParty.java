@@ -81,4 +81,99 @@ public class LuciferMonsterParty {
 			unit = sr.nextUnit();
 		}
 	}
+
+	/**
+	 * Returns the name
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the name
+	 * 
+	 * @param name the new name
+	 */
+	public void setName(
+			String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Returns the nrTerrains
+	 * 
+	 * @return the nrTerrains
+	 */
+	public long getNrTerrains() {
+		return nrTerrains;
+	}
+
+	/**
+	 * Sets the nrTerrains
+	 * 
+	 * @param nrTerrains the new nrTerrains
+	 */
+	public void setNrTerrains(
+			long nrTerrains) {
+		this.nrTerrains = nrTerrains;
+	}
+
+	/**
+	 * Returns the appearIn
+	 * 
+	 * @return the appearIn
+	 */
+	public ArrayList<Boolean> getAppearIn() {
+		return appearIn;
+	}
+
+	/**
+	 * Sets the appearIn
+	 * 
+	 * @param appearIn the new appearIn
+	 */
+	public void setAppearIn(
+			ArrayList<Boolean> appearIn) {
+		this.appearIn = appearIn;
+	}
+
+	/**
+	 * Returns the monsters
+	 * 
+	 * @return the monsters
+	 */
+	public ArrayList<LuciferMonsterPartyMonster> getMonsters() {
+		return monsters;
+	}
+
+	/**
+	 * Sets the monsters
+	 * 
+	 * @param monsters the new monsters
+	 */
+	public void setMonsters(
+			ArrayList<LuciferMonsterPartyMonster> monsters) {
+		this.monsters = monsters;
+	}
+
+	/**
+	 * Returns the battleEventPages
+	 * 
+	 * @return the battleEventPages
+	 */
+	public ArrayList<LuciferBattleEventPage> getBattleEventPages() {
+		return battleEventPages;
+	}
+
+	/**
+	 * Sets the battleEventPages
+	 * 
+	 * @param battleEventPages the new battleEventPages
+	 */
+	public void setBattleEventPages(
+			ArrayList<LuciferBattleEventPage> battleEventPages) {
+		this.battleEventPages = battleEventPages;
+	}
 }
