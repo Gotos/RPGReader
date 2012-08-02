@@ -2,6 +2,11 @@ package engine;
 
 import java.io.IOException;
 
+/**
+ * @author alina
+ *
+ * This class represents a MonsterAction of the RPG-Maker-Game.
+ */
 public class LuciferMonsterAction {
 	
 	public long subject				= 0;
@@ -17,14 +22,29 @@ public class LuciferMonsterAction {
 	public boolean turnSwitchOn		= false;
 	public boolean turnSwitchOff		= false;
 	
+	/**
+	 * Constructs a new LuciferMonster
+	 */ 
 	public LuciferMonsterAction() { }
 	
-	public LuciferMonsterAction(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferMonster
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMonsterAction
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMonsterAction(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferMonsterAction(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferMonsterAction
+	 * 
+	 * @param dr DataReader which represents the LuciferMonsterAction
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMonsterAction(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
