@@ -80,6 +80,8 @@ public class LuciferMapEventPageCondition {
 			case 0x08:
 				timeRemaining = DataReader.rpgintToInt(unit.content).integer;
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMapEventPageCondition! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
