@@ -29,6 +29,8 @@ public class LuciferMonsterPartyMonster {
 			case 0x03:
 				yPos = DataReader.rpgintToInt(unit.content).integer;
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMonsterPartyMonster! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
