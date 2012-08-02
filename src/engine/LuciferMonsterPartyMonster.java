@@ -4,9 +4,9 @@ import java.io.IOException;
 
 public class LuciferMonsterPartyMonster {
 	
-	public long id		= 1;
-	public long xPos	= 0;
-	public long yPos	= 0;
+	private long id		= 1;
+	private long xPos	= 0;
+	private long yPos	= 0;
 	
 	public LuciferMonsterPartyMonster(byte[] str) throws IOException {
 		init(new DataReader(str));
@@ -36,6 +36,63 @@ public class LuciferMonsterPartyMonster {
 		}
 	}
 	
+	/**
+	 * Returns the id
+	 * 
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * Sets the id
+	 * 
+	 * @param id the new id
+	 */
+	public void setId(
+			long id) {
+		this.id = id;
+	}
+
+	/**
+	 * Returns the xPos
+	 * 
+	 * @return the xPos
+	 */
+	public long getxPos() {
+		return xPos;
+	}
+
+	/**
+	 * Sets the xPos
+	 * 
+	 * @param xPos the new xPos
+	 */
+	public void setxPos(
+			long xPos) {
+		this.xPos = xPos;
+	}
+
+	/**
+	 * Returns the yPos
+	 * 
+	 * @return the yPos
+	 */
+	public long getyPos() {
+		return yPos;
+	}
+
+	/**
+	 * Sets the yPos
+	 * 
+	 * @param yPos the new yPos
+	 */
+	public void setyPos(
+			long yPos) {
+		this.yPos = yPos;
+	}
+
 	/**
 	 * Returns the byte-representation of this MonsterPartyMonster
 	 * 
