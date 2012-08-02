@@ -93,6 +93,50 @@ public class LuciferMonsterPartyMonster {
 		this.yPos = yPos;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (id ^ (id >>> 32));
+		result = prime
+				* result + (int) (xPos ^ (xPos >>> 32));
+		result = prime
+				* result + (int) (yPos ^ (yPos >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMonsterPartyMonster)) {
+			return false;
+		}
+		LuciferMonsterPartyMonster other = (LuciferMonsterPartyMonster) obj;
+		if (id != other.id) {
+			return false;
+		}
+		if (xPos != other.xPos) {
+			return false;
+		}
+		if (yPos != other.yPos) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Returns the byte-representation of this MonsterPartyMonster
 	 * 
