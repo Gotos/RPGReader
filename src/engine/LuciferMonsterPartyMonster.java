@@ -2,18 +2,40 @@ package engine;
 
 import java.io.IOException;
 
+/**
+ * @author alina
+ *
+ * This class represents a MonsterPartyMonster of the RPG-Maker-Game.
+ */
 public class LuciferMonsterPartyMonster {
 	
 	private long id		= 1;
 	private long xPos	= 0;
 	private long yPos	= 0;
 	
-	public LuciferMonsterPartyMonster(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferMonsterPartyMonster
+	 */
+	public LuciferMonsterPartyMonster() { }
+	
+	/**
+	 * Constructs a new LuciferMonsterPartyMonster
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMonsterPartyMonster
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMonsterPartyMonster(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferMonsterPartyMonster(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferMonsterAction
+	 * 
+	 * @param dr DataReader which represents the LuciferMonsterAction
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMonsterPartyMonster(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
