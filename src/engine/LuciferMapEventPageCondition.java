@@ -2,6 +2,11 @@ package engine;
 
 import java.io.IOException;
 
+/**
+ * @author alina
+ *
+ * This class represents a MapEventPageCondition of the RPG-Maker-Game.
+ */
 public class LuciferMapEventPageCondition {
 	
 	public boolean switchA		= false;
@@ -18,15 +23,28 @@ public class LuciferMapEventPageCondition {
 	public long heroID			= 1;
 	public long timeRemaining	= 0;
 	
-	
-	public LuciferMapEventPageCondition(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferMapEventPageCondition
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMapEventPageCondition
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapEventPageCondition(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferMapEventPageCondition(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferMapEventPageCondition
+	 * 
+	 * @param dr DataReader which represents the LuciferMapEventPageCondition
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapEventPageCondition(DataReader dr) throws IOException {
+		init(dr);
 	}
-	
+	/**
+	 * Constructs a new LuciferMapEventPageCondition
+	 */
 	public LuciferMapEventPageCondition() {	}
 
 	private void init(DataReader sr) throws IOException {
@@ -67,6 +85,11 @@ public class LuciferMapEventPageCondition {
 		}
 	}
 	
+	/**
+	 * Returns the byte-representation of this MapEventPageCondition
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		long activeConditions = 0;
 		activeConditions += (switchA) ? 1 : 0;
