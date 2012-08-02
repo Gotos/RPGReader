@@ -11,22 +11,22 @@ import java.util.ArrayList;
  */
 public class LuciferMapUnit {
 	
-	public long chipset					= 1;
-	public long width						= 20;
-	public long height	 					= 15;
-	public long loop			 			= 0;
-	public long horizontalScrollSpeed		= 0;
-	public long verticalScrollSpeed		= 0;
-	public long timesSaved					= 0;
-	public ArrayList<Long> lowerLayer;
-	public ArrayList<Long> upperLayer;
-	public boolean usePanorama				= false;
-	public boolean horizontalPan			= false;
-	public boolean verticalPan				= false;
-	public boolean horizontalAutoScroll	= false;
-	public boolean verticalAutoScroll		= false;
-	public String panorama					= "";
-	public ArrayList<LuciferMapEvent> events;
+	private long chipset					= 1;
+	private long width						= 20;
+	private long height	 					= 15;
+	private long loop			 			= 0;
+	private long horizontalScrollSpeed		= 0;
+	private long verticalScrollSpeed		= 0;
+	private long timesSaved					= 0;
+	private ArrayList<Long> lowerLayer;
+	private ArrayList<Long> upperLayer;
+	private boolean usePanorama				= false;
+	private boolean horizontalPan			= false;
+	private boolean verticalPan				= false;
+	private boolean horizontalAutoScroll	= false;
+	private boolean verticalAutoScroll		= false;
+	private String panorama					= "";
+	private ArrayList<LuciferMapEvent> events;
 	
 	/**
 	 * Constructs a new LuciferMapUnit
@@ -128,6 +128,310 @@ public class LuciferMapUnit {
 		}
 	}
 	
+	/**
+	 * Returns the chipset
+	 * 
+	 * @return the chipset
+	 */
+	public long getChipset() {
+		return chipset;
+	}
+
+	/**
+	 * Sets the chipset
+	 * 
+	 * @param chipset the new chipset
+	 */
+	public void setChipset(
+			long chipset) {
+		this.chipset = chipset;
+	}
+
+	/**
+	 * Returns the width
+	 * 
+	 * @return the width
+	 */
+	public long getWidth() {
+		return width;
+	}
+
+	/**
+	 * Sets the width
+	 * 
+	 * @param width the new width
+	 */
+	public void setWidth(
+			long width) {
+		this.width = width;
+	}
+
+	/**
+	 * Returns the height
+	 * 
+	 * @return the height
+	 */
+	public long getHeight() {
+		return height;
+	}
+
+	/**
+	 * Sets the height
+	 * 
+	 * @param height the new height
+	 */
+	public void setHeight(
+			long height) {
+		this.height = height;
+	}
+
+	/**
+	 * Returns the loop
+	 * 
+	 * @return the loop
+	 */
+	public long getLoop() {
+		return loop;
+	}
+
+	/**
+	 * Sets the loop
+	 * 
+	 * @param loop the new loop
+	 */
+	public void setLoop(
+			long loop) {
+		this.loop = loop;
+	}
+
+	/**
+	 * Returns the horizontalScrollSpeed
+	 * 
+	 * @return the horizontalScrollSpeed
+	 */
+	public long getHorizontalScrollSpeed() {
+		return horizontalScrollSpeed;
+	}
+
+	/**
+	 * Sets the horizontalScrollSpeed
+	 * 
+	 * @param horizontalScrollSpeed the new horizontalScrollSpeed
+	 */
+	public void setHorizontalScrollSpeed(
+			long horizontalScrollSpeed) {
+		this.horizontalScrollSpeed = horizontalScrollSpeed;
+	}
+
+	/**
+	 * Returns the verticalScrollSpeed
+	 * 
+	 * @return the verticalScrollSpeed
+	 */
+	public long getVerticalScrollSpeed() {
+		return verticalScrollSpeed;
+	}
+
+	/**
+	 * Sets the verticalScrollSpeed
+	 * 
+	 * @param verticalScrollSpeed the new verticalScrollSpeed
+	 */
+	public void setVerticalScrollSpeed(
+			long verticalScrollSpeed) {
+		this.verticalScrollSpeed = verticalScrollSpeed;
+	}
+
+	/**
+	 * Returns the timesSaved
+	 * 
+	 * @return the timesSaved
+	 */
+	public long getTimesSaved() {
+		return timesSaved;
+	}
+
+	/**
+	 * Sets the timesSaved
+	 * 
+	 * @param timesSaved the new timesSaved
+	 */
+	public void setTimesSaved(
+			long timesSaved) {
+		this.timesSaved = timesSaved;
+	}
+
+	/**
+	 * Returns the lowerLayer
+	 * 
+	 * @return the lowerLayer
+	 */
+	public ArrayList<Long> getLowerLayer() {
+		return lowerLayer;
+	}
+
+	/**
+	 * Sets the lowerLayer
+	 * 
+	 * @param lowerLayer the new lowerLayer
+	 */
+	public void setLowerLayer(
+			ArrayList<Long> lowerLayer) {
+		this.lowerLayer = lowerLayer;
+	}
+
+	/**
+	 * Returns the upperLayer
+	 * 
+	 * @return the upperLayer
+	 */
+	public ArrayList<Long> getUpperLayer() {
+		return upperLayer;
+	}
+
+	/**
+	 * Sets the upperLayer
+	 * 
+	 * @param upperLayer the new upperLayer
+	 */
+	public void setUpperLayer(
+			ArrayList<Long> upperLayer) {
+		this.upperLayer = upperLayer;
+	}
+
+	/**
+	 * Returns the usePanorama
+	 * 
+	 * @return the usePanorama
+	 */
+	public boolean isUsePanorama() {
+		return usePanorama;
+	}
+
+	/**
+	 * Sets the usePanorama
+	 * 
+	 * @param usePanorama the new usePanorama
+	 */
+	public void setUsePanorama(
+			boolean usePanorama) {
+		this.usePanorama = usePanorama;
+	}
+
+	/**
+	 * Returns the horizontalPan
+	 * 
+	 * @return the horizontalPan
+	 */
+	public boolean isHorizontalPan() {
+		return horizontalPan;
+	}
+
+	/**
+	 * Sets the horizontalPan
+	 * 
+	 * @param horizontalPan the new horizontalPan
+	 */
+	public void setHorizontalPan(
+			boolean horizontalPan) {
+		this.horizontalPan = horizontalPan;
+	}
+
+	/**
+	 * Returns the verticalPan
+	 * 
+	 * @return the verticalPan
+	 */
+	public boolean isVerticalPan() {
+		return verticalPan;
+	}
+
+	/**
+	 * Sets the verticalPan
+	 * 
+	 * @param verticalPan the new verticalPan
+	 */
+	public void setVerticalPan(
+			boolean verticalPan) {
+		this.verticalPan = verticalPan;
+	}
+
+	/**
+	 * Returns the horizontalAutoScroll
+	 * 
+	 * @return the horizontalAutoScroll
+	 */
+	public boolean isHorizontalAutoScroll() {
+		return horizontalAutoScroll;
+	}
+
+	/**
+	 * Sets the horizontalAutoScroll
+	 * 
+	 * @param horizontalAutoScroll the new horizontalAutoScroll
+	 */
+	public void setHorizontalAutoScroll(
+			boolean horizontalAutoScroll) {
+		this.horizontalAutoScroll = horizontalAutoScroll;
+	}
+
+	/**
+	 * Returns the verticalAutoScroll
+	 * 
+	 * @return the verticalAutoScroll
+	 */
+	public boolean isVerticalAutoScroll() {
+		return verticalAutoScroll;
+	}
+
+	/**
+	 * Sets the verticalAutoScroll
+	 * 
+	 * @param verticalAutoScroll the new verticalAutoScroll
+	 */
+	public void setVerticalAutoScroll(
+			boolean verticalAutoScroll) {
+		this.verticalAutoScroll = verticalAutoScroll;
+	}
+
+	/**
+	 * Returns the panorama
+	 * 
+	 * @return the panorama
+	 */
+	public String getPanorama() {
+		return panorama;
+	}
+
+	/**
+	 * Sets the panorama
+	 * 
+	 * @param panorama the new panorama
+	 */
+	public void setPanorama(
+			String panorama) {
+		this.panorama = panorama;
+	}
+
+	/**
+	 * Returns the events
+	 * 
+	 * @return the events
+	 */
+	public ArrayList<LuciferMapEvent> getEvents() {
+		return events;
+	}
+
+	/**
+	 * Sets the events
+	 * 
+	 * @param events the new events
+	 */
+	public void setEvents(
+			ArrayList<LuciferMapEvent> events) {
+		this.events = events;
+	}
+
 	/**
 	 * Returns the byte-representation of this MapUnit
 	 * 
