@@ -13,8 +13,8 @@ public class LuciferMonsterParty {
 	public String name									= "";
 	public long nrTerrains								= 0;
 	public ArrayList<Boolean> appearIn;
-	public LuciferMonsterPartyMonster[] monsters;
-	public LuciferBattleEventPage[] battleEventPages;
+	public ArrayList<LuciferMonsterPartyMonster> monsters;
+	public ArrayList<LuciferBattleEventPage> battleEventPages;
 	
 	/**
 	 * Constructs a new LuciferMonsterParty
@@ -51,10 +51,10 @@ public class LuciferMonsterParty {
 				break;
 			case 0x02:
 				tmp = new DataReader(unit.content);
-				monsters = new LuciferMonsterPartyMonster[(int) tmp.nextInt() + 1];
-				for (int i = 1; i < monsters.length; i++) {
+				monsters = new ArrayList<LuciferMonsterPartyMonster>((int) tmp.nextInt() + 1);
+				for (int i = 1; i < monsters.size(); i++) {
 					tmp.nextInt(); //read id
-					monsters[i] = new LuciferMonsterPartyMonster(tmp);
+					monsters.add(new LuciferMonsterPartyMonster(tmp));
 				}
 				break;
 			case 0x04:
@@ -69,10 +69,10 @@ public class LuciferMonsterParty {
 				break;
 			case 0x0B:
 				tmp = new DataReader(unit.content);
-				battleEventPages = new LuciferBattleEventPage[(int) tmp.nextInt() + 1];
-				for (int i = 1; i < battleEventPages.length; i++) {
+				battleEventPages = new ArrayList<LuciferBattleEventPage>((int) tmp.nextInt() + 1);
+				for (int i = 1; i < battleEventPages.size(); i++) {
 					tmp.nextInt(); //read id
-					battleEventPages[i] = new LuciferBattleEventPage(tmp);
+					battleEventPages.add(new LuciferBattleEventPage(tmp));
 				}
 				break;
 			default:
