@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
@@ -249,5 +250,43 @@ public class LuciferMonsterParty {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Returns the byte-representation of this MonsterParty
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		byte[] appearInArray = new byte[0];
+		for (int i = 1; i <= appearIn.size(); i++) {
+			if (appearIn.get(i) != null) {
+				appearInArray = Helper.concatAll(appearInArray, DataReader.intToRPGint(i), DataReader.intToRPGint(appearIn.get(i) ? 1 : 0));
+			}
+		}
+		byte[] monsterArray = new byte[0];
+		for (int i = 1; i <= monsters.size(); i++) {
+			if (monsters.get(i) != null) {
+				monsterArray = Helper.concatAll(monsterArray, DataReader.intToRPGint(i), monsters.get(i).write());
+			}
+		}
+		byte[] eventArray = new byte[0];
+		for (int i = 1; i <= battleEventPages.size(); i++) {
+			if (battleEventPages.get(i) != null) {
+				eventArray = Helper.concatAll(eventArray, DataReader.intToRPGint(i), battleEventPages.get(i).write());
+			}
+		}
+		try {
+			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(),
+					new LuciferBaseUnit(0x02, monsterArray).write(new byte[0]),
+					new LuciferBaseUnit(0x04, DataReader.intToRPGint(nrTerrains)).write(new byte[0]),
+					new LuciferBaseUnit(0x05, appearInArray).write(new byte[0]),
+					new LuciferBaseUnit(0x0B, eventArray).write(new byte[0]),
+					new byte[]{0}
+					);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new byte[0];
+		}
 	}
 }
