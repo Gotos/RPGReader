@@ -85,6 +85,8 @@ public class LuciferMonsterAction {
 			case 0x0D:
 				priority = DataReader.rpgintToInt(unit.content).integer;
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMonsterAction! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
