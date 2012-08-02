@@ -88,32 +88,103 @@ public class LuciferMapEventPageCondition {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferMapEventPageCondition)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferMapEventPageCondition o = (LuciferMapEventPageCondition) obj;
-	     
-	     return switchA == o.switchA
-	     		&& switchB == o.switchB
-	     		&& variable == o.variable
-	     		&& item == o.item
-	     		&& hero == o.hero
-	     		&& timer == o.timer
-	     		&& switchAID == o.switchAID
-	     		&& switchBID == o.switchBID
-	     		&& variableID == o.variableID
-	     		&& variableValue == o.variableValue
-	     		&& itemID == o.itemID
-	     		&& heroID == o.heroID
-	     		&& timeRemaining == o.timeRemaining;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (hero ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (heroID ^ (heroID >>> 32));
+		result = prime
+				* result + (item ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (itemID ^ (itemID >>> 32));
+		result = prime
+				* result + (switchA ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (switchAID ^ (switchAID >>> 32));
+		result = prime
+				* result + (switchB ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (switchBID ^ (switchBID >>> 32));
+		result = prime
+				* result + (int) (timeRemaining ^ (timeRemaining >>> 32));
+		result = prime
+				* result + (timer ? 1231
+						: 1237);
+		result = prime
+				* result + (variable ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (variableID ^ (variableID >>> 32));
+		result = prime
+				* result + (int) (variableValue ^ (variableValue >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMapEventPageCondition)) {
+			return false;
+		}
+		LuciferMapEventPageCondition other = (LuciferMapEventPageCondition) obj;
+		if (hero != other.hero) {
+			return false;
+		}
+		if (heroID != other.heroID) {
+			return false;
+		}
+		if (item != other.item) {
+			return false;
+		}
+		if (itemID != other.itemID) {
+			return false;
+		}
+		if (switchA != other.switchA) {
+			return false;
+		}
+		if (switchAID != other.switchAID) {
+			return false;
+		}
+		if (switchB != other.switchB) {
+			return false;
+		}
+		if (switchBID != other.switchBID) {
+			return false;
+		}
+		if (timeRemaining != other.timeRemaining) {
+			return false;
+		}
+		if (timer != other.timer) {
+			return false;
+		}
+		if (variable != other.variable) {
+			return false;
+		}
+		if (variableID != other.variableID) {
+			return false;
+		}
+		if (variableValue != other.variableValue) {
+			return false;
+		}
+		return true;
 	}
 }
