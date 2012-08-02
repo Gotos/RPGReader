@@ -23,12 +23,12 @@ public class LuciferMonsterAction {
 	private boolean turnSwitchOff		= false;
 	
 	/**
-	 * Constructs a new LuciferMonster
+	 * Constructs a new LuciferMonsterAction
 	 */ 
 	public LuciferMonsterAction() { }
 	
 	/**
-	 * Constructs a new LuciferMonster
+	 * Constructs a new LuciferMonsterAction
 	 * 
 	 * @param bytes byte-Array which represents the LuciferMonsterAction
 	 * @throws IOException is thrown on any parsing-error
