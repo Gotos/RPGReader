@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+/**
+ * @author alina
+ *
+ * This class represents a MapUnit of the RPG-Maker-Game.
+ */
 public class LuciferMapUnit {
 	
 	public long chipset					= 1;
@@ -23,14 +28,29 @@ public class LuciferMapUnit {
 	public String panorama					= "";
 	public ArrayList<LuciferMapEvent> events;
 	
-	public LuciferMapUnit(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferMapUnit
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMapUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapUnit(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferMapUnit(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferMapUnit
+	 * 
+	 * @param dr DataReader which represents the LuciferMapUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMapUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
+	/**
+	 * Constructs a new LuciferMapUnit
+	 */
 	public LuciferMapUnit() { }
 
 	private void init(DataReader sr) throws IOException {
@@ -108,6 +128,11 @@ public class LuciferMapUnit {
 		}
 	}
 	
+	/**
+	 * Returns the byte-representation of this MapUnit
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		try {
 			byte[] lowerLayerWrite = new byte[0];
