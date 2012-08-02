@@ -52,6 +52,8 @@ public class LuciferMonsterParty {
 					battleEventPages[i] = new LuciferBattleEventPage(tmp);
 				}
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMonsterParty! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
