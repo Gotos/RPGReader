@@ -1,21 +1,44 @@
 package engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+/**
+ * @author alina
+ *
+ * This class represents a MonsterParty of the RPG-Maker-Game.
+ */
 public class LuciferMonsterParty {
 	
 	public String name									= "";
 	public long nrTerrains								= 0;
-	public boolean[] appearIn;
+	public ArrayList<Boolean> appearIn;
 	public LuciferMonsterPartyMonster[] monsters;
 	public LuciferBattleEventPage[] battleEventPages;
 	
-	public LuciferMonsterParty(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferMonsterParty
+	 */ 
+	public LuciferMonsterParty() { }
+	
+	/**
+	 * Constructs a new LuciferMonsterParty
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMonsterParty
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMonsterParty(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferMonsterParty(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferMonsterParty
+	 * 
+	 * @param dr DataReader which represents the LuciferMonsterParty
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMonsterParty(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
@@ -39,9 +62,9 @@ public class LuciferMonsterParty {
 				break;
 			case 0x05:
 				tmp = new DataReader(unit.content);
-				appearIn = new boolean[(int) nrTerrains + 1];
+				appearIn = new ArrayList<Boolean>((int) nrTerrains + 1);
 				for (int i = 1; i <= nrTerrains; i++) {
-					appearIn[i] = (tmp.nextInt() == 1);
+					appearIn.add(tmp.nextInt() == 1);
 				}
 				break;
 			case 0x0B:
