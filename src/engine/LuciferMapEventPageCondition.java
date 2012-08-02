@@ -9,20 +9,267 @@ import java.io.IOException;
  */
 public class LuciferMapEventPageCondition {
 	
-	public boolean switchA		= false;
-	public boolean switchB		= false;
-	public boolean variable	= false;
-	public boolean item		= false;
-	public boolean hero		= false;
-	public boolean timer		= false;
-	public long switchAID		= 1;
-	public long switchBID		= 1;
-	public long variableID		= 1;
-	public long variableValue	= 0;
-	public long itemID			= 1;
-	public long heroID			= 1;
-	public long timeRemaining	= 0;
+	private boolean switchA		= false;
+	private boolean switchB		= false;
+	private boolean variable	= false;
+	private boolean item		= false;
+	private boolean hero		= false;
+	private boolean timer		= false;
+	private long switchAID		= 1;
+	private long switchBID		= 1;
+	private long variableID		= 1;
+	private long variableValue	= 0;
+	private long itemID			= 1;
+	private long heroID			= 1;
+	private long timeRemaining	= 0;
 	
+	/**
+	 * Returns the switchA
+	 * 
+	 * @return the switchA
+	 */
+	public boolean isSwitchA() {
+		return switchA;
+	}
+
+	/**
+	 * Sets the switchA
+	 * 
+	 * @param switchA the new switchA
+	 */
+	public void setSwitchA(
+			boolean switchA) {
+		this.switchA = switchA;
+	}
+
+	/**
+	 * Returns the switchB
+	 * 
+	 * @return the switchB
+	 */
+	public boolean isSwitchB() {
+		return switchB;
+	}
+
+	/**
+	 * Sets the switchB
+	 * 
+	 * @param switchB the new switchB
+	 */
+	public void setSwitchB(
+			boolean switchB) {
+		this.switchB = switchB;
+	}
+
+	/**
+	 * Returns the variable
+	 * 
+	 * @return the variable
+	 */
+	public boolean isVariable() {
+		return variable;
+	}
+
+	/**
+	 * Sets the variable
+	 * 
+	 * @param variable the new variable
+	 */
+	public void setVariable(
+			boolean variable) {
+		this.variable = variable;
+	}
+
+	/**
+	 * Returns the item
+	 * 
+	 * @return the item
+	 */
+	public boolean isItem() {
+		return item;
+	}
+
+	/**
+	 * Sets the item
+	 * 
+	 * @param item the new item
+	 */
+	public void setItem(
+			boolean item) {
+		this.item = item;
+	}
+
+	/**
+	 * Returns the hero
+	 * 
+	 * @return the hero
+	 */
+	public boolean isHero() {
+		return hero;
+	}
+
+	/**
+	 * Sets the hero
+	 * 
+	 * @param hero the new hero
+	 */
+	public void setHero(
+			boolean hero) {
+		this.hero = hero;
+	}
+
+	/**
+	 * Returns the timer
+	 * 
+	 * @return the timer
+	 */
+	public boolean isTimer() {
+		return timer;
+	}
+
+	/**
+	 * Sets the timer
+	 * 
+	 * @param timer the new timer
+	 */
+	public void setTimer(
+			boolean timer) {
+		this.timer = timer;
+	}
+
+	/**
+	 * Returns the switchAID
+	 * 
+	 * @return the switchAID
+	 */
+	public long getSwitchAID() {
+		return switchAID;
+	}
+
+	/**
+	 * Sets the switchAID
+	 * 
+	 * @param switchAID the new switchAID
+	 */
+	public void setSwitchAID(
+			long switchAID) {
+		this.switchAID = switchAID;
+	}
+
+	/**
+	 * Returns the switchBID
+	 * 
+	 * @return the switchBID
+	 */
+	public long getSwitchBID() {
+		return switchBID;
+	}
+
+	/**
+	 * Sets the switchBID
+	 * 
+	 * @param switchBID the new switchBID
+	 */
+	public void setSwitchBID(
+			long switchBID) {
+		this.switchBID = switchBID;
+	}
+
+	/**
+	 * Returns the variableID
+	 * 
+	 * @return the variableID
+	 */
+	public long getVariableID() {
+		return variableID;
+	}
+
+	/**
+	 * Sets the variableID
+	 * 
+	 * @param variableID the new variableID
+	 */
+	public void setVariableID(
+			long variableID) {
+		this.variableID = variableID;
+	}
+
+	/**
+	 * Returns the variableValue
+	 * 
+	 * @return the variableValue
+	 */
+	public long getVariableValue() {
+		return variableValue;
+	}
+
+	/**
+	 * Sets the variableValue
+	 * 
+	 * @param variableValue the new variableValue
+	 */
+	public void setVariableValue(
+			long variableValue) {
+		this.variableValue = variableValue;
+	}
+
+	/**
+	 * Returns the itemID
+	 * 
+	 * @return the itemID
+	 */
+	public long getItemID() {
+		return itemID;
+	}
+
+	/**
+	 * Sets the itemID
+	 * 
+	 * @param itemID the new itemID
+	 */
+	public void setItemID(
+			long itemID) {
+		this.itemID = itemID;
+	}
+
+	/**
+	 * Returns the heroID
+	 * 
+	 * @return the heroID
+	 */
+	public long getHeroID() {
+		return heroID;
+	}
+
+	/**
+	 * Sets the heroID
+	 * 
+	 * @param heroID the new heroID
+	 */
+	public void setHeroID(
+			long heroID) {
+		this.heroID = heroID;
+	}
+
+	/**
+	 * Returns the timeRemaining
+	 * 
+	 * @return the timeRemaining
+	 */
+	public long getTimeRemaining() {
+		return timeRemaining;
+	}
+
+	/**
+	 * Sets the timeRemaining
+	 * 
+	 * @param timeRemaining the new timeRemaining
+	 */
+	public void setTimeRemaining(
+			long timeRemaining) {
+		this.timeRemaining = timeRemaining;
+	}
+
 	/**
 	 * Constructs a new LuciferMapEventPageCondition
 	 * 
