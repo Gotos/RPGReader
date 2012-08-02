@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 public class LuciferMonsterAction {
 	
@@ -92,5 +93,27 @@ public class LuciferMonsterAction {
 			}
 			unit = sr.nextUnit();
 		}
+	}
+	
+	/**
+	 * Returns the byte-representation of this MonsterAction
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		return Helper.concatAll(new LuciferBaseUnit(0x01, DataReader.intToRPGint(subject)).write(new byte[0]),
+				new LuciferBaseUnit(0x02, DataReader.intToRPGint(behavior)).write(new byte[0]),
+				new LuciferBaseUnit(0x03, DataReader.intToRPGint(skill)).write(new byte[0]),
+				new LuciferBaseUnit(0x04, DataReader.intToRPGint(transform)).write(new byte[0]),
+				new LuciferBaseUnit(0x05, DataReader.intToRPGint(condition)).write(new byte[0]),
+				new LuciferBaseUnit(0x06, DataReader.intToRPGint(conditionLowerLimit)).write(new byte[0]),
+				new LuciferBaseUnit(0x07, DataReader.intToRPGint(conditionUpperLimit)).write(new byte[0]),
+				new LuciferBaseUnit(0x09, DataReader.intToRPGint(turnSwitchOn ? 1 : 0)).write(new byte[0]),
+				new LuciferBaseUnit(0x0A, DataReader.intToRPGint(onSwitch)).write(new byte[0]),
+				new LuciferBaseUnit(0x0B, DataReader.intToRPGint(turnSwitchOff ? 1 : 0)).write(new byte[0]),
+				new LuciferBaseUnit(0x0C, DataReader.intToRPGint(offSwitch)).write(new byte[0]),
+				new LuciferBaseUnit(0x0D, DataReader.intToRPGint(priority)).write(new byte[0]),
+				new byte[]{0}
+				);
 	}
 }
