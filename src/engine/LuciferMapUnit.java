@@ -153,37 +153,137 @@ public class LuciferMapUnit {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferMapUnit)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferMapUnit o = (LuciferMapUnit) obj;
-	     
-	     //TODO: lowerLayer und upperLayer werden scheinbar inkorrekt geschrieben.
-	     
-	     return chipset == o.chipset
-	     		&& width == o.width
-	     		&& height == o.height
-	     		&& loop == o.loop
-	     		&& horizontalScrollSpeed == o.horizontalScrollSpeed
-	     		&& verticalScrollSpeed == o.verticalScrollSpeed
-	     		&& timesSaved == o.timesSaved
-	     		&& lowerLayer.equals(o.lowerLayer)
-	     		&& upperLayer.equals(o.upperLayer)
-	     		&& usePanorama == o.usePanorama
-	     		&& horizontalPan == o.horizontalPan
-	     		&& horizontalAutoScroll == o.horizontalAutoScroll
-	     		&& verticalPan == o.verticalPan
-	     		&& verticalAutoScroll == o.verticalAutoScroll
-	     		&& panorama.equals(o.panorama)
-	     		&& events.equals(o.events);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (chipset ^ (chipset >>> 32));
+		result = prime
+				* result + ((events == null) ? 0
+						: events.hashCode());
+		result = prime
+				* result + (int) (height ^ (height >>> 32));
+		result = prime
+				* result + (horizontalAutoScroll ? 1231
+						: 1237);
+		result = prime
+				* result + (horizontalPan ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (horizontalScrollSpeed ^ (horizontalScrollSpeed >>> 32));
+		result = prime
+				* result + (int) (loop ^ (loop >>> 32));
+		result = prime
+				* result + ((lowerLayer == null) ? 0
+						: lowerLayer.hashCode());
+		result = prime
+				* result + ((panorama == null) ? 0
+						: panorama.hashCode());
+		result = prime
+				* result + (int) (timesSaved ^ (timesSaved >>> 32));
+		result = prime
+				* result + ((upperLayer == null) ? 0
+						: upperLayer.hashCode());
+		result = prime
+				* result + (usePanorama ? 1231
+						: 1237);
+		result = prime
+				* result + (verticalAutoScroll ? 1231
+						: 1237);
+		result = prime
+				* result + (verticalPan ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (verticalScrollSpeed ^ (verticalScrollSpeed >>> 32));
+		result = prime
+				* result + (int) (width ^ (width >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMapUnit)) {
+			return false;
+		}
+		LuciferMapUnit other = (LuciferMapUnit) obj;
+		if (chipset != other.chipset) {
+			return false;
+		}
+		if (events == null) {
+			if (other.events != null) {
+				return false;
+			}
+		} else if (!events.equals(other.events)) {
+			return false;
+		}
+		if (height != other.height) {
+			return false;
+		}
+		if (horizontalAutoScroll != other.horizontalAutoScroll) {
+			return false;
+		}
+		if (horizontalPan != other.horizontalPan) {
+			return false;
+		}
+		if (horizontalScrollSpeed != other.horizontalScrollSpeed) {
+			return false;
+		}
+		if (loop != other.loop) {
+			return false;
+		}
+		if (lowerLayer == null) {
+			if (other.lowerLayer != null) {
+				return false;
+			}
+		} else if (!lowerLayer.equals(other.lowerLayer)) {
+			return false;
+		}
+		if (panorama == null) {
+			if (other.panorama != null) {
+				return false;
+			}
+		} else if (!panorama.equals(other.panorama)) {
+			return false;
+		}
+		if (timesSaved != other.timesSaved) {
+			return false;
+		}
+		if (upperLayer == null) {
+			if (other.upperLayer != null) {
+				return false;
+			}
+		} else if (!upperLayer.equals(other.upperLayer)) {
+			return false;
+		}
+		if (usePanorama != other.usePanorama) {
+			return false;
+		}
+		if (verticalAutoScroll != other.verticalAutoScroll) {
+			return false;
+		}
+		if (verticalPan != other.verticalPan) {
+			return false;
+		}
+		if (verticalScrollSpeed != other.verticalScrollSpeed) {
+			return false;
+		}
+		if (width != other.width) {
+			return false;
+		}
+		return true;
 	}
 }
