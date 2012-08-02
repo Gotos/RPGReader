@@ -103,6 +103,8 @@ public class LuciferMapUnit {
 			case 0x5B:
 				timesSaved = DataReader.rpgintToInt(unit.content).integer;
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMapUnit! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
