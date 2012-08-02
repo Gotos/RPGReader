@@ -10,11 +10,11 @@ import java.util.ArrayList;
  */
 public class LuciferMonsterParty {
 	
-	public String name									= "";
-	public long nrTerrains								= 0;
-	public ArrayList<Boolean> appearIn;
-	public ArrayList<LuciferMonsterPartyMonster> monsters;
-	public ArrayList<LuciferBattleEventPage> battleEventPages;
+	private String name									= "";
+	private long nrTerrains								= 0;
+	private ArrayList<Boolean> appearIn;
+	private ArrayList<LuciferMonsterPartyMonster> monsters;
+	private ArrayList<LuciferBattleEventPage> battleEventPages;
 	
 	/**
 	 * Constructs a new LuciferMonsterParty
