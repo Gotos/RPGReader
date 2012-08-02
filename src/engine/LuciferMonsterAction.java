@@ -17,6 +17,8 @@ public class LuciferMonsterAction {
 	public boolean turnSwitchOn		= false;
 	public boolean turnSwitchOff		= false;
 	
+	public LuciferMonsterAction() { }
+	
 	public LuciferMonsterAction(byte[] str) throws IOException {
 		init(new DataReader(str));
 	}
