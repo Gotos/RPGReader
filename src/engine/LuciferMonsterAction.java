@@ -9,18 +9,18 @@ import java.io.IOException;
  */
 public class LuciferMonsterAction {
 	
-	public long subject				= 0;
-	public long behavior				= 0;
-	public long skill					= 1;
-	public long transform				= 1;
-	public long condition				= 0;
-	public long conditionLowerLimit	= 0;
-	public long conditionUpperLimit	= 0;
-	public long onSwitch				= 0;
-	public long offSwitch				= 0;
-	public long priority				= 50;
-	public boolean turnSwitchOn		= false;
-	public boolean turnSwitchOff		= false;
+	private long subject				= 0;
+	private long behavior				= 0;
+	private long skill					= 1;
+	private long transform				= 1;
+	private long condition				= 0;
+	private long conditionLowerLimit	= 0;
+	private long conditionUpperLimit	= 0;
+	private long onSwitch				= 0;
+	private long offSwitch				= 0;
+	private long priority				= 50;
+	private boolean turnSwitchOn		= false;
+	private boolean turnSwitchOff		= false;
 	
 	/**
 	 * Constructs a new LuciferMonster
@@ -114,6 +114,274 @@ public class LuciferMonsterAction {
 		}
 	}
 	
+	/**
+	 * Returns the subject. Should be:
+	 * 		0->behavior
+	 *		1->skill
+	 *		2->transform
+	 * 
+	 * @return the subject
+	 */
+	public long getSubject() {
+		return subject;
+	}
+
+	/**
+	 * Sets the subject. Should be:
+	 * 		0->behavior
+	 *		1->skill
+	 *		2->transform
+	 * 
+	 * @param subject the new subject
+	 */
+	public void setSubject(
+			long subject) {
+		this.subject = subject;
+	}
+
+	/**
+	 * Returns the behavior. Should be:
+	 * 		0->normal hit
+	 *		1->critical hit
+	 *		2->defend
+	 *		3->watch state
+	 *		4->accumulate power
+	 *		5->self-annihilation
+	 *		6->escape
+	 *		7->nothing
+	 *		8->by id (if subject!=0)
+	 * 
+	 * @return the behavior
+	 */
+	public long getBehavior() {
+		return behavior;
+	}
+
+	/**
+	 * Sets the behavior. Should be:
+	 * 		0->normal hit
+	 *		1->critical hit
+	 *		2->defend
+	 *		3->watch state
+	 *		4->accumulate power
+	 *		5->self-annihilation
+	 *		6->escape
+	 *		7->nothing
+	 *		8->by id (if subject!=0)
+	 * 
+	 * @param behavior the new behavior
+	 */
+	public void setBehavior(
+			long behavior) {
+		this.behavior = behavior;
+	}
+
+	/**
+	 * Returns the skill
+	 * 
+	 * @return the skill
+	 */
+	public long getSkill() {
+		return skill;
+	}
+
+	/**
+	 * Sets the skill
+	 * 
+	 * @param skill the new skill
+	 */
+	public void setSkill(
+			long skill) {
+		this.skill = skill;
+	}
+
+	/**
+	 * Returns the transform
+	 * 
+	 * @return the transform
+	 */
+	public long getTransform() {
+		return transform;
+	}
+
+	/**
+	 * Sets the transform
+	 * 
+	 * @param transform the new transform
+	 */
+	public void setTransform(
+			long transform) {
+		this.transform = transform;
+	}
+
+	/**
+	 * Returns the condition. Should be:
+	 * 		0->usually
+	 *		1->switch (defined in conditionLowerLimit)
+	 *		2->turn no (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		3->monster quantity (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		4->oneself HP (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		5->oneself MP (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		6->Hero Average level (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		7->hero exhaustion (defined in conditionLowerLimit and conditionUpperLimit)
+	 * 
+	 * @return the condition
+	 */
+	public long getCondition() {
+		return condition;
+	}
+
+	/**
+	 * Sets the condition. Should be:
+	 * 		0->usually
+	 *		1->switch (defined in conditionLowerLimit)
+	 *		2->turn no (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		3->monster quantity (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		4->oneself HP (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		5->oneself MP (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		6->Hero Average level (defined in conditionLowerLimit and conditionUpperLimit)
+	 *		7->hero exhaustion (defined in conditionLowerLimit and conditionUpperLimit)
+	 * 
+	 * @param condition the new condition
+	 */
+	public void setCondition(
+			long condition) {
+		this.condition = condition;
+	}
+
+	/**
+	 * Returns the conditionLowerLimit
+	 * 
+	 * @return the conditionLowerLimit
+	 */
+	public long getConditionLowerLimit() {
+		return conditionLowerLimit;
+	}
+
+	/**
+	 * Sets the conditionLowerLimit
+	 * 
+	 * @param conditionLowerLimit the new conditionLowerLimit
+	 */
+	public void setConditionLowerLimit(
+			long conditionLowerLimit) {
+		this.conditionLowerLimit = conditionLowerLimit;
+	}
+
+	/**
+	 * Returns the conditionUpperLimit
+	 * 
+	 * @return the conditionUpperLimit
+	 */
+	public long getConditionUpperLimit() {
+		return conditionUpperLimit;
+	}
+
+	/**
+	 * Sets the conditionUpperLimit
+	 * 
+	 * @param conditionUpperLimit the new conditionUpperLimit
+	 */
+	public void setConditionUpperLimit(
+			long conditionUpperLimit) {
+		this.conditionUpperLimit = conditionUpperLimit;
+	}
+
+	/**
+	 * Returns the onSwitch
+	 * 
+	 * @return the onSwitch
+	 */
+	public long getOnSwitch() {
+		return onSwitch;
+	}
+
+	/**
+	 * Sets the onSwitch
+	 * 
+	 * @param onSwitch the new onSwitch
+	 */
+	public void setOnSwitch(
+			long onSwitch) {
+		this.onSwitch = onSwitch;
+	}
+
+	/**
+	 * Returns the offSwitch
+	 * 
+	 * @return the offSwitch
+	 */
+	public long getOffSwitch() {
+		return offSwitch;
+	}
+
+	/**
+	 * Sets the offSwitch
+	 * 
+	 * @param offSwitch the new offSwitch
+	 */
+	public void setOffSwitch(
+			long offSwitch) {
+		this.offSwitch = offSwitch;
+	}
+
+	/**
+	 * Returns the priority
+	 * 
+	 * @return the priority
+	 */
+	public long getPriority() {
+		return priority;
+	}
+
+	/**
+	 * Sets the priority
+	 * 
+	 * @param priority the new priority
+	 */
+	public void setPriority(
+			long priority) {
+		this.priority = priority;
+	}
+
+	/**
+	 * Returns the turnSwitchOn
+	 * 
+	 * @return the turnSwitchOn
+	 */
+	public boolean isTurnSwitchOn() {
+		return turnSwitchOn;
+	}
+
+	/**
+	 * Sets the turnSwitchOn
+	 * 
+	 * @param turnSwitchOn the new turnSwitchOn
+	 */
+	public void setTurnSwitchOn(
+			boolean turnSwitchOn) {
+		this.turnSwitchOn = turnSwitchOn;
+	}
+
+	/**
+	 * Returns the turnSwitchOff
+	 * 
+	 * @return the turnSwitchOff
+	 */
+	public boolean isTurnSwitchOff() {
+		return turnSwitchOff;
+	}
+
+	/**
+	 * Sets the turnSwitchOff
+	 * 
+	 * @param turnSwitchOff the new turnSwitchOff
+	 */
+	public void setTurnSwitchOff(
+			boolean turnSwitchOff) {
+		this.turnSwitchOff = turnSwitchOff;
+	}
+
 	/**
 	 * Returns the byte-representation of this MonsterAction
 	 * 
