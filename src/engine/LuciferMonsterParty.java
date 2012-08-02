@@ -176,4 +176,78 @@ public class LuciferMonsterParty {
 			ArrayList<LuciferBattleEventPage> battleEventPages) {
 		this.battleEventPages = battleEventPages;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + ((appearIn == null) ? 0
+						: appearIn.hashCode());
+		result = prime
+				* result + ((battleEventPages == null) ? 0
+						: battleEventPages.hashCode());
+		result = prime
+				* result + ((monsters == null) ? 0
+						: monsters.hashCode());
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + (int) (nrTerrains ^ (nrTerrains >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMonsterParty)) {
+			return false;
+		}
+		LuciferMonsterParty other = (LuciferMonsterParty) obj;
+		if (appearIn == null) {
+			if (other.appearIn != null) {
+				return false;
+			}
+		} else if (!appearIn.equals(other.appearIn)) {
+			return false;
+		}
+		if (battleEventPages == null) {
+			if (other.battleEventPages != null) {
+				return false;
+			}
+		} else if (!battleEventPages.equals(other.battleEventPages)) {
+			return false;
+		}
+		if (monsters == null) {
+			if (other.monsters != null) {
+				return false;
+			}
+		} else if (!monsters.equals(other.monsters)) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (nrTerrains != other.nrTerrains) {
+			return false;
+		}
+		return true;
+	}
 }
