@@ -3,6 +3,11 @@ package engine;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author alina
+ *
+ * This class represents a Monster of the RPG-Maker-Game.
+ */
 public class LuciferMonsterUnit {
 	
 	private String name				= "";
@@ -29,13 +34,30 @@ public class LuciferMonsterUnit {
 	private boolean air				= false;
 	private ArrayList<LuciferMonsterAction> actions;
 
-	public LuciferMonsterUnit(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferMonsterUnit
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMonsterUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMonsterUnit(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferMonsterUnit(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferMonsterUnit
+	 * 
+	 * @param dr DataReader which represents the LuciferMonsterUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMonsterUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
+	
+	/**
+	 * Constructs a new LuciferMonsterUnit
+	 */
+	public LuciferMonsterUnit() { }
 	
 	private void init(DataReader sr) throws IOException {
 		LuciferBaseUnit unit = sr.nextUnit();
@@ -527,5 +549,168 @@ public class LuciferMonsterUnit {
 	public void setActions(
 			ArrayList<LuciferMonsterAction> actions) {
 		this.actions = actions;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + ((actions == null) ? 0
+						: actions.hashCode());
+		result = prime
+				* result + (int) (agility ^ (agility >>> 32));
+		result = prime
+				* result + (air ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (attack ^ (attack >>> 32));
+		result = prime
+				* result + ((attributes == null) ? 0
+						: attributes.hashCode());
+		result = prime
+				* result + (int) (changeFellowColour ^ (changeFellowColour >>> 32));
+		result = prime
+				* result + ((conditions == null) ? 0
+						: conditions.hashCode());
+		result = prime
+				* result + (criticalHit ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (criticalHitChance ^ (criticalHitChance >>> 32));
+		result = prime
+				* result + (int) (defence ^ (defence >>> 32));
+		result = prime
+				* result + (int) (experience ^ (experience >>> 32));
+		result = prime
+				* result + ((graphic == null) ? 0
+						: graphic.hashCode());
+		result = prime
+				* result + (int) (item ^ (item >>> 32));
+		result = prime
+				* result + (int) (itemChance ^ (itemChance >>> 32));
+		result = prime
+				* result + (int) (maxHP ^ (maxHP >>> 32));
+		result = prime
+				* result + (int) (maxMP ^ (maxMP >>> 32));
+		result = prime
+				* result + (int) (mind ^ (mind >>> 32));
+		result = prime
+				* result + (int) (money ^ (money >>> 32));
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + (transparent ? 1231
+						: 1237);
+		result = prime
+				* result + (usuallyMiss ? 1231
+						: 1237);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMonsterUnit)) {
+			return false;
+		}
+		LuciferMonsterUnit other = (LuciferMonsterUnit) obj;
+		if (actions == null) {
+			if (other.actions != null) {
+				return false;
+			}
+		} else if (!actions.equals(other.actions)) {
+			return false;
+		}
+		if (agility != other.agility) {
+			return false;
+		}
+		if (air != other.air) {
+			return false;
+		}
+		if (attack != other.attack) {
+			return false;
+		}
+		if (attributes == null) {
+			if (other.attributes != null) {
+				return false;
+			}
+		} else if (!attributes.equals(other.attributes)) {
+			return false;
+		}
+		if (changeFellowColour != other.changeFellowColour) {
+			return false;
+		}
+		if (conditions == null) {
+			if (other.conditions != null) {
+				return false;
+			}
+		} else if (!conditions.equals(other.conditions)) {
+			return false;
+		}
+		if (criticalHit != other.criticalHit) {
+			return false;
+		}
+		if (criticalHitChance != other.criticalHitChance) {
+			return false;
+		}
+		if (defence != other.defence) {
+			return false;
+		}
+		if (experience != other.experience) {
+			return false;
+		}
+		if (graphic == null) {
+			if (other.graphic != null) {
+				return false;
+			}
+		} else if (!graphic.equals(other.graphic)) {
+			return false;
+		}
+		if (item != other.item) {
+			return false;
+		}
+		if (itemChance != other.itemChance) {
+			return false;
+		}
+		if (maxHP != other.maxHP) {
+			return false;
+		}
+		if (maxMP != other.maxMP) {
+			return false;
+		}
+		if (mind != other.mind) {
+			return false;
+		}
+		if (money != other.money) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (transparent != other.transparent) {
+			return false;
+		}
+		if (usuallyMiss != other.usuallyMiss) {
+			return false;
+		}
+		return true;
 	}
 }
