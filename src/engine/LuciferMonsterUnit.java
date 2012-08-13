@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LuciferMonsterUnit {
 	
@@ -20,8 +21,8 @@ public class LuciferMonsterUnit {
 	public long criticalHitChance	= 30;
 	private long nrConditions		= 0;
 	private long nrAttributes		= 0;
-	private long[] conditions;
-	private long[] attributes;
+	private ArrayList<Long> conditions;
+	private ArrayList<Long> attributes;
 	public boolean transparent		= false;
 	public boolean criticalHit		= false;
 	public boolean usuallyMiss		= false;
@@ -100,9 +101,9 @@ public class LuciferMonsterUnit {
 				break;
 			case 0x20:
 				tmp = new DataReader(unit.content);
-				conditions = new long[(int) nrConditions + 1];
+				conditions = new ArrayList<Long>((int) nrConditions);
 				for (int i = 1; i <= nrConditions; i++) {
-					conditions[i] = tmp.nextInt();
+					conditions.add(tmp.nextInt());
 				}
 				break;
 			case 0x21:
@@ -110,9 +111,9 @@ public class LuciferMonsterUnit {
 				break;
 			case 0x22:
 				tmp = new DataReader(unit.content);
-				attributes = new long[(int) nrAttributes + 1];
+				attributes = new ArrayList<Long>((int) nrAttributes);
 				for (int i = 1; i <= nrAttributes; i++) {
-					attributes[i] = tmp.nextInt();
+					attributes.add(tmp.nextInt());
 				}
 				break;
 			case 0x2A:
