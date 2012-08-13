@@ -123,6 +123,8 @@ public class LuciferMonsterUnit {
 					actions[i] = new LuciferMonsterAction(tmp);
 				}
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMonsterUnit! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
