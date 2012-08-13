@@ -27,7 +27,7 @@ public class LuciferMonsterUnit {
 	private boolean criticalHit		= false;
 	private boolean usuallyMiss		= false;
 	private boolean air				= false;
-	private LuciferMonsterAction[] actions;
+	private ArrayList<LuciferMonsterAction> actions;
 
 	public LuciferMonsterUnit(byte[] str) throws IOException {
 		init(new DataReader(str));
@@ -118,10 +118,9 @@ public class LuciferMonsterUnit {
 				break;
 			case 0x2A:
 				tmp = new DataReader(unit.content);
-				actions = new LuciferMonsterAction[(int) tmp.nextInt() + 1];
-				for (int i = 1; i < actions.length; i++) {
-					tmp.nextInt(); //read id
-					actions[i] = new LuciferMonsterAction(tmp);
+				actions = new ArrayList<LuciferMonsterAction>((int) tmp.nextInt());
+				for (int i = 1; i < actions.size(); i++) {
+					actions.add((int) tmp.nextInt(), new LuciferMonsterAction(tmp));
 				}
 				break;
 			default:
@@ -516,7 +515,7 @@ public class LuciferMonsterUnit {
 	 * 
 	 * @return the actions
 	 */
-	public LuciferMonsterAction[] getActions() {
+	public ArrayList<LuciferMonsterAction> getActions() {
 		return actions;
 	}
 
@@ -526,7 +525,7 @@ public class LuciferMonsterUnit {
 	 * @param actions the new actions
 	 */
 	public void setActions(
-			LuciferMonsterAction[] actions) {
+			ArrayList<LuciferMonsterAction> actions) {
 		this.actions = actions;
 	}
 }
