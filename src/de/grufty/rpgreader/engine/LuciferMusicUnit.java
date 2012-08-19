@@ -5,7 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 public class LuciferMusicUnit {
 	
-	public String name	= "";
+	public String filename	= "";
 	public long fadeIn	= 0;
 	public long volume	= 100;
 	public long tempo	= 100;
@@ -24,7 +24,7 @@ public class LuciferMusicUnit {
 		while (unit.id != 0) {
 			switch (unit.id) {
 			case 0x01:
-				name = new String(unit.content, Encoder.ENCODING);
+				filename = new String(unit.content, Encoder.ENCODING);
 				break;
 			case 0x02:
 				//the fade-in time in sec*1000
@@ -50,7 +50,7 @@ public class LuciferMusicUnit {
 	public byte[] write() {
 		try {
 			return Helper.concatAll(
-					new LuciferBaseUnit(1, name.getBytes(Encoder.ENCODING)).write(),
+					new LuciferBaseUnit(1, filename.getBytes(Encoder.ENCODING)).write(),
 					new LuciferBaseUnit(2, DataReader.intToRPGint(fadeIn)).write(new byte[]{0}),
 					new LuciferBaseUnit(3, DataReader.intToRPGint(volume)).write(new byte[]{100}),
 					new LuciferBaseUnit(4, DataReader.intToRPGint(tempo)).write(new byte[]{100}),
@@ -80,6 +80,6 @@ public class LuciferMusicUnit {
 	     		&& volume == o.volume
 	     		&& tempo == o.tempo
  				&& balance == o.balance
- 				&& name.equals(o.name);
+ 				&& filename.equals(o.filename);
 	}
 }
