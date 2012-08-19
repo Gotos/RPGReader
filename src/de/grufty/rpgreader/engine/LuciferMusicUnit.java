@@ -36,6 +36,11 @@ public class LuciferMusicUnit {
 		init(dr);
 	}
 	
+	/**
+	 * Constructs a new LuciferMusicUnit
+	 */
+	public LuciferMusicUnit() { }
+	
 	private void init(DataReader sr) throws IOException {
 		LuciferBaseUnit unit = sr.nextUnitReadID();
 		while (unit.id != 0) {
