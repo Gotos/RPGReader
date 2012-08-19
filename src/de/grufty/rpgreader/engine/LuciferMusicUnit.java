@@ -49,6 +49,101 @@ public class LuciferMusicUnit {
 		}
 	}
 	
+	/**
+	 * Returns the filename
+	 * 
+	 * @return the filename
+	 */
+	public String getFilename() {
+		return filename;
+	}
+
+	/**
+	 * Sets the filename
+	 * 
+	 * @param filename the new filename
+	 */
+	public void setFilename(
+			String filename) {
+		this.filename = filename;
+	}
+
+	/**
+	 * Returns the fadeIn-time in sec/1000
+	 * 
+	 * @return the fadeIn-time
+	 */
+	public long getFadeIn() {
+		return fadeIn;
+	}
+
+	/**
+	 * Sets the fadeIn-time in sec/1000
+	 * 
+	 * @param fadeIn the new fadeIn-time
+	 */
+	public void setFadeIn(
+			long fadeIn) {
+		this.fadeIn = fadeIn;
+	}
+
+	/**
+	 * Returns the volume
+	 * 
+	 * @return the volume
+	 */
+	public long getVolume() {
+		return volume;
+	}
+
+	/**
+	 * Sets the volume
+	 * 
+	 * @param volume the new volume
+	 */
+	public void setVolume(
+			long volume) {
+		this.volume = volume;
+	}
+
+	/**
+	 * Returns the tempo
+	 * 
+	 * @return the tempo
+	 */
+	public long getTempo() {
+		return tempo;
+	}
+
+	/**
+	 * Sets the tempo
+	 * 
+	 * @param tempo the new tempo
+	 */
+	public void setTempo(
+			long tempo) {
+		this.tempo = tempo;
+	}
+
+	/**
+	 * Returns the balance. 0 is left, 50 balanced and 100 right.
+	 * 
+	 * @return the balance
+	 */
+	public long getBalance() {
+		return balance;
+	}
+
+	/**
+	 * Sets the balance. 0 is left, 50 balanced and 100 right.
+	 * 
+	 * @param balance the new balance
+	 */
+	public void setBalance(
+			long balance) {
+		this.balance = balance;
+	}
+
 	public byte[] write() {
 		try {
 			return Helper.concatAll(
