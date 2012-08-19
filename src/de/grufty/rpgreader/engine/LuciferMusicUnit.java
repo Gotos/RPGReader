@@ -5,11 +5,11 @@ import java.io.UnsupportedEncodingException;
 
 public class LuciferMusicUnit {
 	
-	public String filename	= "";
-	public long fadeIn	= 0;
-	public long volume	= 100;
-	public long tempo	= 100;
-	public long balance	= 50;
+	private String filename	= "";
+	private long fadeIn		= 0;
+	private long volume		= 100;
+	private long tempo		= 100;
+	private long balance	= 50;
 	
 	public LuciferMusicUnit(byte[] str) throws IOException {
 		init(new DataReader(str));
