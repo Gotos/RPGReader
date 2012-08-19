@@ -3,31 +3,41 @@ package de.grufty.rpgreader.engine;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-//The SoundUnit is nearly the same as the MusicUnit.
-//The only difference is, that the Sound can't fade in.
-//At the moment every LuciferSoundUnit has a fadeIn-value,
-//which will always be 0, but this might change.
-
+/**
+ * @author alina
+ *
+ * This class represents a Sound-changer/-setter of the RPG-Maker-Game.
+ */
 public class LuciferSoundUnit {
 	
 	protected String filename	= "";
 	protected long volume		= 100;
 	protected long tempo		= 100;
 	protected long balance		= 50;
+
+	/**
+	 * Constructs a new LuciferSoundUnit
+	 * 
+	 * @param bytes byte-Array which represents the LuciferSoundUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferSoundUnit(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
+	}
+
+	/**
+	 * Constructs a new LuciferSoundUnit
+	 * 
+	 * @param dr DataReader which represents the LuciferSoundUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferSoundUnit(DataReader dr) throws IOException {
+		init(dr);
+	}
 	
 	/**
-	 * 
+	 * Constructs a new LuciferMusicUnit
 	 */
-	private static final long serialVersionUID = -7982423181303903422L;
-
-	public LuciferSoundUnit(byte[] str) throws IOException {
-		init(new DataReader(str));
-	}
-
-	public LuciferSoundUnit(DataReader sr) throws IOException {
-		init(sr);
-	}
-	
 	public LuciferSoundUnit() { }
 	
 	private void init(DataReader sr) throws IOException {
