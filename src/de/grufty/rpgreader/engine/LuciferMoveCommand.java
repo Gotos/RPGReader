@@ -3,29 +3,74 @@ package de.grufty.rpgreader.engine;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
+/**
+ * @author alina
+ *
+ * This class represents a single Move command of the RPG-Maker-Game.
+ */
 public class LuciferMoveCommand {
+	/** The type of the Move; list will follow! */ //TODO: add list
 	public final long type;
+	/** The data append to the MoveCommand */
 	public final long[] data;
+	/** The filename append to the MoveCommand; changeGraphic and playSound only! */
 	public final String filename;
 	
+	/**
+	 * Constructs a new MoveCommand of the given type with no filename and an empty data-array.
+	 * 
+	 * @param type The type of the MoveCommand
+	 */
 	public LuciferMoveCommand(Long type) {
 		this.type = type;
 		data = new long[0];
 		filename = "";
 	}
 	
+	/**
+	 * Constructs a new MoveCommand of the given type and data-array with no filename .
+	 * 
+	 * @param type The type of the MoveCommand
+	 * @param data The appended data of the MoveCommand
+	 */
 	public LuciferMoveCommand(Long type, long[] data) {
 		this.type = type;
 		this.data = data;
 		filename = "";
 	}
 	
+	/**
+	 * Constructs a new MoveCommand of the given type, data-array and filename .
+	 * 
+	 * @param type The type of the MoveCommand
+	 * @param data The appended data of the MoveCommand
+	 * @param filename The appended filename of the MoveCommand
+	 * @throws UnsupportedEncodingException thrown, if there is a problem encoding the filename
+	 */
 	public LuciferMoveCommand(Long type, long[] data, byte[] filename) throws UnsupportedEncodingException {
 		this.type = type;
 		this.data = data;
 		this.filename = new String(filename, Encoder.ENCODING);
 	}
 	
+	/**
+	 * Constructs a new MoveCommand of the given type, data-array and filename .
+	 * 
+	 * @param type The type of the MoveCommand
+	 * @param data The appended data of the MoveCommand
+	 * @param filename The appended filename of the MoveCommand
+	 */
+	public LuciferMoveCommand(Long type, long[] data, String filename) {
+		this.type = type;
+		this.data = data;
+		this.filename = filename;
+	}
+	
+	/**
+	 * Returns the byte-representation of this MoveCommand
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() { //TODO: NOT TESTED YET!
 		try {
 			byte[] dataarray = new byte[0];
