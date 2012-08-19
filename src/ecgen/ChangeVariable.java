@@ -1,6 +1,6 @@
 package ecgen;
 
-import engine.LuciferEventCommand;
+import de.grufty.rpgreader.engine.LuciferEventCommand;
 
 
 /**
