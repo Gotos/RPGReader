@@ -1,6 +1,7 @@
 package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 //The SoundUnit is nearly the same as the MusicUnit.
 //The only difference is, that the Sound can't fade in.
@@ -55,7 +56,7 @@ public class LuciferSoundUnit {
 			balance = DataReader.rpgintToInt(unit.content).integer;
 			break;
 		default:
-			Helper.warn(3, "Unknown Unit-ID in LuciferMusicUnit! ID: " + unit.id);
+			Helper.warn(3, "Unknown Unit-ID in LuciferSoundUnit! ID: " + unit.id);
 		}
 	}
 	
@@ -133,6 +134,25 @@ public class LuciferSoundUnit {
 	public void setBalance(
 			long balance) {
 		this.balance = balance;
+	}
+	
+	/**
+	 * Returns the byte-representation of this SoundUnit
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		try {
+			return Helper.concatAll(
+					new LuciferBaseUnit(1, filename.getBytes(Encoder.ENCODING)).write(),
+					new LuciferBaseUnit(3, DataReader.intToRPGint(volume)).write(new byte[]{100}),
+					new LuciferBaseUnit(4, DataReader.intToRPGint(tempo)).write(new byte[]{100}),
+					new LuciferBaseUnit(5, DataReader.intToRPGint(balance)).write(new byte[]{50}),
+					new byte[]{0});
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new byte[0];
+		}
 	}
 
 	/* (non-Javadoc)
