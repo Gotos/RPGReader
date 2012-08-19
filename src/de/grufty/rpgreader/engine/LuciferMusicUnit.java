@@ -3,6 +3,11 @@ package de.grufty.rpgreader.engine;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+/**
+ * @author alina
+ *
+ * This class represents a Music-changer/-setter of the RPG-Maker-Game.
+ */
 public class LuciferMusicUnit {
 	
 	private String filename	= "";
@@ -11,12 +16,24 @@ public class LuciferMusicUnit {
 	private long tempo		= 100;
 	private long balance	= 50;
 	
-	public LuciferMusicUnit(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferMusicUnit
+	 * 
+	 * @param bytes byte-Array which represents the LuciferMusicUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMusicUnit(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferMusicUnit(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferMusicUnit
+	 * 
+	 * @param dr DataReader which represents the LuciferMusicUnit
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferMusicUnit(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
 	private void init(DataReader sr) throws IOException {
@@ -144,6 +161,11 @@ public class LuciferMusicUnit {
 		this.balance = balance;
 	}
 
+	/**
+	 * Returns the byte-representation of this MusicUnit
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		try {
 			return Helper.concatAll(
