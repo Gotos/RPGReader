@@ -1,15 +1,10 @@
 package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 
-public class LuciferMusicUnit implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6637202279807438472L;
-	//private byte[][] content;
+public class LuciferMusicUnit {
+	
 	public String name	= "";
 	public long fadeIn	= 0;
 	public long volume	= 100;
