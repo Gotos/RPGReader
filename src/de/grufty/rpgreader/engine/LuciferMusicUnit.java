@@ -42,6 +42,8 @@ public class LuciferMusicUnit {
 				//100 -> only right
 				balance = DataReader.rpgintToInt(unit.content).integer;
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferMusicUnit! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
