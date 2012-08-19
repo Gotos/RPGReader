@@ -1,12 +1,13 @@
 package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LuciferRoute {
 	
 	private long commandLength				= 0;
-	public LuciferMoveCommand[] commands	= new LuciferMoveCommand[0];
+	public ArrayList<LuciferMoveCommand> commands	= new ArrayList<LuciferMoveCommand>();
 	public boolean repeat					= true;
 	public boolean ignoreImpossible		= false;
 	
@@ -30,7 +31,7 @@ public class LuciferRoute {
 				break;
 			case 0x0C:
 				tmp = new DataReader(unit.content);
-				commands = new LuciferMoveCommand[(int) commandLength];
+				commands = new ArrayList<LuciferMoveCommand>((int) commandLength);
 				RPGInt move;
 				long[] data;
 				long length;
@@ -43,7 +44,7 @@ public class LuciferRoute {
 						data = new long[1];
 						anotherTemp = tmp.rpgintToInt();
 						data[0] = anotherTemp.integer;
-						commands[i] = new LuciferMoveCommand(move.integer, data);
+						commands.add(i, new LuciferMoveCommand(move.integer, data));
 						commandLength -= anotherTemp.length + move.length - 1;
 					} else if ((move.integer == 0x22)) {
 						data = new long[1];
@@ -51,7 +52,7 @@ public class LuciferRoute {
 						length = anotherTemp.integer;
 						byte[] filename = tmp.read(length, true);
 						data[0] = tmp.nextInt();
-						commands[i] = new LuciferMoveCommand(move.integer, data, filename);
+						commands.add(i, new LuciferMoveCommand(move.integer, data, filename));
 						System.out.println("22:" + (length + anotherTemp.length + move.length + 1));
 						commandLength -= length + anotherTemp.length + move.length;
 					} else if ((move.integer == 0x23)) {
@@ -64,14 +65,14 @@ public class LuciferRoute {
 							data[j] = thirdTemp.integer;
 							length += thirdTemp.length;
 						}
-						commands[i] = new LuciferMoveCommand(move.integer, data, filename);
+						commands.add(i, new LuciferMoveCommand(move.integer, data, filename));
 						System.out.println("23:" + (length + move.length + anotherTemp.length));
 						commandLength -= length + move.length + anotherTemp.length - 1;
 					} else {
-						commands[i] = new LuciferMoveCommand(move.integer);
+						commands.add(i, new LuciferMoveCommand(move.integer));
 					}
 				}
-				commands = Helper.slice(commands, 0, (int) commandLength);
+				//commands = Helper.slice(commands, 0, (int) commandLength);
 				/*try{
 					System.out.println(commands.length);
 					System.out.println("LastMove:"+commands[3].data[2]);
@@ -90,8 +91,8 @@ public class LuciferRoute {
 	
 	public byte[] write() {
 		byte[] moves = new byte[0];
-		for (int i = 0; i < commands.length; i++) {
-			moves = Helper.concatAll(moves, commands[i].write());
+		for (int i = 0; i < commands.size(); i++) {
+			moves = Helper.concatAll(moves, commands.get(i).write());
 		}
 		return Helper.concatAll(new LuciferBaseUnit(0x0B, DataReader.intToRPGint(moves.length)).write(new byte[]{0}),
 				new LuciferBaseUnit(0x0C, moves).write(),
@@ -118,7 +119,7 @@ public class LuciferRoute {
 	     return commandLength == o.commandLength
 	     		&& ignoreImpossible == o.ignoreImpossible
 	     		&& repeat == o.repeat
-	     		&& Arrays.equals(commands, o.commands);
+	     		&& commands.equals(o.commands);
 	}
 	
 }
