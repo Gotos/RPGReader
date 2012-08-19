@@ -3,6 +3,11 @@ package de.grufty.rpgreader.engine;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author alina
+ *
+ * This class represents a movement-route of the RPG-Maker-Game.
+ */
 public class LuciferRoute {
 	
 	private long commandLength						= 0;
@@ -10,14 +15,29 @@ public class LuciferRoute {
 	private boolean repeat							= true;
 	private boolean ignoreImpossible				= false;
 	
-	public LuciferRoute(byte[] str) throws IOException {
-		init(new DataReader(str));
+	/**
+	 * Constructs a new LuciferRoute
+	 * 
+	 * @param bytes byte-Array which represents the LuciferRoute
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferRoute(byte[] bytes) throws IOException {
+		init(new DataReader(bytes));
 	}
 	
-	public LuciferRoute(DataReader sr) throws IOException {
-		init(sr);
+	/**
+	 * Constructs a new LuciferRoute
+	 * 
+	 * @param dr DataReader which represents the LuciferRoute
+	 * @throws IOException is thrown on any parsing-error
+	 */
+	public LuciferRoute(DataReader dr) throws IOException {
+		init(dr);
 	}
 	
+	/**
+	 * Constructs a new LuciferRoute
+	 */ 
 	public LuciferRoute() {	}
 
 	private void init(DataReader sr) throws IOException {
@@ -147,6 +167,11 @@ public class LuciferRoute {
 		this.ignoreImpossible = ignoreImpossible;
 	}
 
+	/**
+	 * Returns the byte-representation of this Route
+	 * 
+	 * @return byte-representation
+	 */
 	public byte[] write() {
 		byte[] moves = new byte[0];
 		for (int i = 0; i < commands.size(); i++) {
