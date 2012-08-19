@@ -62,24 +62,62 @@ public class LuciferMusicUnit {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferMusicUnit)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferMusicUnit o = (LuciferMusicUnit) obj;
-	     
-	     return fadeIn == o.fadeIn
-	     		&& volume == o.volume
-	     		&& tempo == o.tempo
- 				&& balance == o.balance
- 				&& filename.equals(o.filename);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (int) (balance ^ (balance >>> 32));
+		result = prime
+				* result + (int) (fadeIn ^ (fadeIn >>> 32));
+		result = prime
+				* result + ((filename == null) ? 0
+						: filename.hashCode());
+		result = prime
+				* result + (int) (tempo ^ (tempo >>> 32));
+		result = prime
+				* result + (int) (volume ^ (volume >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferMusicUnit)) {
+			return false;
+		}
+		LuciferMusicUnit other = (LuciferMusicUnit) obj;
+		if (balance != other.balance) {
+			return false;
+		}
+		if (fadeIn != other.fadeIn) {
+			return false;
+		}
+		if (filename == null) {
+			if (other.filename != null) {
+				return false;
+			}
+		} else if (!filename.equals(other.filename)) {
+			return false;
+		}
+		if (tempo != other.tempo) {
+			return false;
+		}
+		if (volume != other.volume) {
+			return false;
+		}
+		return true;
 	}
 }
