@@ -8,22 +8,22 @@ public class LuciferMoveCommand {
 	public final long[] data;
 	public final String filename;
 	
-	public LuciferMoveCommand(Long unit) {
-		type = unit;
+	public LuciferMoveCommand(Long type) {
+		this.type = type;
 		data = new long[0];
 		filename = "";
 	}
 	
-	public LuciferMoveCommand(Long unit, long[] gdata) {
-		type = unit;
-		data = gdata;
+	public LuciferMoveCommand(Long type, long[] data) {
+		this.type = type;
+		this.data = data;
 		filename = "";
 	}
 	
-	public LuciferMoveCommand(Long unit, long[] gdata, byte[] gfilename) throws UnsupportedEncodingException {
-		type = unit;
-		data = gdata;
-		filename = new String(gfilename, Encoder.ENCODING);
+	public LuciferMoveCommand(Long type, long[] data, byte[] filename) throws UnsupportedEncodingException {
+		this.type = type;
+		this.data = data;
+		this.filename = new String(filename, Encoder.ENCODING);
 	}
 	
 	public byte[] write() { //TODO: NOT TESTED YET!
