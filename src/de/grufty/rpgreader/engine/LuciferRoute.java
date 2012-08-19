@@ -101,24 +101,55 @@ public class LuciferRoute {
 				);
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object obj) {
-	     if (this == obj) {
-	        return true;
-	     }
-	     if (obj == null) {
-	        return false;
-	     }
-	     if (!(obj instanceof LuciferRoute)) {
-	        return false; // different class
-	     }
-	     
-	     LuciferRoute o = (LuciferRoute) obj;
-	     
-	     return commandLength == o.commandLength
-	     		&& ignoreImpossible == o.ignoreImpossible
-	     		&& repeat == o.repeat
-	     		&& commands.equals(o.commands);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + ((commands == null) ? 0
+						: commands.hashCode());
+		result = prime
+				* result + (ignoreImpossible ? 1231
+						: 1237);
+		result = prime
+				* result + (repeat ? 1231
+						: 1237);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferRoute)) {
+			return false;
+		}
+		LuciferRoute other = (LuciferRoute) obj;
+		if (commands == null) {
+			if (other.commands != null) {
+				return false;
+			}
+		} else if (!commands.equals(other.commands)) {
+			return false;
+		}
+		if (ignoreImpossible != other.ignoreImpossible) {
+			return false;
+		}
+		if (repeat != other.repeat) {
+			return false;
+		}
+		return true;
 	}
 	
 }
