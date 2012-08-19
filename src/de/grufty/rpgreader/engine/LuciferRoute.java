@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class LuciferRoute {
 	
-	private long commandLength				= 0;
-	public ArrayList<LuciferMoveCommand> commands	= new ArrayList<LuciferMoveCommand>();
-	public boolean repeat					= true;
-	public boolean ignoreImpossible		= false;
+	private long commandLength						= 0;
+	private ArrayList<LuciferMoveCommand> commands	= new ArrayList<LuciferMoveCommand>();
+	private boolean repeat							= true;
+	private boolean ignoreImpossible				= false;
 	
 	public LuciferRoute(byte[] str) throws IOException {
 		init(new DataReader(str));
@@ -83,11 +83,70 @@ public class LuciferRoute {
 			case 0x16:
 				ignoreImpossible = (DataReader.rpgintToInt(unit.content).integer == 1);
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferRoute! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
 	}
 	
+	/**
+	 * Returns the commands
+	 * 
+	 * @return the commands
+	 */
+	public ArrayList<LuciferMoveCommand> getCommands() {
+		return commands;
+	}
+
+	/**
+	 * Sets the commands
+	 * 
+	 * @param commands the new commands
+	 */
+	public void setCommands(
+			ArrayList<LuciferMoveCommand> commands) {
+		this.commands = commands;
+	}
+
+	/**
+	 * Returns the repeat
+	 * 
+	 * @return the repeat
+	 */
+	public boolean isRepeat() {
+		return repeat;
+	}
+
+	/**
+	 * Sets the repeat
+	 * 
+	 * @param repeat the new repeat
+	 */
+	public void setRepeat(
+			boolean repeat) {
+		this.repeat = repeat;
+	}
+
+	/**
+	 * Returns the ignoreImpossible
+	 * 
+	 * @return the ignoreImpossible
+	 */
+	public boolean isIgnoreImpossible() {
+		return ignoreImpossible;
+	}
+
+	/**
+	 * Sets the ignoreImpossible
+	 * 
+	 * @param ignoreImpossible the new ignoreImpossible
+	 */
+	public void setIgnoreImpossible(
+			boolean ignoreImpossible) {
+		this.ignoreImpossible = ignoreImpossible;
+	}
+
 	public byte[] write() {
 		byte[] moves = new byte[0];
 		for (int i = 0; i < commands.size(); i++) {
