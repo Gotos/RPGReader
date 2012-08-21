@@ -1,6 +1,7 @@
 package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LuciferSkillUnit {
 	
@@ -21,8 +22,8 @@ public class LuciferSkillUnit {
 	public long baseSuccessRate		= 100;
 	public long nrAttributes			= 0;
 	public long nrConditions			= 0;
-	public boolean[] conditions;
-	public boolean[] attributes;
+	public ArrayList<Boolean> conditions;
+	public ArrayList<Boolean> attributes;
 	public boolean availableAtField	= true;
 	public boolean availableAtCombat	= false;
 	public boolean abilityDownHP		= false;
@@ -143,9 +144,9 @@ public class LuciferSkillUnit {
 				break;
 			case 0x2A:
 				tmp = new DataReader(unit.content);
-				conditions = new boolean[(int) nrConditions + 1];
-				for (int i = 1; i <= nrConditions; i++) {
-					conditions[i] = (tmp.nextInt() == 1);
+				conditions = new ArrayList<Boolean>((int) nrConditions);
+				for (int i = 0; i < nrConditions; i++) {
+					conditions.add((tmp.nextInt() == 1));
 				}
 				break;
 			case 0x2B:
@@ -153,9 +154,9 @@ public class LuciferSkillUnit {
 				break;
 			case 0x2C:
 				tmp = new DataReader(unit.content);
-				attributes = new boolean[(int) nrAttributes + 1];
-				for (int i = 1; i <= nrAttributes; i++) {
-					attributes[i] = (tmp.nextInt() == 1);
+				attributes = new ArrayList<Boolean>((int) nrAttributes);
+				for (int i = 0; i < nrAttributes; i++) {
+					attributes.add((tmp.nextInt() == 1));
 				}
 				break;
 			case 0x2D:
