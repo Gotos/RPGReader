@@ -162,6 +162,8 @@ public class LuciferSkillUnit {
 			case 0x2D:
 				defenceDown = (DataReader.rpgintToInt(unit.content).integer == 1);
 				break;
+			default:
+				Helper.warn(3, "Unknown Unit-ID in LuciferSkillUnit! ID: " + unit.id);
 			}
 			unit = sr.nextUnit();
 		}
