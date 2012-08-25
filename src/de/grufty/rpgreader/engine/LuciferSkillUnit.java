@@ -168,4 +168,229 @@ public class LuciferSkillUnit {
 			unit = sr.nextUnit();
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + (abilityDownAgility ? 1231
+						: 1237);
+		result = prime
+				* result + (abilityDownAttack ? 1231
+						: 1237);
+		result = prime
+				* result + (abilityDownDefence ? 1231
+						: 1237);
+		result = prime
+				* result + (abilityDownHP ? 1231
+						: 1237);
+		result = prime
+				* result + (abilityDownMP ? 1231
+						: 1237);
+		result = prime
+				* result + (abilityDownMind ? 1231
+						: 1237);
+		result = prime
+				* result + (absorption ? 1231
+						: 1237);
+		result = prime
+				* result + ((attributes == null) ? 0
+						: attributes.hashCode());
+		result = prime
+				* result + (availableAtCombat ? 1231
+						: 1237);
+		result = prime
+				* result + (availableAtField ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (baseEffect ^ (baseEffect >>> 32));
+		result = prime
+				* result + (int) (baseSuccessRate ^ (baseSuccessRate >>> 32));
+		result = prime
+				* result + (int) (battleAnimation ^ (battleAnimation >>> 32));
+		result = prime
+				* result + (int) (classification ^ (classification >>> 32));
+		result = prime
+				* result + ((conditions == null) ? 0
+						: conditions.hashCode());
+		result = prime
+				* result + (defenceDown ? 1231
+						: 1237);
+		result = prime
+				* result + (defenceIgnore ? 1231
+						: 1237);
+		result = prime
+				* result + (int) (effectRange ^ (effectRange >>> 32));
+		result = prime
+				* result + ((explanation == null) ? 0
+						: explanation.hashCode());
+		result = prime
+				* result + ((failureMessage == null) ? 0
+						: failureMessage.hashCode());
+		result = prime
+				* result + (int) (hitChance ^ (hitChance >>> 32));
+		result = prime
+				* result + (int) (mindChance ^ (mindChance >>> 32));
+		result = prime
+				* result + (int) (mpCost ^ (mpCost >>> 32));
+		result = prime
+				* result + ((name == null) ? 0
+						: name.hashCode());
+		result = prime
+				* result + (int) (onSwitch ^ (onSwitch >>> 32));
+		result = prime
+				* result + ((soundEffect == null) ? 0
+						: soundEffect.hashCode());
+		result = prime
+				* result + ((usingMessage == null) ? 0
+						: usingMessage.hashCode());
+		result = prime
+				* result + ((usingMessage2 == null) ? 0
+						: usingMessage2.hashCode());
+		result = prime
+				* result + (int) (variance ^ (variance >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferSkillUnit)) {
+			return false;
+		}
+		LuciferSkillUnit other = (LuciferSkillUnit) obj;
+		if (abilityDownAgility != other.abilityDownAgility) {
+			return false;
+		}
+		if (abilityDownAttack != other.abilityDownAttack) {
+			return false;
+		}
+		if (abilityDownDefence != other.abilityDownDefence) {
+			return false;
+		}
+		if (abilityDownHP != other.abilityDownHP) {
+			return false;
+		}
+		if (abilityDownMP != other.abilityDownMP) {
+			return false;
+		}
+		if (abilityDownMind != other.abilityDownMind) {
+			return false;
+		}
+		if (absorption != other.absorption) {
+			return false;
+		}
+		if (attributes == null) {
+			if (other.attributes != null) {
+				return false;
+			}
+		} else if (!attributes.equals(other.attributes)) {
+			return false;
+		}
+		if (availableAtCombat != other.availableAtCombat) {
+			return false;
+		}
+		if (availableAtField != other.availableAtField) {
+			return false;
+		}
+		if (baseEffect != other.baseEffect) {
+			return false;
+		}
+		if (baseSuccessRate != other.baseSuccessRate) {
+			return false;
+		}
+		if (battleAnimation != other.battleAnimation) {
+			return false;
+		}
+		if (classification != other.classification) {
+			return false;
+		}
+		if (conditions == null) {
+			if (other.conditions != null) {
+				return false;
+			}
+		} else if (!conditions.equals(other.conditions)) {
+			return false;
+		}
+		if (defenceDown != other.defenceDown) {
+			return false;
+		}
+		if (defenceIgnore != other.defenceIgnore) {
+			return false;
+		}
+		if (effectRange != other.effectRange) {
+			return false;
+		}
+		if (explanation == null) {
+			if (other.explanation != null) {
+				return false;
+			}
+		} else if (!explanation.equals(other.explanation)) {
+			return false;
+		}
+		if (failureMessage == null) {
+			if (other.failureMessage != null) {
+				return false;
+			}
+		} else if (!failureMessage.equals(other.failureMessage)) {
+			return false;
+		}
+		if (hitChance != other.hitChance) {
+			return false;
+		}
+		if (mindChance != other.mindChance) {
+			return false;
+		}
+		if (mpCost != other.mpCost) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (onSwitch != other.onSwitch) {
+			return false;
+		}
+		if (soundEffect == null) {
+			if (other.soundEffect != null) {
+				return false;
+			}
+		} else if (!soundEffect.equals(other.soundEffect)) {
+			return false;
+		}
+		if (usingMessage == null) {
+			if (other.usingMessage != null) {
+				return false;
+			}
+		} else if (!usingMessage.equals(other.usingMessage)) {
+			return false;
+		}
+		if (usingMessage2 == null) {
+			if (other.usingMessage2 != null) {
+				return false;
+			}
+		} else if (!usingMessage2.equals(other.usingMessage2)) {
+			return false;
+		}
+		if (variance != other.variance) {
+			return false;
+		}
+		return true;
+	}
 }
