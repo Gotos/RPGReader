@@ -20,8 +20,8 @@ public class LuciferSkillUnit {
 	public long variance				= 4;
 	public long baseEffect				= 0;
 	public long baseSuccessRate		= 100;
-	public long nrAttributes			= 0;
-	public long nrConditions			= 0;
+	private long nrAttributes			= 0;
+	private long nrConditions			= 0;
 	public ArrayList<Boolean> conditions;
 	public ArrayList<Boolean> attributes;
 	public boolean availableAtField	= true;
