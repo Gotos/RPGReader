@@ -29,10 +29,9 @@ public class LuciferDatabase {
 	private void init(DataReader sr) throws IOException {
 		LuciferBaseUnit unit = sr.nextUnit();
 		while (unit.id != 0) {
-			DataReader tmp;
+			DataReader tmp = new DataReader(unit.content);
 			switch(unit.id) {
 			case 0x0B:
-				tmp = new DataReader(unit.content);
 				heroes = new LuciferHeroUnit[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < heroes.length; i++) {
 					tmp.nextInt(); //read id of hero
@@ -40,7 +39,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x0C:
-				tmp = new DataReader(unit.content);
 				skills = new LuciferSkillUnit[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < skills.length; i++) {
 					tmp.nextInt(); //read id of skill
@@ -48,7 +46,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x0D:
-				tmp = new DataReader(unit.content);
 				items = new LuciferItemUnit[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < items.length; i++) {
 					tmp.nextInt(); //read id of item
@@ -56,7 +53,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x0E:
-				tmp = new DataReader(unit.content);
 				monsters = new LuciferMonsterUnit[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < monsters.length; i++) {
 					tmp.nextInt(); //read id of monster
@@ -64,7 +60,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x0F:
-				tmp = new DataReader(unit.content);
 				monsterParties = new LuciferMonsterParty[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < monsterParties.length; i++) {
 					i = (int) tmp.nextInt(); //read id of monsterparty
@@ -72,7 +67,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x10:
-				tmp = new DataReader(unit.content);
 				terrains = new LuciferTerrainUnit[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < terrains.length; i++) {
 					i = (int) tmp.nextInt(); //read id of terrain
@@ -80,7 +74,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x11:
-				tmp = new DataReader(unit.content);
 				attributes = new LuciferAttributeUnit[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < attributes.length; i++) {
 					i = (int) tmp.nextInt(); //read id of attribute
@@ -88,7 +81,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x12:
-				tmp = new DataReader(unit.content);
 				conditions = new LuciferConditionUnit[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < conditions.length; i++) {
 					i = (int) tmp.nextInt(); //read id of attribute
@@ -97,7 +89,6 @@ public class LuciferDatabase {
 				break;
 			case 0x13:
 				//TODO: TEST THIS, BITCH!
-				tmp = new DataReader(unit.content);
 				animations = new LuciferAnimationUnit[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < animations.length; i++) {
 					i = (int) tmp.nextInt(); //read id of animation
@@ -105,7 +96,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x14:
-				tmp = new DataReader(unit.content);
 				chipsets = new LuciferChipsetData[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < chipsets.length; i++) {
 					i = (int) tmp.nextInt(); //read id of animation
@@ -113,7 +103,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x17:
-				tmp = new DataReader(unit.content);
 				switchNames = new String[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < switchNames.length; i++) {
 					i = (int) tmp.nextInt(); //read id of switch
@@ -126,7 +115,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x18:
-				tmp = new DataReader(unit.content);
 				variableNames = new String[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < variableNames.length; i++) {
 					i = (int) tmp.nextInt(); //read id of switch
@@ -139,7 +127,6 @@ public class LuciferDatabase {
 				}
 				break;
 			case 0x19:
-				tmp = new DataReader(unit.content);
 				commonEvents = new LuciferCommonEvent[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < commonEvents.length; i++) {
 					i = (int) tmp.nextInt(); //read id of event
