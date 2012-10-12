@@ -10,7 +10,6 @@ the information in this files and has no known bugs, which can lead to corruptio
 their commit-id.
 
 ## Future
-After the release of version 1.0.0, the versionnumber will always be 1.x.y, where x increments with
-new features and y increments with new bugfixes.
-There are plans to add the capability of parsing RPG-Maker 2003 Games. The first version to support
-this feature will be called 2.0.0.
+After the release of version 1.0.0, the versionnumber will always be x.y.z, where y increments with
+new features and z increments with new bugfixes. Changes in the API will increase x.
+There are plans to add the capability of parsing RPG-Maker 2003 Games, but not in the nearer future.
