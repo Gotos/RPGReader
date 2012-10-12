@@ -17,7 +17,7 @@ public class LuciferHeroUnit {
 	private String graphicFile					= "";
 	private String faceGraphicFile				= "";
 	private String skillName						= "";
-	private long graphicIndex					= 0;
+	private short graphicIndex					= 0;
 	private long minLevel						= 1;
 	private long maxLevel						= 50;
 	private long chanceOnCritical				= 30;
@@ -150,7 +150,7 @@ public class LuciferHeroUnit {
 	 * 
 	 * @return the graphicIndex
 	 */
-	public long getGraphicIndex() {
+	public short getGraphicIndex() {
 		return graphicIndex;
 	}
 
@@ -160,7 +160,7 @@ public class LuciferHeroUnit {
 	 * @param graphicIndex the new graphicIndex
 	 */
 	public void setGraphicIndex(
-			long graphicIndex) {
+			short graphicIndex) {
 		this.graphicIndex = graphicIndex;
 	}
 
@@ -775,7 +775,7 @@ public class LuciferHeroUnit {
 				graphicFile = new String(unit.content, Encoder.ENCODING);
 				break;
 			case 0x04:
-				graphicIndex = DataReader.rpgintToInt(unit.content).integer;
+				graphicIndex = (short) DataReader.rpgintToInt(unit.content).integer;
 				break;
 			case 0x05:
 				graphicTransparent = (DataReader.rpgintToInt(unit.content).integer == 1);
