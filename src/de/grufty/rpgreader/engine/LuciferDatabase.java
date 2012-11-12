@@ -14,6 +14,7 @@ public class LuciferDatabase {
 	public LuciferConditionUnit[] conditions;
 	public LuciferAnimationUnit[] animations;
 	public LuciferChipsetData[] chipsets;
+	public LuciferSystemData system;
 	public String[] switchNames;
 	public String[] variableNames;
 	public LuciferCommonEvent[] commonEvents;
@@ -102,6 +103,8 @@ public class LuciferDatabase {
 					chipsets[i] = new LuciferChipsetData(tmp);
 				}
 				break;
+			case 0x16:
+				system = new LuciferSystemData(tmp);
 			case 0x17:
 				switchNames = new String[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < switchNames.length; i++) {
