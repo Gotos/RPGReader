@@ -3,8 +3,6 @@ package de.grufty.rpgreader.engine;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import javax.naming.LimitExceededException;
-
 /**
  * @author alina
  * 
