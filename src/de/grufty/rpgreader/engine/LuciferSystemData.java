@@ -173,6 +173,7 @@ public class LuciferSystemData {
 			default:
 				Helper.warn(3, "Unknown Unit-ID in LuciferSystemData! ID: " + unit.id);
 			}
+			unit = dr.nextUnit();
 		}
 	}
 
