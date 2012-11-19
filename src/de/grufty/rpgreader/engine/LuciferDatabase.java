@@ -105,6 +105,7 @@ public class LuciferDatabase {
 				break;
 			case 0x16:
 				system = new LuciferSystemData(tmp);
+				break;
 			case 0x17:
 				switchNames = new String[(int) tmp.nextInt() + 1];
 				for (int i = 1; i < switchNames.length; i++) {
