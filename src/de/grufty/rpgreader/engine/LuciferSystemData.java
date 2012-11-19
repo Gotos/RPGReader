@@ -11,6 +11,7 @@ public class LuciferSystemData {
 	private String titleGraphic				= "";
 	private String goGraphic				= "";
 	private String system					= "";
+	private String battleTestBG				= "";
 	private short shipIndex					= 0;
 	private short boatIndex					= 0;
 	private short airshipIndex				= 0;
@@ -21,6 +22,9 @@ public class LuciferSystemData {
 	private short battleShow;
 	private short battleEndErase;
 	private short battleEndShow;
+	private long numberOfSaves				= 0;
+	private long bATestVictim				= 0;
+	private boolean bAUseGrid				= false;
 	private LuciferMusicUnit titleMusic;
 	private LuciferMusicUnit battleMusic;
 	private LuciferMusicUnit battleEndMusic;
@@ -170,8 +174,26 @@ public class LuciferSystemData {
 			case 0x42:
 				battleEndShow = (short) DataReader.rpgintToInt(unit.content).integer;
 				break;
+			case 0x47:
+				System.out.println("0x47: " + DataReader.rpgintToInt(unit.content).integer);
+				break;
+			case 0x48:
+				System.out.println("0x48: " + DataReader.rpgintToInt(unit.content).integer);
+				break;
+			case 0x51:
+				bATestVictim = DataReader.rpgintToInt(unit.content).integer;
+				break;
+			case 0x52:
+				bAUseGrid = (DataReader.rpgintToInt(unit.content).integer == 1);
+				break;
+			case 0x54:
+				battleTestBG = new String(unit.content, Encoder.ENCODING);
+				break;
+			case 0x5B:
+				numberOfSaves = DataReader.rpgintToInt(unit.content).integer;
+				break;
 			default:
-				Helper.warn(3, "Unknown Unit-ID in LuciferSystemData! ID: " + unit.id);
+				Helper.warn(3, "Unknown Unit-ID in LuciferSystemData! ID: " + unit.id + " " + new String(unit.content));
 			}
 			unit = dr.nextUnit();
 		}
