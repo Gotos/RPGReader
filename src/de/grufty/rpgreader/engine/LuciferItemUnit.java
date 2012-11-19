@@ -13,6 +13,7 @@ public class LuciferItemUnit {
 	
 	private String name							= "";
 	private String explanation					= "";
+	private long animation						= 0;
 	private long classification					= 0;
 	private long price							= 0;
 	private long useNumber						= 1;
@@ -191,6 +192,9 @@ public class LuciferItemUnit {
 			case 0x33:
 				usingMessageOfSpecialSkill = (DataReader.rpgintToInt(unit.content).integer == 1);
 				break;
+			case 0x35:
+				animation = DataReader.rpgintToInt(unit.content).integer;
+				break;
 			case 0x37:
 				onSwitch = DataReader.rpgintToInt(unit.content).integer;
 				break;
@@ -260,6 +264,25 @@ public class LuciferItemUnit {
 	public void setName(
 			String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * Returns the animation
+	 * 
+	 * @return the animation
+	 */
+	public long getAnimation() {
+		return animation;
+	}
+
+	/**
+	 * Sets the animation
+	 * 
+	 * @param animation the new animation
+	 */
+	public void setAnimation(
+			long animation) {
+		this.animation = animation;
 	}
 
 	/**
@@ -1114,6 +1137,8 @@ public class LuciferItemUnit {
 		result = prime
 				* result + (int) (classification ^ (classification >>> 32));
 		result = prime
+				* result + (int) (animation ^ (animation >>> 32));
+		result = prime
 				* result + ((conditions == null) ? 0
 						: conditions.hashCode());
 		result = prime
@@ -1245,6 +1270,9 @@ public class LuciferItemUnit {
 			return false;
 		}
 		if (classification != other.classification) {
+			return false;
+		}
+		if (animation != other.animation) {
 			return false;
 		}
 		if (conditions == null) {
