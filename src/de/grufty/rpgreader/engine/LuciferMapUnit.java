@@ -105,7 +105,7 @@ public class LuciferMapUnit {
 				tmp = new DataReader(unit.content);
 				upperLayer = new ArrayList<Integer>(unit.content.length / 2);
 				for (int i = 0; i < unit.content.length / 2; i++) {
-					upperLayer.add((int) tmp.next16bitle()); //TODO check if correct
+					upperLayer.add((int) tmp.next16bitle() - 10000);
 				}
 				break;
 			case 0x51:
