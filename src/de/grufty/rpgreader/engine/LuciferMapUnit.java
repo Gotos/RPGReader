@@ -445,7 +445,7 @@ public class LuciferMapUnit {
 			}
 			byte[] upperLayerWrite = new byte[0];
 			for (long tile : upperLayer) {
-				upperLayerWrite = Helper.concatAll(upperLayerWrite, DataReader.to16bitle(tile));
+				upperLayerWrite = Helper.concatAll(upperLayerWrite, DataReader.to16bitle(tile+10000));
 			}
 			byte[] eventlist = new byte[0];
 			long nrEvents = events.size();
