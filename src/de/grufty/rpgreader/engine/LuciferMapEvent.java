@@ -134,6 +134,11 @@ public class LuciferMapEvent {
 		init(dr, id);
 	}
 	
+	/**
+	 * Constructs a new LuciferMapEvent
+	 */
+	public LuciferMapEvent() {}
+
 	private void init(DataReader sr, long gid) throws IOException {
 		id = gid;
 		DataReader tmp;
