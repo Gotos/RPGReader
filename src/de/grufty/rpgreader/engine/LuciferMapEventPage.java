@@ -181,7 +181,7 @@ public class LuciferMapEventPage {
 	}
 
 	/**
-	 * Returns the position
+	 * Returns the position. 0 means below hero, 1 is same level as hero, 2 is above hero.
 	 * 
 	 * @return the position
 	 */
@@ -190,7 +190,7 @@ public class LuciferMapEventPage {
 	}
 
 	/**
-	 * Sets the position
+	 * Sets the position. 0 means below hero, 1 is same level as hero, 2 is above hero.
 	 * 
 	 * @param position the new position
 	 */
