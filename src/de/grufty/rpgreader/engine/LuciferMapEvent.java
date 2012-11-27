@@ -135,9 +135,9 @@ public class LuciferMapEvent {
 	}
 	
 	/**
-	 * Constructs a new LuciferMapEvent
+	 * Constructs a new LuciferMapUnit
 	 */
-	public LuciferMapEvent() {}
+	public LuciferMapEvent() { }
 
 	private void init(DataReader sr, long gid) throws IOException {
 		id = gid;
@@ -156,10 +156,11 @@ public class LuciferMapEvent {
 				break;
 			case 0x05:
 				tmp = new DataReader(unit.content);
-				pages = new ArrayList<LuciferMapEventPage>((int) tmp.nextInt());
+				int nrPages = (int) tmp.nextInt();
+				pages = new ArrayList<LuciferMapEventPage>(nrPages);
 				pages.add(null); //Add Page zero; Page-IDs start at 1.
-				for (int i = 0; i < pages.size(); i++) {
-					tmp.nextInt(); //read pagenumber
+				for (int i = 0; i < nrPages; i++) {
+					int id = (int) tmp.nextInt();
 					pages.add(new LuciferMapEventPage(tmp));
 				}
 				break;
@@ -178,14 +179,18 @@ public class LuciferMapEvent {
 	 */
 	public byte[] write() {
 		try {
-			byte[] pagelist = DataReader.intToRPGint(pages.size());
-			for (int i = 1; i <= pages.size(); i++) {
-				pagelist = Helper.concatAll(pagelist, DataReader.intToRPGint(i), pages.get(i).write());
+			byte[] pagelist = new byte[0];
+			long nrPages = 0;
+			for (int i = 1; i < pages.size(); i++) {
+				if (pages.get(i) != null) {
+					pagelist = Helper.concatAll(pagelist, DataReader.intToRPGint(i), pages.get(i).write());
+					nrPages++;
+				}
 			}
-			pagelist = Helper.concatAll(pagelist);
+			pagelist = Helper.concatAll(DataReader.intToRPGint(nrPages), pagelist);
 			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(),
-					new LuciferBaseUnit(0x02, DataReader.intToRPGint(xPos)).write(new byte[]{0}),
-					new LuciferBaseUnit(0x03, DataReader.intToRPGint(yPos)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x02, DataReader.intToRPGint(xPos)).write(),
+					new LuciferBaseUnit(0x03, DataReader.intToRPGint(yPos)).write(),
 					new LuciferBaseUnit(0x05, pagelist).write(),
 					new byte[]{0}
 					);

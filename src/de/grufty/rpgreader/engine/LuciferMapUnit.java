@@ -114,7 +114,8 @@ public class LuciferMapUnit {
 				events = new ArrayList<LuciferMapEvent>(nrEvents);
 				for (int i = 0; i < nrEvents; i++) {
 					long id = tmp.nextInt();
-					events.set((int) id, new LuciferMapEvent(tmp, id));
+					while (events.size() < id) { events.add(null); }
+					events.add((int) id, new LuciferMapEvent(tmp, id));
 				}
 				
 				break;
@@ -445,15 +446,16 @@ public class LuciferMapUnit {
 			}
 			byte[] upperLayerWrite = new byte[0];
 			for (long tile : upperLayer) {
-				upperLayerWrite = Helper.concatAll(upperLayerWrite, DataReader.to16bitle(tile+10000));
+				upperLayerWrite = Helper.concatAll(upperLayerWrite, DataReader.to16bitle(tile + 10000));
 			}
 			byte[] eventlist = new byte[0];
-			long nrEvents = events.size();
-			for (int i = 0; i < events.size(); i++) {
+			long nrEvents = 0;
+			for (int i = 1; i < events.size(); i++) {
 				if (events.get(i) != null) {
 					eventlist = Helper.concatAll(eventlist,
 							DataReader.intToRPGint(i),
 							events.get(i).write());
+					nrEvents++;
 				}
 			}
 			eventlist = Helper.concatAll(DataReader.intToRPGint(nrEvents), eventlist);

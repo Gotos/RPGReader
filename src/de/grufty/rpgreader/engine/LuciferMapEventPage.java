@@ -14,7 +14,7 @@ public class LuciferMapEventPage {
 	private LuciferMapEventPageCondition conditions		= new LuciferMapEventPageCondition();
 	private String charset								= "";
 	private long graphic								= 0;
-	private long facing									= -1;
+	private long facing									= 2;
 	private long stepping								= 1;
 	private long movementType							= 0;
 	private long movementFrequency						= 3;
@@ -414,10 +414,11 @@ public class LuciferMapEventPage {
 			for (int i = 0; i < commands.size(); i++) {
 				commandlist = Helper.concatAll(commandlist, commands.get(i).write());
 			}
+			//commandlist = Helper.concatAll(commandlist, new byte[]{0, 0, 0, 0});
 			return Helper.concatAll(new LuciferBaseUnit(0x02, conditions.write()).write(),
 					new LuciferBaseUnit(0x15, charset.getBytes(Encoder.ENCODING)).write(new byte[0]),
 					new LuciferBaseUnit(0x16, DataReader.intToRPGint(graphic)).write(new byte[]{0}),
-					new LuciferBaseUnit(0x17, DataReader.intToRPGint(facing)).write(new byte[0]),
+					new LuciferBaseUnit(0x17, DataReader.intToRPGint(facing)).write(),
 					new LuciferBaseUnit(0x18, DataReader.intToRPGint(stepping)).write(new byte[]{1}),
 					new LuciferBaseUnit(0x19, DataReader.intToRPGint((transparent) ? 1 : 0)).write(),
 					new LuciferBaseUnit(0x1F, DataReader.intToRPGint(movementType)).write(),
