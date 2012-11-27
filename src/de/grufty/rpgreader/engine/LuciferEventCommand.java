@@ -21,7 +21,7 @@ public class LuciferEventCommand {
 	public static final int CHOICE_END						= 20141;
 	public static final int INPUT_NUMBER					= 10150;
 	public static final int CHANGE_SWITCH					= 10210;
-	public static final int CHANGE_VARIABLE					= 10220;
+	public static final int CHANGE_VARIABLE					= 10220; //Wenn ein Event als Datenherkunft gewählt wird, wird als 6ter Parameter die Event-ID übergeben. Hero folgt bei 10001.
 	public static final int CHANGE_TIMER					= 10230;
 	public static final int CHANGE_MONEY					= 10310;
 	public static final int CHANGE_ITEMS					= 10320;
