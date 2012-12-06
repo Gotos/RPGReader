@@ -44,7 +44,7 @@ public class LuciferDatabase {
 			case 0x0B:
 				size = (int) tmp.nextInt(); //read nr
 				heroes = new ArrayList<LuciferHeroUnit>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (heroes.size() < id) { heroes.add(null); }
 					heroes.add((int) id, new LuciferHeroUnit(tmp));
@@ -53,7 +53,7 @@ public class LuciferDatabase {
 			case 0x0C:
 				size = (int) tmp.nextInt(); //read nr
 				skills = new ArrayList<LuciferSkillUnit>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (skills.size() < id) { skills.add(null); }
 					skills.add((int) id, new LuciferSkillUnit(tmp));
@@ -62,7 +62,7 @@ public class LuciferDatabase {
 			case 0x0D:
 				size = (int) tmp.nextInt(); //read nr
 				items = new ArrayList<LuciferItemUnit>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (items.size() < id) { items.add(null); }
 					items.add((int) id, new LuciferItemUnit(tmp));
@@ -71,7 +71,7 @@ public class LuciferDatabase {
 			case 0x0E:
 				size = (int) tmp.nextInt(); //read nr
 				monsters = new ArrayList<LuciferMonsterUnit>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (monsters.size() < id) { monsters.add(null); }
 					monsters.add((int) id, new LuciferMonsterUnit(tmp));
@@ -80,15 +80,16 @@ public class LuciferDatabase {
 			case 0x0F:
 				size = (int) tmp.nextInt(); //read nr
 				monsterParties = new ArrayList<LuciferMonsterParty>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (monsterParties.size() < id) { monsterParties.add(null); }
 					monsterParties.add((int) id, new LuciferMonsterParty(tmp));
 				}
+				break;
 			case 0x10:
 				size = (int) tmp.nextInt(); //read nr
 				terrains = new ArrayList<LuciferTerrainUnit>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (terrains.size() < id) { terrains.add(null); }
 					terrains.add((int) id, new LuciferTerrainUnit(tmp));
@@ -97,7 +98,7 @@ public class LuciferDatabase {
 			case 0x11:
 				size = (int) tmp.nextInt(); //read nr
 				attributes = new ArrayList<LuciferAttributeUnit>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (attributes.size() < id) { attributes.add(null); }
 					attributes.add((int) id, new LuciferAttributeUnit(tmp));
@@ -106,15 +107,16 @@ public class LuciferDatabase {
 			case 0x12:
 				size = (int) tmp.nextInt(); //read nr
 				conditions = new ArrayList<LuciferConditionUnit>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (conditions.size() < id) { conditions.add(null); }
 					conditions.add((int) id, new LuciferConditionUnit(tmp));
 				}
+				break;
 			case 0x13:
 				size = (int) tmp.nextInt(); //read nr
 				animations = new ArrayList<LuciferAnimationUnit>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (animations.size() < id) { animations.add(null); }
 					animations.add((int) id, new LuciferAnimationUnit(tmp));
@@ -123,7 +125,7 @@ public class LuciferDatabase {
 			case 0x14:
 				size = (int) tmp.nextInt(); //read nr
 				chipsets = new ArrayList<LuciferChipsetData>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (chipsets.size() < id) { chipsets.add(null); }
 					chipsets.add((int) id, new LuciferChipsetData(tmp));
@@ -139,7 +141,7 @@ public class LuciferDatabase {
 			case 0x17:
 				size = (int) tmp.nextInt() + 1;
 				switchNames = new ArrayList<String>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					i = (int) tmp.nextInt(); //read id of switch
 					if (i >= size) { break; }
 					LuciferBaseUnit nameUnit = tmp.nextUnit();
@@ -153,7 +155,7 @@ public class LuciferDatabase {
 			case 0x18:
 				size = (int) tmp.nextInt() + 1;
 				variableNames = new ArrayList<String>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					i = (int) tmp.nextInt(); //read id of switch
 					if (i >= size) { break; }
 					LuciferBaseUnit nameUnit = tmp.nextUnit();
@@ -167,7 +169,7 @@ public class LuciferDatabase {
 			case 0x19:
 				size = (int) tmp.nextInt(); //read nr
 				commonEvents = new ArrayList<LuciferCommonEvent>(size);
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					int id = (int) tmp.nextInt(); //read id of hero
 					while (commonEvents.size() < id) { commonEvents.add(null); }
 					commonEvents.add((int) id, new LuciferCommonEvent(tmp));
