@@ -1,6 +1,7 @@
 package de.grufty.rpgreader.engine;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -233,7 +234,7 @@ public final class Helper {
 	public static void printBytesInHex(byte[] bytes) {
 		int offset = 0;
 		for (byte b : bytes) {
-			System.out.printf("%02X",b);
+			System.out.printf("%02X", b);
 			offset++;
 			if (offset == 16) {
 				System.out.printf("\n");
@@ -243,5 +244,4 @@ public final class Helper {
 			}
 		}
 	}
-
 }
