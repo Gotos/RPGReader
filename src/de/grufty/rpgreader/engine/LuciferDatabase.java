@@ -12,22 +12,307 @@ import java.util.Arrays;
  */
 public class LuciferDatabase {
 	
-	public ArrayList<LuciferHeroUnit> heroes;
-	public ArrayList<LuciferSkillUnit> skills;
-	public ArrayList<LuciferItemUnit> items;
-	public ArrayList<LuciferMonsterUnit> monsters;
-	public ArrayList<LuciferMonsterParty> monsterParties;
-	public ArrayList<LuciferTerrainUnit> terrains;
-	public ArrayList<LuciferAttributeUnit> attributes;
-	public ArrayList<LuciferConditionUnit> conditions;
-	public ArrayList<LuciferAnimationUnit> animations;
-	public ArrayList<LuciferChipsetData> chipsets;
-	public LuciferSystemData system;
-	public ArrayList<String> switchNames;
-	public ArrayList<String> variableNames;
-	public ArrayList<LuciferCommonEvent> commonEvents;
-	public byte[] vocab;
+	private ArrayList<LuciferHeroUnit> heroes;
+	private ArrayList<LuciferSkillUnit> skills;
+	private ArrayList<LuciferItemUnit> items;
+	private ArrayList<LuciferMonsterUnit> monsters;
+	private ArrayList<LuciferMonsterParty> monsterParties;
+	private ArrayList<LuciferTerrainUnit> terrains;
+	private ArrayList<LuciferAttributeUnit> attributes;
+	private ArrayList<LuciferConditionUnit> conditions;
+	private ArrayList<LuciferAnimationUnit> animations;
+	private ArrayList<LuciferChipsetData> chipsets;
+	private LuciferSystemData system;
+	private ArrayList<String> switchNames;
+	private ArrayList<String> variableNames;
+	private ArrayList<LuciferCommonEvent> commonEvents;
+	private byte[] vocab;
 	
+	/**
+	 * Returns the heroes
+	 * 
+	 * @return the heroes
+	 */
+	public ArrayList<LuciferHeroUnit> getHeroes() {
+		return heroes;
+	}
+
+	/**
+	 * Sets the heroes
+	 * 
+	 * @param heroes the new heroes
+	 */
+	public void setHeroes(
+			ArrayList<LuciferHeroUnit> heroes) {
+		this.heroes = heroes;
+	}
+
+	/**
+	 * Returns the skills
+	 * 
+	 * @return the skills
+	 */
+	public ArrayList<LuciferSkillUnit> getSkills() {
+		return skills;
+	}
+
+	/**
+	 * Sets the skills
+	 * 
+	 * @param skills the new skills
+	 */
+	public void setSkills(
+			ArrayList<LuciferSkillUnit> skills) {
+		this.skills = skills;
+	}
+
+	/**
+	 * Returns the items
+	 * 
+	 * @return the items
+	 */
+	public ArrayList<LuciferItemUnit> getItems() {
+		return items;
+	}
+
+	/**
+	 * Sets the items
+	 * 
+	 * @param items the new items
+	 */
+	public void setItems(
+			ArrayList<LuciferItemUnit> items) {
+		this.items = items;
+	}
+
+	/**
+	 * Returns the monsters
+	 * 
+	 * @return the monsters
+	 */
+	public ArrayList<LuciferMonsterUnit> getMonsters() {
+		return monsters;
+	}
+
+	/**
+	 * Sets the monsters
+	 * 
+	 * @param monsters the new monsters
+	 */
+	public void setMonsters(
+			ArrayList<LuciferMonsterUnit> monsters) {
+		this.monsters = monsters;
+	}
+
+	/**
+	 * Returns the monsterParties
+	 * 
+	 * @return the monsterParties
+	 */
+	public ArrayList<LuciferMonsterParty> getMonsterParties() {
+		return monsterParties;
+	}
+
+	/**
+	 * Sets the monsterParties
+	 * 
+	 * @param monsterParties the new monsterParties
+	 */
+	public void setMonsterParties(
+			ArrayList<LuciferMonsterParty> monsterParties) {
+		this.monsterParties = monsterParties;
+	}
+
+	/**
+	 * Returns the terrains
+	 * 
+	 * @return the terrains
+	 */
+	public ArrayList<LuciferTerrainUnit> getTerrains() {
+		return terrains;
+	}
+
+	/**
+	 * Sets the terrains
+	 * 
+	 * @param terrains the new terrains
+	 */
+	public void setTerrains(
+			ArrayList<LuciferTerrainUnit> terrains) {
+		this.terrains = terrains;
+	}
+
+	/**
+	 * Returns the attributes
+	 * 
+	 * @return the attributes
+	 */
+	public ArrayList<LuciferAttributeUnit> getAttributes() {
+		return attributes;
+	}
+
+	/**
+	 * Sets the attributes
+	 * 
+	 * @param attributes the new attributes
+	 */
+	public void setAttributes(
+			ArrayList<LuciferAttributeUnit> attributes) {
+		this.attributes = attributes;
+	}
+
+	/**
+	 * Returns the conditions
+	 * 
+	 * @return the conditions
+	 */
+	public ArrayList<LuciferConditionUnit> getConditions() {
+		return conditions;
+	}
+
+	/**
+	 * Sets the conditions
+	 * 
+	 * @param conditions the new conditions
+	 */
+	public void setConditions(
+			ArrayList<LuciferConditionUnit> conditions) {
+		this.conditions = conditions;
+	}
+
+	/**
+	 * Returns the animations
+	 * 
+	 * @return the animations
+	 */
+	public ArrayList<LuciferAnimationUnit> getAnimations() {
+		return animations;
+	}
+
+	/**
+	 * Sets the animations
+	 * 
+	 * @param animations the new animations
+	 */
+	public void setAnimations(
+			ArrayList<LuciferAnimationUnit> animations) {
+		this.animations = animations;
+	}
+
+	/**
+	 * Returns the chipsets
+	 * 
+	 * @return the chipsets
+	 */
+	public ArrayList<LuciferChipsetData> getChipsets() {
+		return chipsets;
+	}
+
+	/**
+	 * Sets the chipsets
+	 * 
+	 * @param chipsets the new chipsets
+	 */
+	public void setChipsets(
+			ArrayList<LuciferChipsetData> chipsets) {
+		this.chipsets = chipsets;
+	}
+
+	/**
+	 * Returns the system
+	 * 
+	 * @return the system
+	 */
+	public LuciferSystemData getSystem() {
+		return system;
+	}
+
+	/**
+	 * Sets the system
+	 * 
+	 * @param system the new system
+	 */
+	public void setSystem(
+			LuciferSystemData system) {
+		this.system = system;
+	}
+
+	/**
+	 * Returns the switchNames
+	 * 
+	 * @return the switchNames
+	 */
+	public ArrayList<String> getSwitchNames() {
+		return switchNames;
+	}
+
+	/**
+	 * Sets the switchNames
+	 * 
+	 * @param switchNames the new switchNames
+	 */
+	public void setSwitchNames(
+			ArrayList<String> switchNames) {
+		this.switchNames = switchNames;
+	}
+
+	/**
+	 * Returns the variableNames
+	 * 
+	 * @return the variableNames
+	 */
+	public ArrayList<String> getVariableNames() {
+		return variableNames;
+	}
+
+	/**
+	 * Sets the variableNames
+	 * 
+	 * @param variableNames the new variableNames
+	 */
+	public void setVariableNames(
+			ArrayList<String> variableNames) {
+		this.variableNames = variableNames;
+	}
+
+	/**
+	 * Returns the commonEvents
+	 * 
+	 * @return the commonEvents
+	 */
+	public ArrayList<LuciferCommonEvent> getCommonEvents() {
+		return commonEvents;
+	}
+
+	/**
+	 * Sets the commonEvents
+	 * 
+	 * @param commonEvents the new commonEvents
+	 */
+	public void setCommonEvents(
+			ArrayList<LuciferCommonEvent> commonEvents) {
+		this.commonEvents = commonEvents;
+	}
+
+	/**
+	 * Returns the vocab
+	 * 
+	 * @return the vocab
+	 */
+	public byte[] getVocab() {
+		return vocab;
+	}
+
+	/**
+	 * Sets the vocab
+	 * 
+	 * @param vocab the new vocab
+	 */
+	public void setVocab(
+			byte[] vocab) {
+		this.vocab = vocab;
+	}
+
 	public LuciferDatabase(byte[] str) throws IOException {
 		init(new DataReader(str));
 	}
