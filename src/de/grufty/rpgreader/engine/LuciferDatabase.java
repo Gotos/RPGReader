@@ -2,6 +2,7 @@ package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author alina
@@ -180,5 +181,180 @@ public class LuciferDatabase {
 			}
 			unit = sr.nextUnit();
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result + ((animations == null) ? 0
+						: animations.hashCode());
+		result = prime
+				* result + ((attributes == null) ? 0
+						: attributes.hashCode());
+		result = prime
+				* result + ((chipsets == null) ? 0
+						: chipsets.hashCode());
+		result = prime
+				* result + ((commonEvents == null) ? 0
+						: commonEvents.hashCode());
+		result = prime
+				* result + ((conditions == null) ? 0
+						: conditions.hashCode());
+		result = prime
+				* result + ((heroes == null) ? 0
+						: heroes.hashCode());
+		result = prime
+				* result + ((items == null) ? 0
+						: items.hashCode());
+		result = prime
+				* result + ((monsterParties == null) ? 0
+						: monsterParties.hashCode());
+		result = prime
+				* result + ((monsters == null) ? 0
+						: monsters.hashCode());
+		result = prime
+				* result + ((skills == null) ? 0
+						: skills.hashCode());
+		result = prime
+				* result + ((switchNames == null) ? 0
+						: switchNames.hashCode());
+		result = prime
+				* result + ((system == null) ? 0
+						: system.hashCode());
+		result = prime
+				* result + ((terrains == null) ? 0
+						: terrains.hashCode());
+		result = prime
+				* result + ((variableNames == null) ? 0
+						: variableNames.hashCode());
+		result = prime
+				* result + Arrays.hashCode(vocab);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(
+			Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof LuciferDatabase)) {
+			return false;
+		}
+		LuciferDatabase other = (LuciferDatabase) obj;
+		if (animations == null) {
+			if (other.animations != null) {
+				return false;
+			}
+		} else if (!animations.equals(other.animations)) {
+			return false;
+		}
+		if (attributes == null) {
+			if (other.attributes != null) {
+				return false;
+			}
+		} else if (!attributes.equals(other.attributes)) {
+			return false;
+		}
+		if (chipsets == null) {
+			if (other.chipsets != null) {
+				return false;
+			}
+		} else if (!chipsets.equals(other.chipsets)) {
+			return false;
+		}
+		if (commonEvents == null) {
+			if (other.commonEvents != null) {
+				return false;
+			}
+		} else if (!commonEvents.equals(other.commonEvents)) {
+			return false;
+		}
+		if (conditions == null) {
+			if (other.conditions != null) {
+				return false;
+			}
+		} else if (!conditions.equals(other.conditions)) {
+			return false;
+		}
+		if (heroes == null) {
+			if (other.heroes != null) {
+				return false;
+			}
+		} else if (!heroes.equals(other.heroes)) {
+			return false;
+		}
+		if (items == null) {
+			if (other.items != null) {
+				return false;
+			}
+		} else if (!items.equals(other.items)) {
+			return false;
+		}
+		if (monsterParties == null) {
+			if (other.monsterParties != null) {
+				return false;
+			}
+		} else if (!monsterParties.equals(other.monsterParties)) {
+			return false;
+		}
+		if (monsters == null) {
+			if (other.monsters != null) {
+				return false;
+			}
+		} else if (!monsters.equals(other.monsters)) {
+			return false;
+		}
+		if (skills == null) {
+			if (other.skills != null) {
+				return false;
+			}
+		} else if (!skills.equals(other.skills)) {
+			return false;
+		}
+		if (switchNames == null) {
+			if (other.switchNames != null) {
+				return false;
+			}
+		} else if (!switchNames.equals(other.switchNames)) {
+			return false;
+		}
+		if (system == null) {
+			if (other.system != null) {
+				return false;
+			}
+		} else if (!system.equals(other.system)) {
+			return false;
+		}
+		if (terrains == null) {
+			if (other.terrains != null) {
+				return false;
+			}
+		} else if (!terrains.equals(other.terrains)) {
+			return false;
+		}
+		if (variableNames == null) {
+			if (other.variableNames != null) {
+				return false;
+			}
+		} else if (!variableNames.equals(other.variableNames)) {
+			return false;
+		}
+		if (!Arrays.equals(
+				vocab, other.vocab)) {
+			return false;
+		}
+		return true;
 	}
 }
