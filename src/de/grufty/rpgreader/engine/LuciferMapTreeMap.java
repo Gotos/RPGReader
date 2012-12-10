@@ -552,7 +552,7 @@ public class LuciferMapTreeMap implements UnitInterface {
 					new LuciferBaseUnit(0x1F, DataReader.intToRPGint(teleport)).write(),
 					new LuciferBaseUnit(0x20, DataReader.intToRPGint(escape)).write(),
 					new LuciferBaseUnit(0x21, DataReader.intToRPGint(save)).write(),
-					new LuciferBaseUnit(0x29, encounter.write()).write(),
+					new LuciferBaseUnit(0x29, encounter.write()).write(new byte[0]),
 					new LuciferBaseUnit(0x2C, DataReader.intToRPGint(encounterRate)).write(new byte[]{25}),
 					new LuciferBaseUnit(0x33, areaRect).write(),
 					new byte[]{0}
