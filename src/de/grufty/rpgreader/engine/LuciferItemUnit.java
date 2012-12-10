@@ -1,6 +1,7 @@
 package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * This class represents an Item of the Database of the RPG-Maker-Game.
  * 
  */
-public class LuciferItemUnit {
+public class LuciferItemUnit implements UnitInterface {
 	
 	private String name							= "";
 	private String explanation					= "";
@@ -1106,7 +1107,82 @@ public class LuciferItemUnit {
 			long permanentAgilityChange) {
 		this.permanentAgilityChange = permanentAgilityChange;
 	}
-
+	
+	/**
+	 * Returns the byte-representation of this Item
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		try {
+			byte[] condArray = new byte[0];
+			for (Boolean cond : conditions) {
+				condArray = Helper.concatAll(condArray, DataReader.intToRPGint(cond ? 1 : 0));
+			}
+			byte[] attrArray = new byte[0];
+			for (Boolean attr : attributes) {
+				attrArray = Helper.concatAll(attrArray, DataReader.intToRPGint(attr ? 1 : 0));
+			}
+			byte[] heroArray = new byte[0];
+			for (Boolean hero : heroes) {
+				attrArray = Helper.concatAll(attrArray, DataReader.intToRPGint(hero ? 1 : 0));
+			}
+			
+			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(new byte[0]), 
+					new LuciferBaseUnit(0x02, explanation.getBytes(Encoder.ENCODING)).write(new byte[0]), 
+					new LuciferBaseUnit(0x03, DataReader.intToRPGint(classification)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x05, DataReader.intToRPGint(price)).write(new byte[]{10}),
+					new LuciferBaseUnit(0x06, DataReader.intToRPGint(useNumber)).write(new byte[]{1}),
+					new LuciferBaseUnit(0x0B, DataReader.intToRPGint(attackChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0C, DataReader.intToRPGint(defenceChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0D, DataReader.intToRPGint(mindChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0E, DataReader.intToRPGint(agilityChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0F, DataReader.intToRPGint(equipBothHands ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x10, DataReader.intToRPGint(mpCost)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x11, DataReader.intToRPGint(hitChance)).write(new byte[]{90}),
+					new LuciferBaseUnit(0x12, DataReader.intToRPGint(criticalHitChance)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x14, DataReader.intToRPGint(battleAnimation)).write(new byte[]{1}),
+					new LuciferBaseUnit(0x15, DataReader.intToRPGint(preemptiveAttack ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x16, DataReader.intToRPGint(doubleAttack ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x17, DataReader.intToRPGint(attackAllEnemies ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x18, DataReader.intToRPGint(ignoreMonsterEvasion ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x19, DataReader.intToRPGint(preventCriticalHit ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x1A, DataReader.intToRPGint(raiseAvoid ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x1B, DataReader.intToRPGint(halfMP ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x1C, DataReader.intToRPGint(noTerrainDamage ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x1F, DataReader.intToRPGint(effectRangeWholeParty ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x20, DataReader.intToRPGint(hpRecoveryPercentage)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x21, DataReader.intToRPGint(hpRecoveryFix)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x22, DataReader.intToRPGint(mpRecoveryPercentage)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x23, DataReader.intToRPGint(mpRecoveryFix)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x25, DataReader.intToRPGint(onlyUseInField ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x26, DataReader.intToRPGint(onlyOnUnconsciousHeroes ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x29, DataReader.intToRPGint(permanentHPChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2A, DataReader.intToRPGint(permanentMPChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2B, DataReader.intToRPGint(permanentAttackChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2C, DataReader.intToRPGint(permanentDefenceChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2D, DataReader.intToRPGint(permanentMindChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2E, DataReader.intToRPGint(permanentAgilityChange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x33, DataReader.intToRPGint(usingMessageOfSpecialSkill ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x35, DataReader.intToRPGint(animation)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x37, DataReader.intToRPGint(onSwitch)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x39, DataReader.intToRPGint(availableAtField ? 1 : 0)).write(new byte[]{1}),
+					new LuciferBaseUnit(0x3A, DataReader.intToRPGint(availableAtCombat ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x3D, DataReader.intToRPGint(heroes.size())).write(new byte[]{0}),
+					new LuciferBaseUnit(0x3E, heroArray).write(new byte[0]),
+					new LuciferBaseUnit(0x3F, DataReader.intToRPGint(conditions.size())).write(new byte[]{0}),
+					new LuciferBaseUnit(0x40, condArray).write(new byte[0]),
+					new LuciferBaseUnit(0x41, DataReader.intToRPGint(attributes.size())).write(new byte[]{0}),
+					new LuciferBaseUnit(0x42, attrArray).write(new byte[0]),
+					new LuciferBaseUnit(0x43, DataReader.intToRPGint(changingChance)).write(new byte[]{0}),
+					new byte[]{0}
+					);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new byte[0];
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
