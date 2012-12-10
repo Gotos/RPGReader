@@ -1,9 +1,10 @@
 package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-public class LuciferSkillUnit {
+public class LuciferSkillUnit implements UnitInterface {
 	
 	public String name					= "";
 	public String explanation			= "";
@@ -168,7 +169,63 @@ public class LuciferSkillUnit {
 			unit = sr.nextUnit();
 		}
 	}
+	
+	/**
+	 * Returns the byte-representation of this Monster
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		try {
+			byte[] condArray = new byte[0];
+			for (Boolean cond : conditions) {
+				condArray = Helper.concatAll(condArray, DataReader.intToRPGint(cond ? 1 : 0));
+			}
+			byte[] attrArray = new byte[0];
+			for (Boolean attr : attributes) {
+				attrArray = Helper.concatAll(attrArray, DataReader.intToRPGint(attr ? 1 : 0));
+			}
+			
+			return Helper.concatAll(new LuciferBaseUnit(0x01, name.getBytes(Encoder.ENCODING)).write(new byte[0]), 
+					new LuciferBaseUnit(0x02, explanation.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x03, usingMessage.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x04, usingMessage2.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x07, failureMessage.getBytes(Encoder.ENCODING)).write(new byte[0]),
+					new LuciferBaseUnit(0x08, DataReader.intToRPGint(classification)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0B, DataReader.intToRPGint(mpCost)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0C, DataReader.intToRPGint(effectRange)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x0D, DataReader.intToRPGint(onSwitch)).write(new byte[]{1}),
+					new LuciferBaseUnit(0x0E, DataReader.intToRPGint(battleAnimation)).write(new byte[]{1}),
+					new LuciferBaseUnit(0x10, soundEffect.write()).write(new byte[]{0}),
+					new LuciferBaseUnit(0x12, DataReader.intToRPGint(availableAtField ? 1 : 0)).write(new byte[]{1}),
+					new LuciferBaseUnit(0x13, DataReader.intToRPGint(availableAtCombat ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x15, DataReader.intToRPGint(hitChance)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x16, DataReader.intToRPGint(mindChance)).write(new byte[]{3}),
+					new LuciferBaseUnit(0x17, DataReader.intToRPGint(variance)).write(new byte[]{4}),
+					new LuciferBaseUnit(0x18, DataReader.intToRPGint(baseEffect)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x19, DataReader.intToRPGint(baseSuccessRate)).write(new byte[]{100}),
+					new LuciferBaseUnit(0x1F, DataReader.intToRPGint(abilityDownHP ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x20, DataReader.intToRPGint(abilityDownMP ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x21, DataReader.intToRPGint(abilityDownAttack ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x22, DataReader.intToRPGint(abilityDownDefence ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x23, DataReader.intToRPGint(abilityDownMind ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x24, DataReader.intToRPGint(abilityDownAgility ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x25, DataReader.intToRPGint(absorption ? 1 : 0)).write(new byte[]{0}),
+					new LuciferBaseUnit(0x26, DataReader.intToRPGint(defenceIgnore ? 1 : 0)).write(new byte[]{0}),
 
+					new LuciferBaseUnit(0x29, DataReader.intToRPGint(conditions.size())).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2A, condArray).write(new byte[0]),
+					new LuciferBaseUnit(0x2B, DataReader.intToRPGint(attributes.size())).write(new byte[]{0}),
+					new LuciferBaseUnit(0x2C, attrArray).write(new byte[0]),
+					new LuciferBaseUnit(0x2D, DataReader.intToRPGint(defenceDown ? 1 : 0)).write(new byte[]{0}),
+					new byte[]{0}
+					);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new byte[0];
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
