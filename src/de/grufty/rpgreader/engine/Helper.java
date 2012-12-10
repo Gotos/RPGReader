@@ -246,6 +246,14 @@ public final class Helper {
 		}
 	}
 	
+	
+	/**
+	 * Returns a byte-representation of a list, ready for writing in write()-methods
+	 * 
+	 * @param list Inputlist
+	 * @param <T> a class, that implements UnitInterface
+	 * @return byte-representation of list
+	 */
 	public static <T extends UnitInterface> byte[] listToBytes(ArrayList<T> list) {
 		byte[] bytes = new byte[0];
 		long nrElements = 0;
