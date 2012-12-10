@@ -3,6 +3,7 @@ package de.grufty.rpgreader.engine;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Observable;
 
 /**
  * @author gRuFtY
@@ -243,5 +244,20 @@ public final class Helper {
 				System.out.printf(" ");
 			}
 		}
+	}
+	
+	public static <T extends UnitInterface> byte[] listToBytes(ArrayList<T> list) {
+		byte[] bytes = new byte[0];
+		long nrElements = 0;
+		for (int i = 1; i < list.size(); i++) {
+			if (list.get(i) != null) {
+				bytes = Helper.concatAll(bytes,
+						DataReader.intToRPGint(i),
+						list.get(i).write());
+				nrElements++;
+			}
+		}
+		bytes = Helper.concatAll(DataReader.intToRPGint(nrElements), bytes);
+		return bytes;
 	}
 }
