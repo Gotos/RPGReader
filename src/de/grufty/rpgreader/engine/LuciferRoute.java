@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * This class represents a movement-route of the RPG-Maker-Game.
  */
-public class LuciferRoute {
+public class LuciferRoute implements UnitInterface {
 	
 	private long commandLength						= 0;
 	private ArrayList<LuciferMoveCommand> commands	= new ArrayList<LuciferMoveCommand>();

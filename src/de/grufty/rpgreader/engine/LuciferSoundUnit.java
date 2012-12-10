@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
  *
  * This class represents a Sound-changer/-setter of the RPG-Maker-Game.
  */
-public class LuciferSoundUnit {
+public class LuciferSoundUnit implements UnitInterface {
 	
 	protected String filename	= "";
 	protected long volume		= 100;

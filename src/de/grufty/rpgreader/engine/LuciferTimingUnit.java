@@ -2,7 +2,7 @@ package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
 
-public class LuciferTimingUnit {
+public class LuciferTimingUnit implements UnitInterface {
 	
 	private long frame			= 1;
 	private LuciferSoundUnit sound;

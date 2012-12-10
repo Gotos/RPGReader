@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
  *
  * This Class models an Attribute of the Database of the RM2k.
  */
-public class LuciferAttributeUnit {
+public class LuciferAttributeUnit implements UnitInterface {
 	
 	private String name					= "";
 	private boolean classificationMagic	= false;

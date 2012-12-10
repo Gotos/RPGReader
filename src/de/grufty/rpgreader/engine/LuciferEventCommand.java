@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
-public class LuciferEventCommand {
+public class LuciferEventCommand implements UnitInterface {
 	
 	public long type		= 0;
 	public long depth		= 0;

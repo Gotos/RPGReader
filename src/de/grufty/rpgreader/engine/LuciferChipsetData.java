@@ -9,7 +9,7 @@ import java.util.Arrays;
  * 
  * @author gRuFtY
  */
-public class LuciferChipsetData {
+public class LuciferChipsetData implements UnitInterface {
 	
 	private String name					= "";
 	private String graphic				= "";

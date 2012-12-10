@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * This class models an BattleAnimation of the RM2k.
  */
-public class LuciferAnimationUnit {
+public class LuciferAnimationUnit implements UnitInterface {
 	
 	private String name					= "";
 	private String filename				= "";

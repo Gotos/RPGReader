@@ -8,7 +8,7 @@ import java.util.Arrays;
  *
  * This class represents a single Move command of the RPG-Maker-Game.
  */
-public class LuciferMoveCommand {
+public class LuciferMoveCommand implements UnitInterface {
 	/** The type of the Move; list will follow! */ //TODO: add list
 	public final long type;
 	/** The data append to the MoveCommand */

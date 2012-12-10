@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * This class represents a MapEvent of the RPG-Maker-Game.
  */
-public class LuciferMapEvent {
+public class LuciferMapEvent implements UnitInterface {
 	
 	private long id;
 	private long xPos	= 0;

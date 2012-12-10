@@ -8,7 +8,7 @@ import java.security.InvalidParameterException;
  * 
  * @author gRuFtY
  */
-public class LuciferCellField {
+public class LuciferCellField implements UnitInterface {
 	
 	private long patternno		= 0;
 	private long xPos			= 0;

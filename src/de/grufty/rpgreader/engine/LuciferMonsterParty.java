@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * This class represents a MonsterParty of the RPG-Maker-Game.
  */
-public class LuciferMonsterParty {
+public class LuciferMonsterParty implements UnitInterface {
 	
 	private String name									= "";
 	private long nrTerrains								= 0;

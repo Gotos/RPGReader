@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * This class represents an EncounterData of an Maptree-Element (Map or Area) of the RPG-Maker-Game.
  */
-public class LuciferEncounterData {
+public class LuciferEncounterData implements UnitInterface {
 
 	private int partiesNr			= 0;
 	private ArrayList<Long> parties = new ArrayList<Long>();

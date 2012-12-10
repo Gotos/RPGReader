@@ -8,7 +8,7 @@ import java.io.IOException;
  * @author gRuFtY
  *
  */
-public class LuciferBattleEventPageCondition {
+public class LuciferBattleEventPageCondition implements UnitInterface {
 	
 	private boolean switchA			= false;
 	private boolean switchB			= false;

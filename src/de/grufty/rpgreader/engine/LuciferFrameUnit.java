@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * This class represents a Frame-Unit of a BattleAnimation of the RPG-Maker-Game.
  */
-public class LuciferFrameUnit {
+public class LuciferFrameUnit implements UnitInterface {
 	
 	private ArrayList<LuciferCellField> cellFields;
 

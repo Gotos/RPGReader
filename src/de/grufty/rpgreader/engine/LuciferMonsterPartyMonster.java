@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  * This class represents a MonsterPartyMonster of the RPG-Maker-Game.
  */
-public class LuciferMonsterPartyMonster {
+public class LuciferMonsterPartyMonster implements UnitInterface {
 	
 	private long id		= 1;
 	private long xPos	= 0;

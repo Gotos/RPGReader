@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  * This class represents a Spell of an Hero of the RPG-Maker-Game.
  */
-public class LuciferHeroSpell {
+public class LuciferHeroSpell implements UnitInterface {
 	private long level	= 1;
 	private long spell	= 1;
 	

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * This class represents a MapUnit of the RPG-Maker-Game.
  */
-public class LuciferMapUnit {
+public class LuciferMapUnit implements UnitInterface {
 	
 	private long chipset					= 1;
 	private long width						= 20;

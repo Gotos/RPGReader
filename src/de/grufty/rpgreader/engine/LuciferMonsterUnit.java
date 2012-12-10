@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * This class represents a Monster of the RPG-Maker-Game.
  */
-public class LuciferMonsterUnit {
+public class LuciferMonsterUnit implements UnitInterface {
 	
 	private String name				= "";
 	private String graphic			= "";

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author gRuFtY
  * 
  */
-public class LuciferBattleEventPage {
+public class LuciferBattleEventPage implements UnitInterface {
 	
 	private LuciferBattleEventPageCondition conditions;
 	private long scriptLength;

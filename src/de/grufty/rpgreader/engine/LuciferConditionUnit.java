@@ -13,7 +13,7 @@ import java.io.UnsupportedEncodingException;
  * COMMON_ENEMY_ATTACK / ATTACK_RANDOM_ENEMY: This limitation means, that the character will attack a random enemy until healt.
  * COMMON_ALLY_ATTACK / ATTACK_RANDOM_ALLY: As ATTACK_RANDOM_ENEMY, but attacks a random hero
  */
-public class LuciferConditionUnit {
+public class LuciferConditionUnit implements UnitInterface {
 	
 	public static final int RESTRICTION = 0;
 	public static final int NO_LIMITATION = 0;

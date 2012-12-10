@@ -10,7 +10,7 @@ import java.util.Arrays;
  * This class represents a Hero of the Database of the RPG-Maker-Game.
  * 
  */
-public class LuciferHeroUnit {
+public class LuciferHeroUnit implements UnitInterface {
 
 	private String name							= "";
 	private String degree						= "";

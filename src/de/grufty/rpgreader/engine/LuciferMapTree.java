@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * This class represents a MapTree of the RPG-Maker-Game.
  */
-public class LuciferMapTree {
+public class LuciferMapTree implements UnitInterface {
 	
 	private ArrayList<LuciferMapTreeMap> maps;
 	private ArrayList<Long> mapOrder;

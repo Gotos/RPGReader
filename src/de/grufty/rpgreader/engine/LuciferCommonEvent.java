@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * This class represents a Common Event of the Database of the RPG-Maker-Game.
  * EventStartConditions are the static final ints of this class.
  */
-public class LuciferCommonEvent {
+public class LuciferCommonEvent implements UnitInterface {
 	
 	public static final int PARALLEL = 4;
 	public static final int AUTOSTART = 3;

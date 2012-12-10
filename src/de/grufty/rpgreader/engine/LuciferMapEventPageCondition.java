@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  * This class represents a MapEventPageCondition of the RPG-Maker-Game.
  */
-public class LuciferMapEventPageCondition {
+public class LuciferMapEventPageCondition implements UnitInterface {
 	
 	private boolean switchA		= false;
 	private boolean switchB		= false;

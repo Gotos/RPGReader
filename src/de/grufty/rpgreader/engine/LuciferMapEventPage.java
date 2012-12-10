@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * This class represents a MapEventPage of the RPG-Maker-Game.
  */
-public class LuciferMapEventPage {
+public class LuciferMapEventPage implements UnitInterface {
 	
 	private LuciferMapEventPageCondition conditions		= new LuciferMapEventPageCondition();
 	private String charset								= "";
