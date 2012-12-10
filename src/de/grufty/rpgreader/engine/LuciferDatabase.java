@@ -1,6 +1,7 @@
 package de.grufty.rpgreader.engine;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -10,7 +11,7 @@ import java.util.Arrays;
  * This class represents the Database of the RPG-Maker-Game.
  * 
  */
-public class LuciferDatabase {
+public class LuciferDatabase implements UnitInterface {
 	
 	private ArrayList<LuciferHeroUnit> heroes;
 	private ArrayList<LuciferSkillUnit> skills;
@@ -467,7 +468,57 @@ public class LuciferDatabase {
 			unit = sr.nextUnit();
 		}
 	}
-
+	
+	/**
+	 * Returns the byte-representation of this Database
+	 * 
+	 * @return byte-representation
+	 */
+	public byte[] write() {
+		try {
+			byte[] switchesArray = new byte[0];
+			for (int i = 1; i < switchNames.size(); i++) {
+				if (switchNames.get(i) != null) {
+					switchesArray = Helper.concatAll(switchesArray,
+							DataReader.intToRPGint(i),
+							(switchNames.get(i) != null)
+								? new LuciferBaseUnit(1, switchNames.get(i).getBytes(Encoder.ENCODING)).write() : new byte[0],
+							new byte[]{0});
+				}
+			}
+			switchesArray = Helper.concatAll(DataReader.intToRPGint(switchNames.size()), switchesArray);
+			byte[] variArray = new byte[0];
+			for (int i = 1; i < variableNames.size(); i++) {
+				if (variableNames.get(i) != null) {
+					variArray = Helper.concatAll(variArray,
+							DataReader.intToRPGint(i),
+							(variableNames.get(i) != null)
+								? new LuciferBaseUnit(1, variableNames.get(i).getBytes(Encoder.ENCODING)).write() : new byte[0],
+							new byte[]{0});
+				}
+			}
+			variArray = Helper.concatAll(DataReader.intToRPGint(variableNames.size()), variArray);
+			return Helper.concatAll(new LuciferBaseUnit(0x0B, Helper.listToBytes(heroes)).write(new byte[0]),
+					new LuciferBaseUnit(0x0C, Helper.listToBytes(skills)).write(new byte[0]),
+					new LuciferBaseUnit(0x0D, Helper.listToBytes(items)).write(new byte[0]),
+					new LuciferBaseUnit(0x0E, Helper.listToBytes(monsters)).write(new byte[0]),
+					new LuciferBaseUnit(0x0F, Helper.listToBytes(monsterParties)).write(new byte[0]),
+					new LuciferBaseUnit(0x10, Helper.listToBytes(terrains)).write(new byte[0]),
+					new LuciferBaseUnit(0x11, Helper.listToBytes(attributes)).write(new byte[0]),
+					new LuciferBaseUnit(0x12, Helper.listToBytes(conditions)).write(new byte[0]),
+					new LuciferBaseUnit(0x13, Helper.listToBytes(animations)).write(new byte[0]),
+					new LuciferBaseUnit(0x14, Helper.listToBytes(chipsets)).write(new byte[0]),
+					new LuciferBaseUnit(0x16, system.write()).write(new byte[0]),
+					new LuciferBaseUnit(0x17, switchesArray).write(new byte[0]),
+					new LuciferBaseUnit(0x18, variArray).write(new byte[0]),
+					new LuciferBaseUnit(0x19, Helper.listToBytes(commonEvents)).write(new byte[0]),
+					new byte[]{0}
+					);
+		} catch (UnsupportedEncodingException e) {
+			return new byte[0];
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
