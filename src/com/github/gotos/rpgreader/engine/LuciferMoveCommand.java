@@ -3,6 +3,8 @@ package com.github.gotos.rpgreader.engine;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author alina
@@ -197,6 +199,38 @@ public class LuciferMoveCommand implements UnitInterface {
 				commands.add(i, new LuciferMoveCommand(move));
 			}
 		}
-		return null;
+		return commands;
+	}
+	
+	/**
+	 * Creates an LuciferEventCommand from LuciferMoveCommands and metainformation.
+	 * 
+	 * @param moveCommands List of LuciferMoveCommands
+	 * @param target Target-ID
+	 * @param freq move-frequency
+	 * @param repeat repeat-flag of the command
+	 * @param ignore ignore-flag of the command
+	 * @param depth depth of the command
+	 * @return LuciferEventCommand (MOVE_EVENT)
+	 */
+	public static LuciferEventCommand disassembleMoveCommands(
+			List<LuciferMoveCommand> moveCommands, long target, byte freq, boolean repeat, boolean ignore, long depth) {
+		LinkedList<Long> data = new LinkedList<Long>();
+		data.add(target);
+		data.add(new Long(freq));
+		data.add(repeat ? 1L : 0L);
+		data.add(ignore ? 1L : 0L);
+		for (LuciferMoveCommand mc : moveCommands) {
+			data.add(mc.type);
+			for (long d : mc.data) {
+				data.add(d);
+			}
+		}
+		long[] dataArray = new long[data.size()];
+		for (int i = 0; i < data.size(); i++) {
+			dataArray[i] = data.get(i);
+		}
+		LuciferEventCommand command = new LuciferEventCommand(LuciferEventCommand.MOVE_EVENT, depth, "", dataArray);
+		return command;
 	}
 }
