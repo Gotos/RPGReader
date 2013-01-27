@@ -283,6 +283,9 @@ public class LuciferSystemData implements UnitInterface {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -355,508 +358,993 @@ public class LuciferSystemData implements UnitInterface {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof LuciferSystemData)) {
 			return false;
+		}
 		LuciferSystemData other = (LuciferSystemData) obj;
 		if (airship == null) {
-			if (other.airship != null)
+			if (other.airship != null) {
 				return false;
-		} else if (!airship.equals(other.airship))
+			}
+		} else if (!airship.equals(other.airship)) {
 			return false;
-		if (airshipIndex != other.airshipIndex)
+		}
+		if (airshipIndex != other.airshipIndex) {
 			return false;
+		}
 		if (airshipMusic == null) {
-			if (other.airshipMusic != null)
+			if (other.airshipMusic != null) {
 				return false;
-		} else if (!airshipMusic.equals(other.airshipMusic))
+			}
+		} else if (!airshipMusic.equals(other.airshipMusic)) {
 			return false;
-		if (bATestVictim != other.bATestVictim)
+		}
+		if (bATestVictim != other.bATestVictim) {
 			return false;
-		if (bAUseGrid != other.bAUseGrid)
+		}
+		if (bAUseGrid != other.bAUseGrid) {
 			return false;
-		if (battleEndErase != other.battleEndErase)
+		}
+		if (battleEndErase != other.battleEndErase) {
 			return false;
+		}
 		if (battleEndMusic == null) {
-			if (other.battleEndMusic != null)
+			if (other.battleEndMusic != null) {
 				return false;
-		} else if (!battleEndMusic.equals(other.battleEndMusic))
+			}
+		} else if (!battleEndMusic.equals(other.battleEndMusic)) {
 			return false;
-		if (battleEndShow != other.battleEndShow)
+		}
+		if (battleEndShow != other.battleEndShow) {
 			return false;
-		if (battleErase != other.battleErase)
+		}
+		if (battleErase != other.battleErase) {
 			return false;
+		}
 		if (battleMusic == null) {
-			if (other.battleMusic != null)
+			if (other.battleMusic != null) {
 				return false;
-		} else if (!battleMusic.equals(other.battleMusic))
+			}
+		} else if (!battleMusic.equals(other.battleMusic)) {
 			return false;
-		if (battleShow != other.battleShow)
+		}
+		if (battleShow != other.battleShow) {
 			return false;
+		}
 		if (battleTestBG == null) {
-			if (other.battleTestBG != null)
+			if (other.battleTestBG != null) {
 				return false;
-		} else if (!battleTestBG.equals(other.battleTestBG))
+			}
+		} else if (!battleTestBG.equals(other.battleTestBG)) {
 			return false;
+		}
 		if (boat == null) {
-			if (other.boat != null)
+			if (other.boat != null) {
 				return false;
-		} else if (!boat.equals(other.boat))
+			}
+		} else if (!boat.equals(other.boat)) {
 			return false;
-		if (boatIndex != other.boatIndex)
+		}
+		if (boatIndex != other.boatIndex) {
 			return false;
+		}
 		if (boatMusic == null) {
-			if (other.boatMusic != null)
+			if (other.boatMusic != null) {
 				return false;
-		} else if (!boatMusic.equals(other.boatMusic))
+			}
+		} else if (!boatMusic.equals(other.boatMusic)) {
 			return false;
+		}
 		if (buzzerSE == null) {
-			if (other.buzzerSE != null)
+			if (other.buzzerSE != null) {
 				return false;
-		} else if (!buzzerSE.equals(other.buzzerSE))
+			}
+		} else if (!buzzerSE.equals(other.buzzerSE)) {
 			return false;
+		}
 		if (cancelSE == null) {
-			if (other.cancelSE != null)
+			if (other.cancelSE != null) {
 				return false;
-		} else if (!cancelSE.equals(other.cancelSE))
+			}
+		} else if (!cancelSE.equals(other.cancelSE)) {
 			return false;
+		}
 		if (cursorSE == null) {
-			if (other.cursorSE != null)
+			if (other.cursorSE != null) {
 				return false;
-		} else if (!cursorSE.equals(other.cursorSE))
+			}
+		} else if (!cursorSE.equals(other.cursorSE)) {
 			return false;
+		}
 		if (decisionSE == null) {
-			if (other.decisionSE != null)
+			if (other.decisionSE != null) {
 				return false;
-		} else if (!decisionSE.equals(other.decisionSE))
+			}
+		} else if (!decisionSE.equals(other.decisionSE)) {
 			return false;
+		}
 		if (enemyAttackSE == null) {
-			if (other.enemyAttackSE != null)
+			if (other.enemyAttackSE != null) {
 				return false;
-		} else if (!enemyAttackSE.equals(other.enemyAttackSE))
+			}
+		} else if (!enemyAttackSE.equals(other.enemyAttackSE)) {
 			return false;
+		}
 		if (enemyDieSE == null) {
-			if (other.enemyDieSE != null)
+			if (other.enemyDieSE != null) {
 				return false;
-		} else if (!enemyDieSE.equals(other.enemyDieSE))
+			}
+		} else if (!enemyDieSE.equals(other.enemyDieSE)) {
 			return false;
+		}
 		if (enemysDamageSE == null) {
-			if (other.enemysDamageSE != null)
+			if (other.enemysDamageSE != null) {
 				return false;
-		} else if (!enemysDamageSE.equals(other.enemysDamageSE))
+			}
+		} else if (!enemysDamageSE.equals(other.enemysDamageSE)) {
 			return false;
+		}
 		if (escapeSE == null) {
-			if (other.escapeSE != null)
+			if (other.escapeSE != null) {
 				return false;
-		} else if (!escapeSE.equals(other.escapeSE))
+			}
+		} else if (!escapeSE.equals(other.escapeSE)) {
 			return false;
+		}
 		if (evasionSE == null) {
-			if (other.evasionSE != null)
+			if (other.evasionSE != null) {
 				return false;
-		} else if (!evasionSE.equals(other.evasionSE))
+			}
+		} else if (!evasionSE.equals(other.evasionSE)) {
 			return false;
+		}
 		if (friendsDamageSE == null) {
-			if (other.friendsDamageSE != null)
+			if (other.friendsDamageSE != null) {
 				return false;
-		} else if (!friendsDamageSE.equals(other.friendsDamageSE))
+			}
+		} else if (!friendsDamageSE.equals(other.friendsDamageSE)) {
 			return false;
+		}
 		if (gameOverMusic == null) {
-			if (other.gameOverMusic != null)
+			if (other.gameOverMusic != null) {
 				return false;
-		} else if (!gameOverMusic.equals(other.gameOverMusic))
+			}
+		} else if (!gameOverMusic.equals(other.gameOverMusic)) {
 			return false;
+		}
 		if (goGraphic == null) {
-			if (other.goGraphic != null)
+			if (other.goGraphic != null) {
 				return false;
-		} else if (!goGraphic.equals(other.goGraphic))
+			}
+		} else if (!goGraphic.equals(other.goGraphic)) {
 			return false;
+		}
 		if (heroes == null) {
-			if (other.heroes != null)
+			if (other.heroes != null) {
 				return false;
-		} else if (!heroes.equals(other.heroes))
+			}
+		} else if (!heroes.equals(other.heroes)) {
 			return false;
+		}
 		if (innMusic == null) {
-			if (other.innMusic != null)
+			if (other.innMusic != null) {
 				return false;
-		} else if (!innMusic.equals(other.innMusic))
+			}
+		} else if (!innMusic.equals(other.innMusic)) {
 			return false;
+		}
 		if (itemUseSE == null) {
-			if (other.itemUseSE != null)
+			if (other.itemUseSE != null) {
 				return false;
-		} else if (!itemUseSE.equals(other.itemUseSE))
+			}
+		} else if (!itemUseSE.equals(other.itemUseSE)) {
 			return false;
-		if (nrHeroes != other.nrHeroes)
+		}
+		if (nrHeroes != other.nrHeroes) {
 			return false;
-		if (numberOfSaves != other.numberOfSaves)
+		}
+		if (numberOfSaves != other.numberOfSaves) {
 			return false;
+		}
 		if (ship == null) {
-			if (other.ship != null)
+			if (other.ship != null) {
 				return false;
-		} else if (!ship.equals(other.ship))
+			}
+		} else if (!ship.equals(other.ship)) {
 			return false;
-		if (shipIndex != other.shipIndex)
+		}
+		if (shipIndex != other.shipIndex) {
 			return false;
+		}
 		if (shipMusic == null) {
-			if (other.shipMusic != null)
+			if (other.shipMusic != null) {
 				return false;
-		} else if (!shipMusic.equals(other.shipMusic))
+			}
+		} else if (!shipMusic.equals(other.shipMusic)) {
 			return false;
+		}
 		if (startBattleSE == null) {
-			if (other.startBattleSE != null)
+			if (other.startBattleSE != null) {
 				return false;
-		} else if (!startBattleSE.equals(other.startBattleSE))
+			}
+		} else if (!startBattleSE.equals(other.startBattleSE)) {
 			return false;
+		}
 		if (system == null) {
-			if (other.system != null)
+			if (other.system != null) {
 				return false;
-		} else if (!system.equals(other.system))
+			}
+		} else if (!system.equals(other.system)) {
 			return false;
-		if (teleportErase != other.teleportErase)
+		}
+		if (teleportErase != other.teleportErase) {
 			return false;
-		if (teleportShow != other.teleportShow)
+		}
+		if (teleportShow != other.teleportShow) {
 			return false;
+		}
 		if (titleGraphic == null) {
-			if (other.titleGraphic != null)
+			if (other.titleGraphic != null) {
 				return false;
-		} else if (!titleGraphic.equals(other.titleGraphic))
+			}
+		} else if (!titleGraphic.equals(other.titleGraphic)) {
 			return false;
+		}
 		if (titleMusic == null) {
-			if (other.titleMusic != null)
+			if (other.titleMusic != null) {
 				return false;
-		} else if (!titleMusic.equals(other.titleMusic))
+			}
+		} else if (!titleMusic.equals(other.titleMusic)) {
 			return false;
+		}
 		return true;
 	}
 
+	/**
+	 * Returns the ship
+	 * 
+	 * @return the ship
+	 */
 	public String getShip() {
 		return ship;
 	}
 
+	/**
+	 * Sets the ship
+	 * 
+	 * @param ship the new ship
+	 */
 	public void setShip(String ship) {
 		this.ship = ship;
 	}
 
+	/**
+	 * Returns the boat
+	 * 
+	 * @return the boat
+	 */
 	public String getBoat() {
 		return boat;
 	}
 
+	/**
+	 * Sets the boat
+	 * 
+	 * @param boat the new boat
+	 */
 	public void setBoat(String boat) {
 		this.boat = boat;
 	}
 
+	/**
+	 * Returns the airship
+	 * 
+	 * @return the airship
+	 */
 	public String getAirship() {
 		return airship;
 	}
 
+	/**
+	 * Sets the airship
+	 * 
+	 * @param airship the new airship
+	 */
 	public void setAirship(String airship) {
 		this.airship = airship;
 	}
 
+	/**
+	 * Returns the titleGraphic
+	 * 
+	 * @return the titleGraphic
+	 */
 	public String getTitleGraphic() {
 		return titleGraphic;
 	}
 
+	/**
+	 * Sets the titleGraphic
+	 * 
+	 * @param titleGraphic the new titleGraphic
+	 */
 	public void setTitleGraphic(String titleGraphic) {
 		this.titleGraphic = titleGraphic;
 	}
 
+	/**
+	 * Returns the goGraphic
+	 * 
+	 * @return the goGraphic
+	 */
 	public String getGoGraphic() {
 		return goGraphic;
 	}
 
+	/**
+	 * Sets the goGraphic
+	 * 
+	 * @param goGraphic the new goGraphic
+	 */
 	public void setGoGraphic(String goGraphic) {
 		this.goGraphic = goGraphic;
 	}
 
+	/**
+	 * Returns the system
+	 * 
+	 * @return the system
+	 */
 	public String getSystem() {
 		return system;
 	}
 
+	/**
+	 * Sets the system
+	 * 
+	 * @param system the new system
+	 */
 	public void setSystem(String system) {
 		this.system = system;
 	}
 
+	/**
+	 * Returns the battleTestBG
+	 * 
+	 * @return the battleTestBG
+	 */
 	public String getBattleTestBG() {
 		return battleTestBG;
 	}
 
+	/**
+	 * Sets the battleTestBG
+	 * 
+	 * @param battleTestBG the new battleTestBG
+	 */
 	public void setBattleTestBG(String battleTestBG) {
 		this.battleTestBG = battleTestBG;
 	}
 
+	/**
+	 * Returns the shipIndex
+	 * 
+	 * @return the shipIndex
+	 */
 	public short getShipIndex() {
 		return shipIndex;
 	}
 
+	/**
+	 * Sets the shipIndex
+	 * 
+	 * @param shipIndex the new shipIndex
+	 */
 	public void setShipIndex(short shipIndex) {
 		this.shipIndex = shipIndex;
 	}
 
+	/**
+	 * Returns the boatIndex
+	 * 
+	 * @return the boatIndex
+	 */
 	public short getBoatIndex() {
 		return boatIndex;
 	}
 
+	/**
+	 * Sets the boatIndex
+	 * 
+	 * @param boatIndex the new boatIndex
+	 */
 	public void setBoatIndex(short boatIndex) {
 		this.boatIndex = boatIndex;
 	}
 
+	/**
+	 * Returns the airshipIndex
+	 * 
+	 * @return the airshipIndex
+	 */
 	public short getAirshipIndex() {
 		return airshipIndex;
 	}
 
+	/**
+	 * Sets the airshipIndex
+	 * 
+	 * @param airshipIndex the new airshipIndex
+	 */
 	public void setAirshipIndex(short airshipIndex) {
 		this.airshipIndex = airshipIndex;
 	}
 
+	/**
+	 * Returns the nrHeroes
+	 * 
+	 * @return the nrHeroes
+	 */
 	public short getNrHeroes() {
 		return nrHeroes;
 	}
 
+	/**
+	 * Sets the nrHeroes
+	 * 
+	 * @param nrHeroes the new nrHeroes
+	 */
 	public void setNrHeroes(short nrHeroes) {
 		this.nrHeroes = nrHeroes;
 	}
 
+	/**
+	 * Returns the teleportErase
+	 * 
+	 * @return the teleportErase
+	 */
 	public short getTeleportErase() {
 		return teleportErase;
 	}
 
+	/**
+	 * Sets the teleportErase
+	 * 
+	 * @param teleportErase the new teleportErase
+	 */
 	public void setTeleportErase(short teleportErase) {
 		this.teleportErase = teleportErase;
 	}
 
+	/**
+	 * Returns the teleportShow
+	 * 
+	 * @return the teleportShow
+	 */
 	public short getTeleportShow() {
 		return teleportShow;
 	}
 
+	/**
+	 * Sets the teleportShow
+	 * 
+	 * @param teleportShow the new teleportShow
+	 */
 	public void setTeleportShow(short teleportShow) {
 		this.teleportShow = teleportShow;
 	}
 
+	/**
+	 * Returns the battleErase
+	 * 
+	 * @return the battleErase
+	 */
 	public short getBattleErase() {
 		return battleErase;
 	}
 
+	/**
+	 * Sets the battleErase
+	 * 
+	 * @param battleErase the new battleErase
+	 */
 	public void setBattleErase(short battleErase) {
 		this.battleErase = battleErase;
 	}
 
+	/**
+	 * Returns the battleShow
+	 * 
+	 * @return the battleShow
+	 */
 	public short getBattleShow() {
 		return battleShow;
 	}
 
+	/**
+	 * Sets the battleShow
+	 * 
+	 * @param battleShow the new battleShow
+	 */
 	public void setBattleShow(short battleShow) {
 		this.battleShow = battleShow;
 	}
 
+	/**
+	 * Returns the battleEndErase
+	 * 
+	 * @return the battleEndErase
+	 */
 	public short getBattleEndErase() {
 		return battleEndErase;
 	}
 
+	/**
+	 * Sets the battleEndErase
+	 * 
+	 * @param battleEndErase the new battleEndErase
+	 */
 	public void setBattleEndErase(short battleEndErase) {
 		this.battleEndErase = battleEndErase;
 	}
 
+	/**
+	 * Returns the battleEndShow
+	 * 
+	 * @return the battleEndShow
+	 */
 	public short getBattleEndShow() {
 		return battleEndShow;
 	}
 
+	/**
+	 * Sets the battleEndShow
+	 * 
+	 * @param battleEndShow the new battleEndShow
+	 */
 	public void setBattleEndShow(short battleEndShow) {
 		this.battleEndShow = battleEndShow;
 	}
 
+	/**
+	 * Returns the numberOfSaves
+	 * 
+	 * @return the numberOfSaves
+	 */
 	public long getNumberOfSaves() {
 		return numberOfSaves;
 	}
 
+	/**
+	 * Sets the numberOfSaves
+	 * 
+	 * @param numberOfSaves the new numberOfSaves
+	 */
 	public void setNumberOfSaves(long numberOfSaves) {
 		this.numberOfSaves = numberOfSaves;
 	}
 
+	/**
+	 * Returns the bATestVictim
+	 * 
+	 * @return the bATestVictim
+	 */
 	public long getbATestVictim() {
 		return bATestVictim;
 	}
 
+	/**
+	 * Sets the bATestVictim
+	 * 
+	 * @param bATestVictim the new bATestVictim
+	 */
 	public void setbATestVictim(long bATestVictim) {
 		this.bATestVictim = bATestVictim;
 	}
 
+	/**
+	 * Returns the bAUseGrid
+	 * 
+	 * @return the bAUseGrid
+	 */
 	public boolean isbAUseGrid() {
 		return bAUseGrid;
 	}
 
+	/**
+	 * Sets the bAUseGrid
+	 * 
+	 * @param bAUseGrid the new bAUseGrid
+	 */
 	public void setbAUseGrid(boolean bAUseGrid) {
 		this.bAUseGrid = bAUseGrid;
 	}
 
+	/**
+	 * Returns the titleMusic
+	 * 
+	 * @return the titleMusic
+	 */
 	public LuciferMusicUnit getTitleMusic() {
 		return titleMusic;
 	}
 
+	/**
+	 * Sets the titleMusic
+	 * 
+	 * @param titleMusic the new titleMusic
+	 */
 	public void setTitleMusic(LuciferMusicUnit titleMusic) {
 		this.titleMusic = titleMusic;
 	}
 
+	/**
+	 * Returns the battleMusic
+	 * 
+	 * @return the battleMusic
+	 */
 	public LuciferMusicUnit getBattleMusic() {
 		return battleMusic;
 	}
 
+	/**
+	 * Sets the battleMusic
+	 * 
+	 * @param battleMusic the new battleMusic
+	 */
 	public void setBattleMusic(LuciferMusicUnit battleMusic) {
 		this.battleMusic = battleMusic;
 	}
 
+	/**
+	 * Returns the battleEndMusic
+	 * 
+	 * @return the battleEndMusic
+	 */
 	public LuciferMusicUnit getBattleEndMusic() {
 		return battleEndMusic;
 	}
 
+	/**
+	 * Sets the battleEndMusic
+	 * 
+	 * @param battleEndMusic the new battleEndMusic
+	 */
 	public void setBattleEndMusic(LuciferMusicUnit battleEndMusic) {
 		this.battleEndMusic = battleEndMusic;
 	}
 
+	/**
+	 * Returns the innMusic
+	 * 
+	 * @return the innMusic
+	 */
 	public LuciferMusicUnit getInnMusic() {
 		return innMusic;
 	}
 
+	/**
+	 * Sets the innMusic
+	 * 
+	 * @param innMusic the new innMusic
+	 */
 	public void setInnMusic(LuciferMusicUnit innMusic) {
 		this.innMusic = innMusic;
 	}
 
+	/**
+	 * Returns the boatMusic
+	 * 
+	 * @return the boatMusic
+	 */
 	public LuciferMusicUnit getBoatMusic() {
 		return boatMusic;
 	}
 
+	/**
+	 * Sets the boatMusic
+	 * 
+	 * @param boatMusic the new boatMusic
+	 */
 	public void setBoatMusic(LuciferMusicUnit boatMusic) {
 		this.boatMusic = boatMusic;
 	}
 
+	/**
+	 * Returns the shipMusic
+	 * 
+	 * @return the shipMusic
+	 */
 	public LuciferMusicUnit getShipMusic() {
 		return shipMusic;
 	}
 
+	/**
+	 * Sets the shipMusic
+	 * 
+	 * @param shipMusic the new shipMusic
+	 */
 	public void setShipMusic(LuciferMusicUnit shipMusic) {
 		this.shipMusic = shipMusic;
 	}
 
+	/**
+	 * Returns the airshipMusic
+	 * 
+	 * @return the airshipMusic
+	 */
 	public LuciferMusicUnit getAirshipMusic() {
 		return airshipMusic;
 	}
 
+	/**
+	 * Sets the airshipMusic
+	 * 
+	 * @param airshipMusic the new airshipMusic
+	 */
 	public void setAirshipMusic(LuciferMusicUnit airshipMusic) {
 		this.airshipMusic = airshipMusic;
 	}
 
+	/**
+	 * Returns the gameOverMusic
+	 * 
+	 * @return the gameOverMusic
+	 */
 	public LuciferMusicUnit getGameOverMusic() {
 		return gameOverMusic;
 	}
 
+	/**
+	 * Sets the gameOverMusic
+	 * 
+	 * @param gameOverMusic the new gameOverMusic
+	 */
 	public void setGameOverMusic(LuciferMusicUnit gameOverMusic) {
 		this.gameOverMusic = gameOverMusic;
 	}
 
+	/**
+	 * Returns the cursorSE
+	 * 
+	 * @return the cursorSE
+	 */
 	public LuciferSoundUnit getCursorSE() {
 		return cursorSE;
 	}
 
+	/**
+	 * Sets the cursorSE
+	 * 
+	 * @param cursorSE the new cursorSE
+	 */
 	public void setCursorSE(LuciferSoundUnit cursorSE) {
 		this.cursorSE = cursorSE;
 	}
 
+	/**
+	 * Returns the decisionSE
+	 * 
+	 * @return the decisionSE
+	 */
 	public LuciferSoundUnit getDecisionSE() {
 		return decisionSE;
 	}
 
+	/**
+	 * Sets the decisionSE
+	 * 
+	 * @param decisionSE the new decisionSE
+	 */
 	public void setDecisionSE(LuciferSoundUnit decisionSE) {
 		this.decisionSE = decisionSE;
 	}
 
+	/**
+	 * Returns the cancelSE
+	 * 
+	 * @return the cancelSE
+	 */
 	public LuciferSoundUnit getCancelSE() {
 		return cancelSE;
 	}
 
+	/**
+	 * Sets the cancelSE
+	 * 
+	 * @param cancelSE the new cancelSE
+	 */
 	public void setCancelSE(LuciferSoundUnit cancelSE) {
 		this.cancelSE = cancelSE;
 	}
 
+	/**
+	 * Returns the buzzerSE
+	 * 
+	 * @return the buzzerSE
+	 */
 	public LuciferSoundUnit getBuzzerSE() {
 		return buzzerSE;
 	}
 
+	/**
+	 * Sets the buzzerSE
+	 * 
+	 * @param buzzerSE the new buzzerSE
+	 */
 	public void setBuzzerSE(LuciferSoundUnit buzzerSE) {
 		this.buzzerSE = buzzerSE;
 	}
 
+	/**
+	 * Returns the startBattleSE
+	 * 
+	 * @return the startBattleSE
+	 */
 	public LuciferSoundUnit getStartBattleSE() {
 		return startBattleSE;
 	}
 
+	/**
+	 * Sets the startBattleSE
+	 * 
+	 * @param startBattleSE the new startBattleSE
+	 */
 	public void setStartBattleSE(LuciferSoundUnit startBattleSE) {
 		this.startBattleSE = startBattleSE;
 	}
 
+	/**
+	 * Returns the escapeSE
+	 * 
+	 * @return the escapeSE
+	 */
 	public LuciferSoundUnit getEscapeSE() {
 		return escapeSE;
 	}
 
+	/**
+	 * Sets the escapeSE
+	 * 
+	 * @param escapeSE the new escapeSE
+	 */
 	public void setEscapeSE(LuciferSoundUnit escapeSE) {
 		this.escapeSE = escapeSE;
 	}
 
+	/**
+	 * Returns the enemyAttackSE
+	 * 
+	 * @return the enemyAttackSE
+	 */
 	public LuciferSoundUnit getEnemyAttackSE() {
 		return enemyAttackSE;
 	}
 
+	/**
+	 * Sets the enemyAttackSE
+	 * 
+	 * @param enemyAttackSE the new enemyAttackSE
+	 */
 	public void setEnemyAttackSE(LuciferSoundUnit enemyAttackSE) {
 		this.enemyAttackSE = enemyAttackSE;
 	}
 
+	/**
+	 * Returns the enemysDamageSE
+	 * 
+	 * @return the enemysDamageSE
+	 */
 	public LuciferSoundUnit getEnemysDamageSE() {
 		return enemysDamageSE;
 	}
 
+	/**
+	 * Sets the enemysDamageSE
+	 * 
+	 * @param enemysDamageSE the new enemysDamageSE
+	 */
 	public void setEnemysDamageSE(LuciferSoundUnit enemysDamageSE) {
 		this.enemysDamageSE = enemysDamageSE;
 	}
 
+	/**
+	 * Returns the friendsDamageSE
+	 * 
+	 * @return the friendsDamageSE
+	 */
 	public LuciferSoundUnit getFriendsDamageSE() {
 		return friendsDamageSE;
 	}
 
+	/**
+	 * Sets the friendsDamageSE
+	 * 
+	 * @param friendsDamageSE the new friendsDamageSE
+	 */
 	public void setFriendsDamageSE(LuciferSoundUnit friendsDamageSE) {
 		this.friendsDamageSE = friendsDamageSE;
 	}
 
+	/**
+	 * Returns the evasionSE
+	 * 
+	 * @return the evasionSE
+	 */
 	public LuciferSoundUnit getEvasionSE() {
 		return evasionSE;
 	}
 
+	/**
+	 * Sets the evasionSE
+	 * 
+	 * @param evasionSE the new evasionSE
+	 */
 	public void setEvasionSE(LuciferSoundUnit evasionSE) {
 		this.evasionSE = evasionSE;
 	}
 
+	/**
+	 * Returns the enemyDieSE
+	 * 
+	 * @return the enemyDieSE
+	 */
 	public LuciferSoundUnit getEnemyDieSE() {
 		return enemyDieSE;
 	}
 
+	/**
+	 * Sets the enemyDieSE
+	 * 
+	 * @param enemyDieSE the new enemyDieSE
+	 */
 	public void setEnemyDieSE(LuciferSoundUnit enemyDieSE) {
 		this.enemyDieSE = enemyDieSE;
 	}
 
+	/**
+	 * Returns the itemUseSE
+	 * 
+	 * @return the itemUseSE
+	 */
 	public LuciferSoundUnit getItemUseSE() {
 		return itemUseSE;
 	}
 
+	/**
+	 * Sets the itemUseSE
+	 * 
+	 * @param itemUseSE the new itemUseSE
+	 */
 	public void setItemUseSE(LuciferSoundUnit itemUseSE) {
 		this.itemUseSE = itemUseSE;
 	}
 
+	/**
+	 * Returns the heroes
+	 * 
+	 * @return the heroes
+	 */
 	public ArrayList<Long> getHeroes() {
 		return heroes;
 	}
 
+	/**
+	 * Sets the heroes
+	 * 
+	 * @param heroes the new heroes
+	 */
 	public void setHeroes(ArrayList<Long> heroes) {
 		this.heroes = heroes;
 	}
