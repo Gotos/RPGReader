@@ -259,19 +259,19 @@ public class LuciferMonsterParty implements UnitInterface {
 	 */
 	public byte[] write() {
 		byte[] appearInArray = new byte[0];
-		for (int i = 1; i <= appearIn.size(); i++) {
+		for (int i = 1; i < appearIn.size(); i++) {
 			if (appearIn.get(i) != null) {
 				appearInArray = Helper.concatAll(appearInArray, DataReader.intToRPGint(i), DataReader.intToRPGint(appearIn.get(i) ? 1 : 0));
 			}
 		}
 		byte[] monsterArray = new byte[0];
-		for (int i = 1; i <= monsters.size(); i++) {
+		for (int i = 1; i < monsters.size(); i++) {
 			if (monsters.get(i) != null) {
 				monsterArray = Helper.concatAll(monsterArray, DataReader.intToRPGint(i), monsters.get(i).write());
 			}
 		}
 		byte[] eventArray = new byte[0];
-		for (int i = 1; i <= battleEventPages.size(); i++) {
+		for (int i = 1; i < battleEventPages.size(); i++) {
 			if (battleEventPages.get(i) != null) {
 				eventArray = Helper.concatAll(eventArray, DataReader.intToRPGint(i), battleEventPages.get(i).write());
 			}
