@@ -214,12 +214,12 @@ public class LuciferMoveCommand implements UnitInterface {
 	 * @return LuciferEventCommand (MOVE_EVENT)
 	 */
 	public static LuciferEventCommand disassembleMoveCommands(
-			List<LuciferMoveCommand> moveCommands, long target, byte freq, boolean repeat, boolean ignore, long depth) {
+			List<LuciferMoveCommand> moveCommands, long target, long freq, long repeat, long ignore, long depth) {
 		LinkedList<Long> data = new LinkedList<Long>();
 		data.add(target);
-		data.add(new Long(freq));
-		data.add(repeat ? 1L : 0L);
-		data.add(ignore ? 1L : 0L);
+		data.add(freq);
+		data.add(repeat);
+		data.add(ignore);
 		for (LuciferMoveCommand mc : moveCommands) {
 			data.add(mc.type);
 			for (long d : mc.data) {
