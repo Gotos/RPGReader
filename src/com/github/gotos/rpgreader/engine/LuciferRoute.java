@@ -72,7 +72,7 @@ public class LuciferRoute implements UnitInterface {
 						byte[] filename = tmp.read(length, true);
 						data[0] = tmp.nextInt();
 						commands.add(i, new LuciferMoveCommand(move.integer, data, filename));
-						System.out.println("22:" + (length + anotherTemp.length + move.length + 1));
+						//System.out.println("22:" + (length + anotherTemp.length + move.length + 1));
 						commandLength -= length + anotherTemp.length + move.length;
 					} else if ((move.integer == 0x23)) {
 						data = new long[3];
@@ -85,7 +85,7 @@ public class LuciferRoute implements UnitInterface {
 							length += thirdTemp.length;
 						}
 						commands.add(i, new LuciferMoveCommand(move.integer, data, filename));
-						System.out.println("23:" + (length + move.length + anotherTemp.length));
+						//System.out.println("23:" + (length + move.length + anotherTemp.length));
 						commandLength -= length + move.length + anotherTemp.length - 1;
 					} else {
 						commands.add(i, new LuciferMoveCommand(move.integer));
