@@ -1158,18 +1158,18 @@ public class LuciferHeroUnit implements UnitInterface {
 			
 			byte[] stats = new byte[600];
 			for (int i = 0; i < 50; i++) {
-				stats[i] = DataReader.to16bitle(hp[i + 1])[0];
-				stats[i + 1] = DataReader.to16bitle(hp[i + 1])[1];
-				stats[i * 50] = DataReader.to16bitle(mp[i + 1])[0];
-				stats[(i * 50) + 1] = DataReader.to16bitle(mp[i + 1])[1];
-				stats[i * 100] = DataReader.to16bitle(attack[i + 1])[0];
-				stats[(i * 100) + 1] = DataReader.to16bitle(attack[i + 1])[1];
-				stats[i * 150] = DataReader.to16bitle(defense[i + 1])[0];
-				stats[(i * 150) + 1] = DataReader.to16bitle(defense[i + 1])[1];
-				stats[i * 200] = DataReader.to16bitle(mind[i + 1])[0];
-				stats[(i * 200) + 1] = DataReader.to16bitle(mind[i + 1])[1];
-				stats[i * 250] = DataReader.to16bitle(agility[i + 1])[0];
-				stats[(i * 250) + 1] = DataReader.to16bitle(agility[i + 1])[1];
+				stats[i * 2] = DataReader.to16bitle(hp[i + 1])[0];
+				stats[i * 2 + 1] = DataReader.to16bitle(hp[i + 1])[1];
+				stats[(i * 2) + 50] = DataReader.to16bitle(mp[i + 1])[0];
+				stats[(i * 2) + 51] = DataReader.to16bitle(mp[i + 1])[1];
+				stats[(i * 2) + 100] = DataReader.to16bitle(attack[i + 1])[0];
+				stats[(i * 2) + 101] = DataReader.to16bitle(attack[i + 1])[1];
+				stats[(i * 2) + 150] = DataReader.to16bitle(defense[i + 1])[0];
+				stats[(i * 2) + 151] = DataReader.to16bitle(defense[i + 1])[1];
+				stats[(i * 2) + 200] = DataReader.to16bitle(mind[i + 1])[0];
+				stats[(i * 2) + 201] = DataReader.to16bitle(mind[i + 1])[1];
+				stats[(i * 2) + 250] = DataReader.to16bitle(agility[i + 1])[0];
+				stats[(i * 2) + 251] = DataReader.to16bitle(agility[i + 1])[1];
 			}
 			byte[] equipment = new byte[10];
 			equipment[0] = DataReader.to16bitle(weapon)[0];
