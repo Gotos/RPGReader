@@ -222,6 +222,12 @@ public class LuciferMoveCommand implements UnitInterface {
 		data.add(ignore);
 		for (LuciferMoveCommand mc : moveCommands) {
 			data.add(mc.type);
+			for (byte b : DataReader.intToRPGint(mc.filename.length())) {
+				data.add((long) b);
+			}
+			for (char b : mc.filename.toCharArray()) {
+				data.add((long) b);
+			}
 			for (long d : mc.data) {
 				data.add(d);
 			}
