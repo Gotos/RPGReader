@@ -1,6 +1,7 @@
 package com.github.gotos.rpgreader.engine;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -142,5 +143,60 @@ public class LuciferMoveCommand implements UnitInterface {
 			return false;
 		}
 		return true;
+	}
+	
+	
+	/**
+	 * Assembles a list of LuciferMoveCommands from a single LuciferEventCommand of type MOVE_EVENT
+	 * 
+	 * @param eventCommand The MOVE_EVENT that should be converted
+	 * @return ArrayList of the LuciferMoveCommands
+	 * @throws UnsupportedEncodingException thrown, if Encoding of Strings is unsupported
+	 * @throws IllegalArgumentException thrown, if the LuciferEventCommand is not of type MOVE_EVENT
+	 */
+	public static ArrayList<LuciferMoveCommand> assembleMoveCommands(LuciferEventCommand eventCommand)
+			throws UnsupportedEncodingException, IllegalArgumentException {
+		if (eventCommand.type != LuciferEventCommand.MOVE_EVENT) {
+			throw new IllegalArgumentException();
+		}
+		ArrayList<LuciferMoveCommand> commands = new ArrayList<LuciferMoveCommand>();
+		long move;
+		long[] data;
+		long length;
+		for (int i = 4; i < eventCommand.data.length; i++) {
+			move = eventCommand.data[i];
+			//System.out.println(move.integer);
+			if ((move == 0x20) || (move == 0x21)) {
+				data = new long[1];
+				data[0] = eventCommand.data[i + 1];
+				commands.add(i, new LuciferMoveCommand(move, data));
+				i++;
+			} else if ((move == 0x22)) {
+				data = new long[1];
+				length = eventCommand.data[i + 1];
+				byte[] filename = new byte[(int) length];
+				for (int k = 0; k < length; k++) {
+					filename[k] = (byte) eventCommand.data[i + 2 + k];
+				}
+				data[0] = eventCommand.data[(int) (i + 2 + length)];
+				commands.add(i, new LuciferMoveCommand(move, data, filename));
+				i += 2 + length;
+			} else if ((move == 0x23)) {
+				data = new long[3];
+				length = eventCommand.data[i + 1];
+				byte[] filename = new byte[(int) length];
+				for (int k = 0; k < length; k++) {
+					filename[k] = (byte) eventCommand.data[i + 2 + k];
+				}
+				for (int j = 0; j < 3; j++) {
+					data[j] = eventCommand.data[(int) (i + j + 2 + length)];
+				}
+				commands.add(i, new LuciferMoveCommand(move, data, filename));
+				i += 5 + length;
+			} else {
+				commands.add(i, new LuciferMoveCommand(move));
+			}
+		}
+		return null;
 	}
 }
