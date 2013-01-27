@@ -171,7 +171,7 @@ public class LuciferMoveCommand implements UnitInterface {
 			if ((move == 0x20) || (move == 0x21)) {
 				data = new long[1];
 				data[0] = eventCommand.data[i + 1];
-				commands.add(i, new LuciferMoveCommand(move, data));
+				commands.add(new LuciferMoveCommand(move, data));
 				i++;
 			} else if ((move == 0x22)) {
 				data = new long[1];
@@ -181,7 +181,7 @@ public class LuciferMoveCommand implements UnitInterface {
 					filename[k] = (byte) eventCommand.data[i + 2 + k];
 				}
 				data[0] = eventCommand.data[(int) (i + 2 + length)];
-				commands.add(i, new LuciferMoveCommand(move, data, filename));
+				commands.add(new LuciferMoveCommand(move, data, filename));
 				i += 2 + length;
 			} else if ((move == 0x23)) {
 				data = new long[3];
@@ -196,7 +196,7 @@ public class LuciferMoveCommand implements UnitInterface {
 				commands.add(i, new LuciferMoveCommand(move, data, filename));
 				i += 5 + length;
 			} else {
-				commands.add(i, new LuciferMoveCommand(move));
+				commands.add(new LuciferMoveCommand(move));
 			}
 		}
 		return commands;
