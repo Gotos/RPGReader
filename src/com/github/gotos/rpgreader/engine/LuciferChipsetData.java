@@ -505,7 +505,7 @@ public class LuciferChipsetData implements UnitInterface {
 			}
 			byte[] defaultLowerLayer = new byte[162];
 			Arrays.fill(defaultLowerLayer, (byte) 15);
-			byte[] upperLayer = new byte[14];
+			byte[] upperLayer = new byte[144];
 			for (int i = 0; i < 144; i++) {
 				upperLayer[i] = (byte) ((upperLayerDown[i] ? 1 : 0)
 								+ (upperLayerLeft[i] ? 2 : 0)
