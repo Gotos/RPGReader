@@ -1160,16 +1160,16 @@ public class LuciferHeroUnit implements UnitInterface {
 			for (int i = 0; i < 50; i++) {
 				stats[i * 2] = DataReader.to16bitle(hp[i + 1])[0];
 				stats[i * 2 + 1] = DataReader.to16bitle(hp[i + 1])[1];
-				stats[(i * 2) + 50] = DataReader.to16bitle(mp[i + 1])[0];
-				stats[(i * 2) + 51] = DataReader.to16bitle(mp[i + 1])[1];
-				stats[(i * 2) + 100] = DataReader.to16bitle(attack[i + 1])[0];
-				stats[(i * 2) + 101] = DataReader.to16bitle(attack[i + 1])[1];
-				stats[(i * 2) + 150] = DataReader.to16bitle(defense[i + 1])[0];
-				stats[(i * 2) + 151] = DataReader.to16bitle(defense[i + 1])[1];
-				stats[(i * 2) + 200] = DataReader.to16bitle(mind[i + 1])[0];
-				stats[(i * 2) + 201] = DataReader.to16bitle(mind[i + 1])[1];
-				stats[(i * 2) + 250] = DataReader.to16bitle(agility[i + 1])[0];
-				stats[(i * 2) + 251] = DataReader.to16bitle(agility[i + 1])[1];
+				stats[(i * 2) + 100] = DataReader.to16bitle(mp[i + 1])[0];
+				stats[(i * 2) + 101] = DataReader.to16bitle(mp[i + 1])[1];
+				stats[(i * 2) + 200] = DataReader.to16bitle(attack[i + 1])[0];
+				stats[(i * 2) + 201] = DataReader.to16bitle(attack[i + 1])[1];
+				stats[(i * 2) + 300] = DataReader.to16bitle(defense[i + 1])[0];
+				stats[(i * 2) + 301] = DataReader.to16bitle(defense[i + 1])[1];
+				stats[(i * 2) + 400] = DataReader.to16bitle(mind[i + 1])[0];
+				stats[(i * 2) + 401] = DataReader.to16bitle(mind[i + 1])[1];
+				stats[(i * 2) + 500] = DataReader.to16bitle(agility[i + 1])[0];
+				stats[(i * 2) + 501] = DataReader.to16bitle(agility[i + 1])[1];
 			}
 			byte[] equipment = new byte[10];
 			equipment[0] = DataReader.to16bitle(weapon)[0];
@@ -1188,7 +1188,7 @@ public class LuciferHeroUnit implements UnitInterface {
 			for (int i = 0; i < skills.size(); i++) {
 				if (skills.get(i) != null) {
 					skilllist = Helper.concatAll(skilllist,
-							DataReader.intToRPGint(i),
+							DataReader.intToRPGint(i + 1),
 							skills.get(i).write());
 				}
 			}
@@ -1232,9 +1232,9 @@ public class LuciferHeroUnit implements UnitInterface {
 					new LuciferBaseUnit(0x3F, skilllist).write(),
 					new LuciferBaseUnit(0x42, DataReader.intToRPGint(renameSkill ? 1 : 0)).write(new byte[]{0}),
 					new LuciferBaseUnit(0x43, skillName.getBytes(Encoder.ENCODING)).write(new byte[0]),
-					new LuciferBaseUnit(0x47, DataReader.intToRPGint(nrConditions)).write(new byte[0]),
+					new LuciferBaseUnit(0x47, DataReader.intToRPGint(nrConditions)).write(new byte[]{0}),
 					new LuciferBaseUnit(0x48, conditionlist).write(new byte[0]),
-					new LuciferBaseUnit(0x49, DataReader.intToRPGint(nrAttributes)).write(new byte[0]),
+					new LuciferBaseUnit(0x49, DataReader.intToRPGint(nrAttributes)).write(new byte[]{0}),
 					new LuciferBaseUnit(0x4A, attributelist).write(new byte[0]),
 					new byte[]{0}
 					);
