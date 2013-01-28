@@ -498,7 +498,8 @@ public class LuciferDatabase implements UnitInterface {
 				}
 			}
 			variArray = Helper.concatAll(DataReader.intToRPGint(variableNames.size()), variArray);
-			return Helper.concatAll(new LuciferBaseUnit(0x0B, Helper.listToBytes(heroes)).write(new byte[0]),
+			return Helper.concatAll(new LuciferBaseUnit(0x01, "LcfDatabase".getBytes(Encoder.ENCODING)).write(false),
+					new LuciferBaseUnit(0x0B, Helper.listToBytes(heroes)).write(new byte[0]),
 					new LuciferBaseUnit(0x0C, Helper.listToBytes(skills)).write(new byte[0]),
 					new LuciferBaseUnit(0x0D, Helper.listToBytes(items)).write(new byte[0]),
 					new LuciferBaseUnit(0x0E, Helper.listToBytes(monsters)).write(new byte[0]),
