@@ -345,6 +345,8 @@ public class LuciferDatabase implements UnitInterface {
 					while (skills.size() < id) { skills.add(null); }
 					skills.add((int) id, new LuciferSkillUnit(tmp));
 				}
+				System.out.println("Skills done");
+				System.out.flush();
 				break;
 			case 0x0D:
 				size = (int) tmp.nextInt(); //read nr
@@ -354,6 +356,8 @@ public class LuciferDatabase implements UnitInterface {
 					while (items.size() < id) { items.add(null); }
 					items.add((int) id, new LuciferItemUnit(tmp));
 				}
+				System.out.println("Items done");
+				System.out.flush();
 				break;
 			case 0x0E:
 				size = (int) tmp.nextInt(); //read nr
@@ -363,6 +367,9 @@ public class LuciferDatabase implements UnitInterface {
 					while (monsters.size() < id) { monsters.add(null); }
 					monsters.add((int) id, new LuciferMonsterUnit(tmp));
 				}
+
+				System.out.println("Monsters done");
+				System.out.flush();
 				break;
 			case 0x0F:
 				size = (int) tmp.nextInt(); //read nr
@@ -372,6 +379,9 @@ public class LuciferDatabase implements UnitInterface {
 					while (monsterParties.size() < id) { monsterParties.add(null); }
 					monsterParties.add((int) id, new LuciferMonsterParty(tmp));
 				}
+
+				System.out.println("MParties done");
+				System.out.flush();
 				break;
 			case 0x10:
 				size = (int) tmp.nextInt(); //read nr
@@ -381,6 +391,8 @@ public class LuciferDatabase implements UnitInterface {
 					while (terrains.size() < id) { terrains.add(null); }
 					terrains.add((int) id, new LuciferTerrainUnit(tmp));
 				}
+				System.out.println("Terrain done");
+				System.out.flush();
 				break;
 			case 0x11:
 				size = (int) tmp.nextInt(); //read nr
@@ -390,6 +402,8 @@ public class LuciferDatabase implements UnitInterface {
 					while (attributes.size() < id) { attributes.add(null); }
 					attributes.add((int) id, new LuciferAttributeUnit(tmp));
 				}
+				System.out.println("Attr done");
+				System.out.flush();
 				break;
 			case 0x12:
 				size = (int) tmp.nextInt(); //read nr
@@ -399,6 +413,8 @@ public class LuciferDatabase implements UnitInterface {
 					while (conditions.size() < id) { conditions.add(null); }
 					conditions.add((int) id, new LuciferConditionUnit(tmp));
 				}
+				System.out.println("Cond done");
+				System.out.flush();
 				break;
 			case 0x13:
 				size = (int) tmp.nextInt(); //read nr
@@ -408,6 +424,8 @@ public class LuciferDatabase implements UnitInterface {
 					while (animations.size() < id) { animations.add(null); }
 					animations.add((int) id, new LuciferAnimationUnit(tmp));
 				}
+				System.out.println("Ani done");
+				System.out.flush();
 				break;
 			case 0x14:
 				size = (int) tmp.nextInt(); //read nr
@@ -417,13 +435,20 @@ public class LuciferDatabase implements UnitInterface {
 					while (chipsets.size() < id) { chipsets.add(null); }
 					chipsets.add((int) id, new LuciferChipsetData(tmp));
 				}
+				System.out.println("Chip done");
+				System.out.flush();
 				break;
 			case 0x15:
 				//TODO: parse vocab
 				vocab = unit.content;
+
+				System.out.println("Vocab done");
+				System.out.flush();
 				break;
 			case 0x16:
 				system = new LuciferSystemData(tmp);
+				System.out.println("system done");
+				System.out.flush();
 				break;
 			case 0x17:
 				size = (int) tmp.nextInt() + 1;
@@ -438,6 +463,8 @@ public class LuciferDatabase implements UnitInterface {
 						tmp.nextInt(); //read 0x00
 					}
 				}
+				System.out.println("switch done");
+				System.out.flush();
 				break;
 			case 0x18:
 				size = (int) tmp.nextInt() + 1;
@@ -452,6 +479,8 @@ public class LuciferDatabase implements UnitInterface {
 						tmp.nextInt(); //read 0x00
 					}
 				}
+				System.out.println("vari done");
+				System.out.flush();
 				break;
 			case 0x19:
 				size = (int) tmp.nextInt(); //read nr
@@ -461,6 +490,8 @@ public class LuciferDatabase implements UnitInterface {
 					while (commonEvents.size() < id) { commonEvents.add(null); }
 					commonEvents.add((int) id, new LuciferCommonEvent(tmp));
 				}
+				System.out.println("CE done");
+				System.out.flush();
 				break;
 			default:
 				Helper.warn(3, "Unknown Unit-ID in LuciferDatabase! ID: " + unit.id);
