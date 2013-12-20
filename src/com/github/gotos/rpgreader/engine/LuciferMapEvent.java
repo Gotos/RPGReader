@@ -160,7 +160,7 @@ public class LuciferMapEvent implements UnitInterface {
 				pages = new ArrayList<LuciferMapEventPage>(nrPages);
 				pages.add(null); //Add Page zero; Page-IDs start at 1.
 				for (int i = 0; i < nrPages; i++) {
-					int id = (int) tmp.nextInt();
+					tmp.nextInt();
 					pages.add(new LuciferMapEventPage(tmp));
 				}
 				break;

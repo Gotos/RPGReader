@@ -399,6 +399,7 @@ public class DataReader {
 		// Before converting to an int type, check
 		// to ensure that file is not larger than Integer.MAX_VALUE.
 		if (length > Integer.MAX_VALUE) {
+			is.close();
 			throw new IOException("Could not completely read file " + file.getName());
 		} // Create the byte array to hold the data
 		byte[] bytes = new byte[(int) length]; // Read in the bytes
@@ -409,6 +410,7 @@ public class DataReader {
 			numRead = is.read(bytes, offset, bytes.length - offset);
 		} // Ensure all the bytes have been read in
 		if (offset < bytes.length) {
+			is.close();
 			throw new IOException("Could not completely read file " + file.getName());
 		} // Close the input stream and return bytes
 		is.close();
