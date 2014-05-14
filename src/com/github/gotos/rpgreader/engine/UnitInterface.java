@@ -7,7 +7,7 @@ package com.github.gotos.rpgreader.engine;
  */
 public interface UnitInterface {
 	/**
-	 * Returns the byte-representation of this MapUnit
+	 * Returns the byte-representation of this Unit
 	 * 
 	 * @return byte-representation
 	 */
