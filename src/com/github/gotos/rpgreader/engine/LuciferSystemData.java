@@ -65,9 +65,9 @@ public class LuciferSystemData implements UnitInterface {
 	}
 	
 	/**
-	 * Constructs a new LuciferRoute
+	 * Constructs a new LuciferSystemData
 	 * 
-	 * @param dr DataReader which represents the LuciferRoute
+	 * @param dr DataReader which represents the LuciferSystemData
 	 * @throws IOException is thrown on any parsing-error
 	 */
 	public LuciferSystemData(DataReader dr) throws IOException {
